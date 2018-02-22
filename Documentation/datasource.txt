@@ -1,0 +1,11 @@
+Link sent by M. Perez :
+https://www.nasa.gov/feature/goddard/2017/new-night-lights-maps-open-up-possible-real-time-applications
+
+Image source :
+https://earthdata.nasa.gov/about/science-system-description/eosdis-components/global-imagery-browse-services-gibs
+
+Online browser :
+https://worldview.earthdata.nasa.gov/?p=geographic&l=VIIRS_SNPP_DayNightBand_ENCC&t=2018-02-19&z=3&v=-24.874695262394233,-3.716138495002774,110.12530473760577,63.151049004997226&ab=off&as=2015-10-31&ae=2015-11-07&av=3&al=false
+
+API :
+https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-%22BestAvailable%22Layers
