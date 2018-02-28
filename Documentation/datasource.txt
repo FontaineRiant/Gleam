@@ -9,3 +9,8 @@ https://worldview.earthdata.nasa.gov/?p=geographic&l=VIIRS_SNPP_DayNightBand_ENC
 
 API :
 https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-%22BestAvailable%22Layers
+
+Les images téléchargées sont des png sans metadata. De toute façon les données ne sont disponibles que sur 1 an (pas assez de variations) ou ponctuellement en 2012 et 2016 (propres, sans nuages, pas besoin de scraper).
+=> Plutôt que de prendre un lieu et suivre son évolution dans le temps, on a de meilleurs données pour analyser des lieux sur un seul snapshot et prédire des données sur un lieu qui n'en possède pas.
+
+Pour ça, pas besoin de scrpit : le EOSDIS worldview propose de télécharger un snapshot en format jpeg (beurk), png (sert à rien), GeoTIFF (à voir) et KMZ (pour importation dans google earth).
