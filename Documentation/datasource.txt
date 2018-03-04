@@ -16,4 +16,4 @@ Les images téléchargées sont des png sans metadata. De toute façon les donn�
 Pour ça, pas besoin de scrpit : le EOSDIS worldview propose de télécharger un snapshot en format jpeg (beurk), png (sert à rien), GeoTIFF (à voir) et KMZ (pour importation dans google earth).
 
 Grided data :
-http://sedac.ciesin.columbia.edu/data/sets/browse
+http://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count-adjusted-to-2015-unwpp-country-totals-rev10
