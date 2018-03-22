@@ -17,3 +17,7 @@ Pour ça, pas besoin de scrpit : le EOSDIS worldview propose de télécharger un
 
 Grided data :
 http://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count-adjusted-to-2015-unwpp-country-totals-rev10
+
+Cartes de 1992 à 2013 : https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html
+
+Vector files for locations : http://www.naturalearthdata.com/downloads/10m-cultural-vectors/
