@@ -21,3 +21,6 @@ http://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count-adjusted-to-20
 Cartes de 1992 à 2013 : https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html
 
 Vector files for locations : http://www.naturalearthdata.com/downloads/10m-cultural-vectors/
+
+Population per country : http://data.un.org/Data.aspx?q=population&d=PopDiv&f=variableID%3a12
+GDP per country : http://data.un.org/Data.aspx?q=gdp&d=SNAAMA&f=grID%3a101%3bcurrID%3aNCU%3bpcFlag%3a0
