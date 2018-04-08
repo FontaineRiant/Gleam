@@ -5,6 +5,7 @@ click-plugins==1.0.3
 cligj==0.4.0
 cycler==0.10.0
 Fiona==1.7.11.post1
+GDAL==2.2.4
 kiwisolver==1.0.1
 matplotlib==2.2.2
 munch==2.2.0

@@ -7,14 +7,14 @@ countries = pickle.load(open( "stats.pickle", "rb" ))
 plt.rcParams["figure.figsize"] = (15,10)
 
 population = []
-with open('population_per_country.csv', 'rt') as csvfile:
+with open('../../Data/population_per_country.csv', 'rt') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
         if row: 
             population.append(row)
             
 gdp = []
-with open('gdp_per_country.csv', 'rt') as csvfile:
+with open('../../Data/gdp_per_country.csv', 'rt') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
         if row: 

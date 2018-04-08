@@ -6,12 +6,12 @@ stats = {}
 
 # valid country list : https://unstats.un.org/unsd/methodology/m49/
 
-for entry in os.scandir('raster'):
+for entry in os.scandir('../../Data/lightrasters_noaa'):
     filename, *_, extension = entry.name.split(".")
     if extension != 'tif':
         continue
 
-    global_stats = zonal_stats('borders/ne_10m_admin_0_countries.shp', entry.path,
+    global_stats = zonal_stats('../../Data/borders/ne_10m_admin_0_countries.shp', entry.path,
                                stats="mean sum std median",
                                all_touched=True,
                                geojson_out=True)
