@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pickle
 import csv
 
-yaxiss = ['mean'] # disponibles : 'mean', 'std', 'median'
+yaxiss = ['sum'] # disponibles : 'mean', 'std', 'median'
 countries = pickle.load(open( "stats.pickle", "rb" ))
 plt.rcParams["figure.figsize"] = (15,10)
 
