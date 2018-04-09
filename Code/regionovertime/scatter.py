@@ -41,13 +41,15 @@ for k, g in graphs.items() :
                 if row[0] == country and row[1] == year[-4:]:
                     valuesX.append(float(row[3]))
                     valuesY.append(years[year]['sum']) # disponibles : 'mean', 'std', 'median', 'sum'
+                    if float(row[3]) > 0.15*10**16 and k == 'gdp':
+                        print(country)
                     break
         
     fig = plt.figure()
     ax1 = plt.subplot(1, 1, 1)
 
-    plt.xscale('log')
-    plt.yscale('log')
+    #plt.xscale('log')
+    #plt.yscale('log')
     ax1.scatter(valuesX, valuesY, alpha=0.2)
     ax1.set(xlabel=k, ylabel='Light')
     ax1.grid()

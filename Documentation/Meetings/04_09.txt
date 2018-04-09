@@ -1,0 +1,7 @@
+scatterplots : colorer les points par année, puis par GDP et par pays
+
+Delta des luminosité par année par pays
+
+double check dataset gdp
+
+Filtrer les graphes par développement économique (top 50 rankings, gdp, health par ex)
