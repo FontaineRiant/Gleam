@@ -2,11 +2,13 @@ import matplotlib.pyplot as plt
 import pickle
 import csv
 
+# charge les données préprocessed
 countries = pickle.load(open( "stats.pickle", "rb" ))
 plt.rcParams["figure.figsize"] = (15,10)
 
 graphs = {}
 
+# charge les csv (format : [pays, année, _ , valeur])
 graphs['population'] = []
 with open('../../Data/population_per_country.csv', 'rt') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
@@ -28,7 +30,6 @@ with open('../../Data/electricity_consumption_per_country.csv', 'rt') as csvfile
         if row: 
             graphs['energy'].append(row)
 
-# remove headers
 for k, g in graphs.items() :
     g.pop(0)
 
@@ -41,8 +42,6 @@ for k, g in graphs.items() :
                 if row[0] == country and row[1] == year[-4:]:
                     valuesX.append(float(row[3]))
                     valuesY.append(years[year]['sum']) # disponibles : 'mean', 'std', 'median', 'sum'
-                    if float(row[3]) > 0.15*10**16 and k == 'gdp':
-                        print(country)
                     break
         
     fig = plt.figure()
