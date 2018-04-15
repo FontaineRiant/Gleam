@@ -58,7 +58,7 @@ for yaxis in yaxiss:
         fig = plt.figure()
         ax1 = plt.subplot(3, 1, 1)
         ax1.plot(x, y1)
-        ax1.set(xlabel='year', ylabel=yaxis, title='Light intensity (0-63) in ' + country + ' from space')
+        ax1.set(xlabel='year', ylabel=yaxis, title='Light intensity (0-63) in ' + str(country) + ' from space')
         ax1.grid()
 
         ax2 = plt.subplot(3, 1, 2)
@@ -71,7 +71,7 @@ for yaxis in yaxiss:
         ax3.set(xlabel='year', ylabel='GDP', title='')
         ax3.grid()
 
-        fig.savefig("plots/" + yaxis + "_" + country + ".png")
+        fig.savefig("plots/" + yaxis + "_" + str(country) + ".png")
         
         plt.close(fig)
 print('plots done !')

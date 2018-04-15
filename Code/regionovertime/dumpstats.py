@@ -17,7 +17,11 @@ for entry in os.scandir('../../Data/lightrasters_noaa'):
                                geojson_out=True)
 
     for c in global_stats:
-        name = c['properties']['NAME']
+        print(c['properties']['ECONOMY'])
+        name = c['properties']['NAME_SORT']
+
+        if name is None:
+            name = c['properties']['NAME']
         
         if name not in stats:
             stats[name] = {}
