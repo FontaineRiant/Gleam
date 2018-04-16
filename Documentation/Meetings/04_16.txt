@@ -1,0 +1,15 @@
+
+poser les deltas de luminosités sur une carte (colorer)
+
+re : scatterplots : colorer les points par année, puis par GDP et par pays
+
+relation log-log des scatter plots : power law (à lire)
+
+re : _superposer deux rasters_
+https://gis.stackexchange.com/questions/16834/how-to-add-different-sized-rasters-in-gdal-so-the-result-is-only-in-the-intersec
+
+écrire des mails sur les procédures utilisées en cas de blocage sur un problème déjà résolu
+
+trouver quelqu'un qui a déjà utilisé ce type de données
+
+rechercher d'autres datasets

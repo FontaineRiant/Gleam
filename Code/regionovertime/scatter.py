@@ -4,6 +4,7 @@
 import matplotlib.pyplot as plt
 import pickle
 import csv
+import numpy as np
 
 # charge les données préprocessed
 countries = pickle.load(open( "stats.pickle", "rb" ))
@@ -39,24 +40,32 @@ for k, g in csv_data.items() :
 
     valuesX = []
     valuesY = []
+    valuesZ = []
 
     # parcours les données de lumière par pays
     for country, years in countries.items():
         # parcours les données du pays par année
         for year in years:
+            if not year[-4:] == '2013':
+                continue
             # cherche la ligne du csv correspondant au pays
             for row in g:
                 if row[0] == country and row[1] == year[-4:]:
                     valuesX.append(float(row[3]))
                     valuesY.append(years[year]['sum']) # disponibles : 'mean', 'std', 'median', 'sum'
+                    valuesZ.append(years[year]['ECONOMY'][0])
                     break
+                
+    # normalize Z
+    valuesZ = np.array(valuesZ).astype(np.float)
+    valuesZ = (valuesZ - np.amin(valuesZ)) / (np.amax(valuesZ) - np.amin(valuesZ))
         
     fig = plt.figure()
     ax1 = plt.subplot(1, 1, 1)
 
     plt.xscale('log')
     plt.yscale('log')
-    ax1.scatter(valuesX, valuesY, alpha=0.2)
+    ax1.scatter(valuesX, valuesY, alpha=0.5, c=valuesZ)
     ax1.set(xlabel=k, ylabel='Light')
     ax1.grid()
 
