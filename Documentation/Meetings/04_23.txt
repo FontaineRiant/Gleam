@@ -1,0 +1,7 @@
+
+NN : réseau à convolution light->pop (régression)
+
+https://machinelearningmastery.com/regression-tutorial-keras-deep-learning-library-python/
+
+https://www.kaggle.com/somshubramajumdar/deep-convolutional-network-using-keras/code
+loss="mse", activation=None (dernière couche, 1 neurone)
