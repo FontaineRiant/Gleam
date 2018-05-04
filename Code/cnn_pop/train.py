@@ -31,34 +31,29 @@ nb_epoch = 1 # Change to 100
 batch_size = 128
 img_rows, img_cols = testX
 
-nb_filters_1 = 64
-nb_filters_2 = 128
-nb_filters_3 = 256
-nb_conv = 3
+# last filter makes the input layer for the last perceptron bigger
+nb_filters_1 = 32
+nb_filters_2 = 64
+nb_conv_1 = 32
+nb_conv_2 = 8
 
 cnn = models.Sequential()
 
-cnn.add(conv.Convolution2D(nb_filters_1, nb_conv, nb_conv,  activation="relu", input_shape=(img_rows, img_cols, 1), 
+cnn.add(conv.Convolution2D(nb_filters_1, nb_conv_1, nb_conv_1,  activation="relu", input_shape=(img_rows, img_cols, 1), 
     border_mode='same'))
-cnn.add(conv.Convolution2D(nb_filters_1, nb_conv, nb_conv, activation="relu", border_mode='same'))
+cnn.add(conv.Convolution2D(nb_filters_1, nb_conv_1, nb_conv_1, activation="relu", border_mode='same'))
 cnn.add(conv.MaxPooling2D(strides=(2,2)))
 
-cnn.add(conv.Convolution2D(nb_filters_2, nb_conv, nb_conv, activation="relu", border_mode='same'))
-cnn.add(conv.Convolution2D(nb_filters_2, nb_conv, nb_conv, activation="relu", border_mode='same'))
+cnn.add(conv.Convolution2D(nb_filters_2, nb_conv_2, nb_conv_2, activation="relu", border_mode='same'))
+cnn.add(conv.Convolution2D(nb_filters_2, nb_conv_2, nb_conv_2, activation="relu", border_mode='same'))
 cnn.add(conv.MaxPooling2D(strides=(2,2)))
-
-#cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation="relu", border_mode='same'))
-#cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation="relu", border_mode='same'))
-#cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation="relu", border_mode='same'))
-#cnn.add(conv.Convolution2D(nb_filters_3, nb_conv, nb_conv, activation="relu", border_mode='same'))
-#cnn.add(conv.MaxPooling2D(strides=(2,2)))
 
 cnn.add(core.Flatten())
 cnn.add(core.Dropout(0.2))
 cnn.add(core.Dense(4096, activation=None))
 
 cnn.summary()
-cnn.compile(loss="mean_squared_error", optimizer="adam", metrics=["accuracy"])
+cnn.compile(loss="mean_squared_error", optimizer="adam", metrics=["mse"])
 
 print('training')
 
@@ -66,7 +61,7 @@ cnn.fit(trainX, trainY, batch_size=batch_size, nb_epoch=nb_epoch, verbose=1)
 
 yPred = cnn.predict_classes(testX)
 
-np.savetxt('mnist-vggnet.csv', np.c_[range(1,len(yPred)+1),yPred], delimiter=',',
+np.savetxt('trained.csv', np.c_[range(1,len(yPred)+1),yPred], delimiter=',',
     header = 'ImageId,Label', comments = '', fmt='%d')
 
 print('done !')
