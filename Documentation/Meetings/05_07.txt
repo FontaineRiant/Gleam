@@ -1,0 +1,11 @@
+Question :
+Input d'entrainement : 1-3 images du monde
+Input de test : idem
+On a besoin de pouvoir déterminer la valeur de chaque pixel en output
+=> le cnn crache une nouvelle carte complète
+=> input dim == output dim
+Le cnn ne doit pas effacer l'information spatiale d'un pixel => pas de flatten ? et pooling ?
+=> out of memory (network trop grand pour la mémoire de la GPU !)
+=> tile
+
+Normaliser ou pas ?
