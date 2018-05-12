@@ -8,14 +8,15 @@ import keras.layers.convolutional as conv
 import keras.models as models
 import keras.utils.np_utils as kutils
 
-tile_size = 32
+input_tile_size = 32
+outputs_per_tile = 1
 
 def normalize(array):
     array = np.array(array).astype('float32')
     array = (array - np.amin(array)) / (np.amax(array) - np.amin(array))
     return array
 
-def tile(matrix):
+def tile(matrix, tile_size):
     y = 0
     tiles = []
     while (y + tile_size < matrix.shape[1]):
@@ -30,12 +31,12 @@ def tile(matrix):
 print('opening raster')
 
 train = rasterio.open('../../Data/lightpop_merged/2000_subset.tif')
-trainX = np.expand_dims(tile(normalize(train.read(1))), axis=3)
-trainY = np.expand_dims(tile(normalize(train.read(2))), axis=3)
+trainX = np.expand_dims(tile(normalize(train.read(1)), input_tile_size), axis=3)
+trainY = np.expand_dims(np.mean(tile(normalize(train.read(2)), input_tile_size), axis=2), axis=3)
 
 test = rasterio.open('../../Data/lightpop_merged/2005_subset.tif')
-testX = np.expand_dims(tile(normalize(test.read(1))), axis=3)
-testY = np.expand_dims(tile(normalize(test.read(2))), axis=3)
+testX = np.expand_dims(tile(normalize(test.read(1)), input_tile_size), axis=3)
+testY = np.expand_dims(np.mean(tile(normalize(test.read(2)), input_tile_size), axis=2), axis=3)
 
 print(trainX.shape)
 img_count, img_rows, img_cols, img_channel_count = trainX.shape
