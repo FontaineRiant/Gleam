@@ -9,3 +9,8 @@ Le cnn ne doit pas effacer l'information spatiale d'un pixel => pas de flatten ?
 => tile
 
 Normaliser ou pas ?
+
+
+1 output => densité sur la tile
+lire l'article pdf en Doc
+télécharger les datasets density rasters : http://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-adjusted-to-2015-unwpp-country-totals-rev10
