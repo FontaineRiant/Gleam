@@ -1,0 +1,5 @@
+Train sur europe-afrique du nord, test sur europe de l'est-russie
+
+mesure de densité/total de pop à la place de la moyenne
+
+visualiser les erreurs sur la carte / estimation de la population

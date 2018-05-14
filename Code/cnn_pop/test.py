@@ -10,10 +10,6 @@ import keras.utils.np_utils as kutils
 input_tile_size = 32
 outputs_per_tile = 1
 
-def normalize(array):
-    #array = (array - np.amin(array)) / (np.amax(array) - np.amin(array))
-    return array
-
 def tile(matrix, tile_size):
     y = 0
     tiles = []
@@ -32,12 +28,12 @@ cnn = models.load_model('model.h5')
 print('opening raster')
 
 train = rasterio.open('../../Data/lightpop_merged/2000_subset.tif')
-trainX = np.expand_dims(tile(normalize(train.read(1)), input_tile_size), axis=3)
-trainY = np.mean(tile(normalize(train.read(2)), input_tile_size), axis=(1, 2))
+trainX = np.expand_dims(tile(train.read(1), input_tile_size), axis=3)
+trainY = np.mean(tile(train.read(2), input_tile_size), axis=(1, 2))
 
 test = rasterio.open('../../Data/lightpop_merged/2005_subset.tif')
-testX = np.expand_dims(tile(normalize(test.read(1)), input_tile_size), axis=3)
-testY = np.mean(tile(normalize(test.read(2)), input_tile_size), axis=(1, 2))
+testX = np.expand_dims(tile(test.read(1), input_tile_size), axis=3)
+testY = np.mean(tile(test.read(2), input_tile_size), axis=(1, 2))
 
 print('testing ...')
 

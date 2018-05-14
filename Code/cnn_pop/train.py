@@ -12,10 +12,6 @@ from sklearn.utils import shuffle
 input_tile_size = 32
 outputs_per_tile = 1
 
-def normalize(array):
-    #array = (array - np.amin(array)) / (np.amax(array) - np.amin(array))
-    return array
-
 def tile(matrix, tile_size):
     y = 0
     tiles = []
@@ -31,8 +27,8 @@ def tile(matrix, tile_size):
 print('opening raster')
 
 train = rasterio.open('../../Data/lightpop_merged/2000_subset.tif')
-trainX = np.expand_dims(tile(normalize(train.read(1)), input_tile_size), axis=3)
-trainY = np.mean(tile(normalize(train.read(2)), input_tile_size), axis=(1, 2))
+trainX = np.expand_dims(tile(train.read(1), input_tile_size), axis=3)
+trainY = np.mean(tile(train.read(2), input_tile_size), axis=(1, 2))
 
 trainX, trainY = shuffle(trainX, trainY) # shuffle lists
 
@@ -44,11 +40,11 @@ print('configuring cnn')
 
 nb_epoch = 3
 
-batch_size = 1
+batch_size = 1 # nombre de mesures avant d'update les poids
 
 # last filter makes the input layer for the last perceptron bigger
-nb_filters_1 = 16
-nb_filters_2 = 16
+nb_filters_1 = 32
+nb_filters_2 = 32
 nb_conv_1 = 3
 nb_conv_2 = 3
 
