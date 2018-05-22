@@ -1,9 +1,10 @@
+% !TeX spellcheck = fr_FR
 \documentclass[a4paper]{report}
 
 
 %% Language and font encodings
-\usepackage[english]{babel}
-\usepackage[utf8x]{inputenc}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 %% Sets page size and margins
@@ -43,10 +44,10 @@
 
 \author{Antoine Friant}
 \begin{document}
+\pagenumbering{roman}
 \begin{titlepage}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
-
 %----------------------------------------------------------------------------------------
 %	LOGO SECTION
 %----------------------------------------------------------------------------------------
@@ -62,14 +63,14 @@
 %----------------------------------------------------------------------------------------
 
 \textsc{\LARGE HEIG-VD}\\[1.5cm] % Name of your university/college
-\textsc{\Large Gleam - Progress Report}\\[0.5cm] % Major heading such as course name
+\textsc{\Large Gleam - Rapport intermédiaire}\\[0.5cm] % Major heading such as course name
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries Machine learning on nighttime satellite imagery}\\ % Title of your document
+{ \huge \bfseries La Terre de nuit vue de l'espace }\\ % Title of your document
 \Large\HRule \\[1cm]
 \normalsize
 %----------------------------------------------------------------------------------------
@@ -92,28 +93,82 @@ Yverdon-les-Bains, VD, CH
 \end{flushright}
 \end{minipage}\\[1cm]
 
-\begin{minipage}[t]{\textwidth}
-\abstract
-Satellite imagery products have become abundant and widely available in the past twenty years. Multiple satellites are taking pictures of the Earth every hours of every day \textit{and every night}. Those nighttime observations reveal features that are less obvious at daytime, sometimes even hidden. Roads appear, cities show their lights, even fishing boats blind the ocean with spotlights to lure fish.
 
-The availability, resolution, and quality uniformity of this data contrast with the unreliability of some other geographical informations, which are used when taking important decisions. Population count for example is a reliable number in Switzerland, but misleading in Kenya. Other interesting measures include : electricity consumption, C0$_2$ emissions, ground cover (concrete or trees), and wildlife presence. Night lights observed from space give information on every one of these measures when they are lacking for a given region or year.
-
-The goal of this project it to extract as much information as possible from nighttime satellite imagery using machine learning in the form of a neural network.
-\end{minipage}\\[1.5cm]
 
 {\large \today}\\
  
-%----------------------------------------------------------------------------------------
 
 \vfill % Fill the rest of the page with whitespace
 
 \end{titlepage}
-\newpage
-\clearpage
-%---------------------------------------------------------------------------------------
+
+\chapter{Cahier des charges}
+\section{Résumé du problème}
+présenter le sujet
+\section{Cahier des charges}
+\subsection{Objectifs}
+Le TB consiste à explorer les données suivantes :
+
+- Images satellites de nuit
+- Population humaine
+- Population animale
+- Densité végétale
+- PIB
+
+Ou toute autre donnée jugée pertinente, dans le but d'entraîner un réseau de neurones capable d'estimer une donnée utile à partir d'une image satellite de la terre de nuit.
+
+La réalisation de ce réseau de neurones est l'objectif de la seconde partie du TB.
+
+L'idéal étant de pouvoir estimer, grâce au machine learning, des informations dont on ne possède pas de données à jour. Et cela à partir d'images satellites de nuit, ou une combinaisons de ces images avec une autre donnée à jour.
+
+\subsection{Moyens}
+- l'aide du répondant
+- le serveurs de GPU de l'école
+
+\subsection{Outils}
+- Images satellites de la terre de nuit au format .png ou .tif.
+- Datasets libres
+- N'importe quel langages de programmation et librairies jugés adéquats.
+
+\subsection{Livrables}
+15 juin 2018 : rapport intermédiaire
+27 juillet 2018 : rapport final + réseau de neurones fonctionnel utilisant les images satellites de nuit pour produire une estimation d'une donnée utile
 
 
 
+\tableofcontents
+
+
+\chapter{Résumé}
+\pagenumbering{arabic}
+
+
+\chapter{Introduction}
+Les produits d'imagerie satellite sont devenus abondants et largement accessible au cours des vingt dernières années. De nombreux satellites prennent des photographies de la Terre à chaque heure du jour \textit{et de la nuit}. Ces observations nocturnes révèlent des caractéristiques peu évidentes de jour, parfois même cachées. Les routes apparaissent, les villes montrent leurs lumières, même les bateaux de pêche aveuglent les océans avec des projecteurs pour attirer les poissons.
+
+La disponibilité, la résolution et l'uniformité de la qualité de ces données contraste fortement avec le manque de fiabilité d'autres informations géographiques utiles lors de prises de décisions importantes. Par exemple, la densité de la population est une estimation précise en Suisse mais très approximative au Kenya. D'autres mesures intéressantes incluent : la consommation en électricité, les émissions de C0$_2$, la couverture végétale et la présence de faune. Les lumières nocturnes observées depuis l'espace donnent des indications sur chacune de ces mesures alors qu'elles peuvent manquer dans une région à une date donnée.
+
+Le but de ce projet est d'extraire autant d'information que possible de l'imagerie satellite nocturne en utilisant l'apprentissage automatique (\textit{machine learning}) sous la forme de réseau de neurones.
+
+\chapter{Body}
+
+
+\chapter{Conclusion}
+
+
+\chapter{Bibliographie}
+
+
+\chapter{Authentification}
+
+
+\chapter{Symboles et abréviations}
+
+
+\chapter{Figures}
+
+
+\chapter{Annexes}
 
 
 \end{document}

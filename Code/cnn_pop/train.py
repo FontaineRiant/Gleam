@@ -38,7 +38,7 @@ print('image shape : ' + str(trainX.shape))
 
 print('configuring cnn')
 
-nb_epoch = 3
+nb_epoch = 100
 
 batch_size = 1 # nombre de mesures avant d'update les poids
 

@@ -3,3 +3,7 @@ Train sur europe-afrique du nord, test sur europe de l'est-russie
 mesure de densité/total de pop à la place de la moyenne
 
 visualiser les erreurs sur la carte / estimation de la population
+
+Human footprint raster : https://hub.arcgis.com/datasets/d20787f2b20a4211ba24d63df12f8f9d_0?geometry=-180.703%2C-67.07%2C179.297%2C82.308
+Plus de rasters : http://sedac.ciesin.columbia.edu/data/sets/browse?facets=data-type:raster
+
