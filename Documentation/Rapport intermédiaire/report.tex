@@ -1,0 +1,119 @@
+\documentclass[a4paper]{report}
+
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{titlesec}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\usepackage{textcomp}
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\ttfamily},
+  numbers=none,
+  numberstyle=\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{dkgreen},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+\setlength{\parskip}{1em}
+
+\titleformat{\chapter}{\normalfont\huge}{\bf\thechapter}{12pt}{\huge\bf}
+
+\title{TB - Gleam}
+
+\author{Antoine Friant}
+\begin{document}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width=2in]{logoheig.png}\\ % Include a department/university logo - this will require the graphicx package
+
+\vspace{1in}
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE HEIG-VD}\\[1.5cm] % Name of your university/college
+\textsc{\Large Gleam - Progress Report}\\[0.5cm] % Major heading such as course name
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Machine learning on nighttime satellite imagery}\\ % Title of your document
+\Large\HRule \\[1cm]
+\normalsize
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{0.48\textwidth}
+\begin{flushleft} \large
+Antoine \textsc{Friant} \\
+\normalsize
+Haute École d'Ingénierie et de Gestion du Canton de Vaud\\
+Yverdon-les-Bains, VD, CH
+\texttt{antoine.friant@gmail.com}
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}[t]{0.49\textwidth}
+\begin{flushright} \large
+% empty page for alignement
+\end{flushright}
+\end{minipage}\\[1cm]
+
+\begin{minipage}[t]{\textwidth}
+\abstract
+Satellite imagery products have become abundant and widely available in the past twenty years. Multiple satellites are taking pictures of the Earth every hours of every day \textit{and every night}. Those nighttime observations reveal features that are less obvious at daytime, sometimes even hidden. Roads appear, cities show their lights, even fishing boats blind the ocean with spotlights to lure fish.
+
+The availability, resolution, and quality uniformity of this data contrast with the unreliability of some other geographical informations, which are used when taking important decisions. Population count for example is a reliable number in Switzerland, but misleading in Kenya. Other interesting measures include : electricity consumption, C0$_2$ emissions, ground cover (concrete or trees), and wildlife presence. Night lights observed from space give information on every one of these measures when they are lacking for a given region or year.
+
+The goal of this project it to extract as much information as possible from nighttime satellite imagery using machine learning in the form of a neural network.
+\end{minipage}\\[1.5cm]
+
+{\large \today}\\
+ 
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+\newpage
+\clearpage
+%---------------------------------------------------------------------------------------
+
+
+
+
+
+\end{document}
