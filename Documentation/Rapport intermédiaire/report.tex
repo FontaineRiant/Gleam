@@ -103,39 +103,50 @@ Yverdon-les-Bains, VD, CH
 \end{titlepage}
 
 \chapter{Cahier des charges}
+
 \section{Résumé du problème}
-présenter le sujet
-\section{Cahier des charges}
-\subsection{Objectifs}
-Le TB consiste à explorer les données suivantes :
+Les données géographiques sont nécessaires pour la prise de décisions importantes. Cependant la fiabilité et la disponibilité de ces données ne sont pas homogènes dans le temps et selon le lieu. Certaines de ces données ont une forte corrélation avec la lumière perçue par les satellites pendant la nuit.
 
-- Images satellites de nuit
-- Population humaine
-- Population animale
-- Densité végétale
-- PIB
+Grâce à l'apprentissage automatique (\textit{machine learning}), il est possible d'entraîner un réseau de neurones sur des données d'une date et d'un lieu connus pour reconstituer une carte de données géographiques à partir d'une image satellite nocturne.
 
-Ou toute autre donnée jugée pertinente, dans le but d'entraîner un réseau de neurones capable d'estimer une donnée utile à partir d'une image satellite de la terre de nuit.
+Le travail à effectuer consiste à explorer différents types de données géographiques afin d'en choisir un, et faire de la prédiction sur ce type de données grâce à un réseau de neurones.
 
-La réalisation de ce réseau de neurones est l'objectif de la seconde partie du TB.
+\section{Objectifs}
+Le TB consiste dans un premier temps à explorer les données suivantes :
 
-L'idéal étant de pouvoir estimer, grâce au machine learning, des informations dont on ne possède pas de données à jour. Et cela à partir d'images satellites de nuit, ou une combinaisons de ces images avec une autre donnée à jour.
+\begin{itemize}
+\item Images satellites noctures de la Terre,
+\item Population humaine,
+\item Population animale,
+\item Densité végétale,
+\item PIB,
+\end{itemize}
 
-\subsection{Moyens}
-- l'aide du répondant
-- le serveurs de GPU de l'école
+Et toutes autres données jugées pertinentes dans le but d'entraîner un réseau de neurones capable de prédire un estimation d'une donnée utile, à partir d'une image satellite de la terre de nuit.
 
-\subsection{Outils}
-- Images satellites de la terre de nuit au format .png ou .tif.
-- Datasets libres
-- N'importe quel langages de programmation et librairies jugés adéquats.
+La réalisation d'une application qui entraîne et exploite ce réseau de neurones est l'objectif de la seconde partie du TB.
 
-\subsection{Livrables}
-15 juin 2018 : rapport intermédiaire
-27 juillet 2018 : rapport final + réseau de neurones fonctionnel utilisant les images satellites de nuit pour produire une estimation d'une donnée utile
+Le but final est de pouvoir estimer, grâce au machine learning, des informations dont on ne possède pas de données à jour. Et cela à partir d'images satellites de nuit récentes, ou d'une combinaisons de ces images avec une autre donnée à jour.
 
+\section{Limitations}
+L'application sera compatible avec Windows 10 et Archlinux, et nécessitera l'installation de librairies tierces (telles que Keras et TensorFlow).
+Elle ne possèdera pas nécessairement d'interface utilisateur.
 
+L'utilisateur sera responsable de fournir les données à l'application dans un format supporté.
 
+\section{Description fonctionnelle}
+L'application prend en argument au moins deux jeux de données géographiques de format imposé : une image satellite nocturne et un autre type de donnée à déterminer au cours du projet. Après un long temps d'entraînement (une semaine au maximum, dépend de la machine utilisée).
+
+Une fois le modèle généré, il est sauvegardé et réutilisable sur une autre image satellite nocturne (d'une date et/ou d'une région différente). Lorsque le modèle est appliqué sur une image satellite, une carte est recréée, affichant le résultats des prédictions.
+
+Par exemple, si au cours du travail de bachelor il s'avère que la population par kilomètre carré est une donnée utile et utilisable, l'application devra prendre en argument une image satellite nocturne ainsi qu'une carte des populations de même taille et de même résolution pour entraîner le réseau de neurones. Une fois le modèle généré, l'application devra être capable de regénéré une approximation de la carte de population par kilomètre carré à partir d'une image satellite.
+
+\section{Délais}
+\textbf{15 juin 2018 :} Rapport intermédiaire
+
+\textbf{27 juillet 2018 :} Rapport final et application fonctionnelle
+
+\textbf{Entre le 3 et le 14 septembre 2018 :} Soutenance du travail de bachelor
 \tableofcontents
 
 
@@ -150,11 +161,30 @@ La disponibilité, la résolution et l'uniformité de la qualité de ces donnée
 
 Le but de ce projet est d'extraire autant d'information que possible de l'imagerie satellite nocturne en utilisant l'apprentissage automatique (\textit{machine learning}) sous la forme de réseau de neurones.
 
-\chapter{Body}
+\chapter{Exploration des données}
+Source de données (nightlights, poprasters)
 
+Problème de format pour la superposition des rasters
+
+QGIS pour la visualisation
+
+Recherche de corrélation, graphes
+
+GPD, groupement par pays, filtré par développement économique, graphes
+
+deltas de luminosité par pays, incomplet
+
+Données encore pas explorées : human footprint, ...
+
+\chapter{Développement}
+réseau de neurones à convolution pour faire de la régression => chercher des cas de peoblèmes similaires
+
+installation : keras, tensorflow, setup nvidia
+
+métaparamètres du réseau de neurones
 
 \chapter{Conclusion}
-
+Travail effectuer, travail restant
 
 \chapter{Bibliographie}
 
