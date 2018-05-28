@@ -63,7 +63,7 @@
 %----------------------------------------------------------------------------------------
 
 \textsc{\LARGE HEIG-VD}\\[1.5cm] % Name of your university/college
-\textsc{\Large Gleam - Rapport intermédiaire}\\[0.5cm] % Major heading such as course name
+\textsc{\Large Rapport intermédiaire}\\[0.5cm] % Major heading such as course name
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -71,7 +71,7 @@
 
 \HRule \\[0.4cm]
 { \huge \bfseries La Terre de nuit vue de l'espace }\\ % Title of your document
-\Large\HRule \\[1cm]
+\Large\HRule \\[2cm]
 \normalsize
 %----------------------------------------------------------------------------------------
 %	AUTHOR SECTION
@@ -91,7 +91,7 @@ Yverdon-les-Bains, VD, CH
 \begin{flushright} \large
 % empty page for alignement
 \end{flushright}
-\end{minipage}\\[1cm]
+\end{minipage}\\[2cm]
 
 
 
@@ -122,7 +122,7 @@ Le TB consiste dans un premier temps à explorer les données suivantes :
 \item PIB,
 \end{itemize}
 
-Et toutes autres données jugées pertinentes dans le but d'entraîner un réseau de neurones capable de prédire un estimation d'une donnée utile, à partir d'une image satellite de la terre de nuit.
+Et toutes autres données jugées pertinentes dans le but d'entraîner un réseau de neurones capable de prédire une estimation d'une donnée utile, à partir d'une image satellite de la terre de nuit.
 
 La réalisation d'une application qui entraîne et exploite ce réseau de neurones est l'objectif de la seconde partie du TB.
 
@@ -135,7 +135,7 @@ Elle ne possèdera pas nécessairement d'interface utilisateur.
 L'utilisateur sera responsable de fournir les données à l'application dans un format supporté.
 
 \section{Description fonctionnelle}
-L'application prend en argument au moins deux jeux de données géographiques de format imposé : une image satellite nocturne et un autre type de donnée à déterminer au cours du projet. Après un long temps d'entraînement (une semaine au maximum, dépend de la machine utilisée).
+L'application prend en argument au moins deux jeux de données géographiques de format imposé : une image satellite nocturne et un autre type de donnée à déterminer au cours du projet. Après un long temps d'entraînement (une semaine au maximum, dépend de la machine utilisée), un modèle est généré.
 
 Une fois le modèle généré, il est sauvegardé et réutilisable sur une autre image satellite nocturne (d'une date et/ou d'une région différente). Lorsque le modèle est appliqué sur une image satellite, une carte est recréée, affichant le résultats des prédictions.
 
@@ -162,25 +162,37 @@ La disponibilité, la résolution et l'uniformité de la qualité de ces donnée
 Le but de ce projet est d'extraire autant d'information que possible de l'imagerie satellite nocturne en utilisant l'apprentissage automatique (\textit{machine learning}) sous la forme de réseau de neurones.
 
 \chapter{Exploration des données}
-Source de données (nightlights, poprasters)
 
+\section{Jeux de données}
+\subsection{Images satellite}
+tif et tiled
+
+\subsection{Grilles de population}
 Problème de format pour la superposition des rasters
 
-QGIS pour la visualisation
+QGIS pour la visualisation et l'édition
 
+\subsection{Pays}
+(nightlights, poprasters, vectors, script de download)
+
+\section{Recherche de corrélation}
 Recherche de corrélation, graphes
 
 GPD, groupement par pays, filtré par développement économique, graphes
 
 deltas de luminosité par pays, incomplet
 
+\section{Données à explorer}
 Données encore pas explorées : human footprint, ...
 
-\chapter{Développement}
+\chapter{Modèle neuronal}
+\section{Réseau de neurones}
 réseau de neurones à convolution pour faire de la régression => chercher des cas de peoblèmes similaires
 
+\section{Environnement de développement}
 installation : keras, tensorflow, setup nvidia
 
+\section{Métaparamètres}
 métaparamètres du réseau de neurones
 
 \chapter{Conclusion}
