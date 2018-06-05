@@ -1,0 +1,19 @@
+[0] Config.pm:302> INFO - This is Biber 2.11
+[0] Config.pm:305> INFO - Logfile is 'report.blg'
+[20] biber:313> INFO - === mar jun  5, 2018, 12:08:56
+[37] Biber.pm:371> INFO - Reading 'report.bcf'
+[89] Biber.pm:857> INFO - Found 3 citekeys in bib section 0
+[100] Biber.pm:3976> INFO - Processing section 0
+[109] Biber.pm:4136> INFO - Looking for bibtex format file 'biblio.bib' for section 0
+[109] bibtex.pm:1500> INFO - LaTeX decoding ...
+[115] bibtex.pm:1316> INFO - Found BibTeX data source 'biblio.bib'
+[123] Utils.pm:193> WARN - Entry 'nasa-worldview' (biblio.bib): Invalid format 'ladate' of date field 'date' - ignoring
+[124] Utils.pm:193> WARN - Entry 'qgis' (biblio.bib): Invalid format 'date' of date field 'date' - ignoring
+[124] Utils.pm:193> WARN - I didn't find a database entry for 'nasa-api' (section 0)
+[132] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[132] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[132] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
+[132] Biber.pm:3810> INFO - No sort tailoring available for locale 'fr-FR'
+[137] bbl.pm:617> INFO - Writing 'report.bbl' with encoding 'UTF-8'
+[138] bbl.pm:720> INFO - Output to report.bbl
+[138] Biber.pm:110> INFO - WARNINGS: 3

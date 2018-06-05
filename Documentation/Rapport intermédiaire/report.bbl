@@ -1,0 +1,73 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{nasa-worldview}{online}{}
+      \name{author}{1}{}{%
+        {{hash=dc6f74e5cffb424b6dad404be18ff056}{%
+           family={auteur},
+           familyi={a\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=9de973ecda006c28a9c3751fbc03ac13}{%
+           family={édit},
+           familyi={é\bibinitperiod}}}%
+      }
+      \strng{namehash}{dc6f74e5cffb424b6dad404be18ff056}
+      \strng{fullhash}{dc6f74e5cffb424b6dad404be18ff056}
+      \strng{bibnamehash}{dc6f74e5cffb424b6dad404be18ff056}
+      \strng{authorbibnamehash}{dc6f74e5cffb424b6dad404be18ff056}
+      \strng{authornamehash}{dc6f74e5cffb424b6dad404be18ff056}
+      \strng{authorfullhash}{dc6f74e5cffb424b6dad404be18ff056}
+      \strng{editorbibnamehash}{9de973ecda006c28a9c3751fbc03ac13}
+      \strng{editornamehash}{9de973ecda006c28a9c3751fbc03ac13}
+      \strng{editorfullhash}{9de973ecda006c28a9c3751fbc03ac13}
+      \field{sortinit}{a}
+      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{subtitle}{subtitle}
+      \field{title}{TITRE}
+      \verb{urlraw}
+      \verb https://worldview.earthdata.nasa.gov/
+      \endverb
+      \verb{url}
+      \verb https://worldview.earthdata.nasa.gov/
+      \endverb
+      \warn{\item Entry 'nasa-worldview' (biblio.bib): Invalid format 'ladate' of date field 'date' - ignoring}
+    \endentry
+    \entry{qgis}{online}{}
+      \field{sortinit}{f}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labeltitlesource}{title}
+      \field{title}{fesfsefs}
+      \verb{urlraw}
+      \verb url
+      \endverb
+      \verb{url}
+      \verb url
+      \endverb
+      \warn{\item Entry 'qgis' (biblio.bib): Invalid format 'date' of date field 'date' - ignoring}
+    \endentry
+  \enddatalist
+  \missing{nasa-api}
+\endrefsection
+\endinput
+

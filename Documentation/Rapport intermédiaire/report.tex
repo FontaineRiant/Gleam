@@ -11,6 +11,7 @@
 \usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 %% Useful packages
+\usepackage{biblatex}
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{amsmath,amsthm,amssymb}
@@ -52,7 +53,7 @@
 %	LOGO SECTION
 %----------------------------------------------------------------------------------------
 
-\includegraphics[width=2in]{logoheig.png}\\ % Include a department/university logo - this will require the graphicx package
+\includegraphics[width=2in]{img/logoheig.png}\\ % Include a department/university logo - this will require the graphicx package
 
 \vspace{1in}
 
@@ -162,21 +163,68 @@ La disponibilité, la résolution et l'uniformité de la qualité de ces donnée
 Le but de ce projet est d'extraire autant d'information que possible de l'imagerie satellite nocturne en utilisant l'apprentissage automatique (\textit{machine learning}) sous la forme de réseau de neurones.
 
 \chapter{Exploration des données}
-
 \section{Jeux de données}
 \subsection{Images satellite}
-tif et tiled
+\subsubsection{NASA Worldview}
+La première source de données explorée est l'application "Worldview" de la NASA \cite{nasa-worldview}. Elle permet de visionner un grand nombre d'images satellite composites sur un globe en trois dimensions (voir figure \ref{nasa-worldview-screenshot}). Parmi les jeu de données disponibles sont trois jeux d'images nocturnes.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/TODO.png}
+	\caption{Outil de visualisation NASA Worldview \cite{nasa-worldview}}
+	\label{nasa-worldview-screenshot}
+\end{figure}
+
+Le premier jeu de données est série d'images composites. Il est mis à jour toutes les quelques heures, et présente une image composite par jour depuis %TODO insérer date de début.
+Elle possède deux défauts éliminatoires : la période d'observation actuellement disponible (à peine plus d'une année) n'est pas suffisamment longue pour observer une évolution significative des villes depuis l'espace, et les images ne sont pas traitées. Cela signifie que celles-ci sont très fortement bruitées par les nuages et la lumière ambiante due aux différentes phases de la Lune.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/TODO.png}
+	\caption{Image satellite quotidienne de NASA Worldview \cite{nasa-worldview}}
+	\label{nasa-worldview-daily}
+\end{figure}
+
+Les deux autres jeux de données sont des images composites : des clichés pris tout au long de l'année ont permis de fabriquer une seule image du globe dont la luminosité ambiante est constante (moyennée) et sur laquelle les nuages n'apparaissent pas. Malheureusement, l'outil Worldview ne permet pas un téléchargement direct de ces images \textit{dans leur pleine résolution}. Heureusement, la NASA a mis à disposition une API REST pour télécharger des "tuiles" de n'importe laquelle de leur image. Seulement le format PNG est disponible. Ce format ne contient pas d'information géographiques, ce qui complique leur utilisation pour la suite de ce travail. Un script Python suffit pour télécharger et assembler les tuiles (figure \ref{nasa-worldview-tile}) pour reconstituer une image complète du globe de plus de 800 millions de pixels (figure \ref{nasa-worldview-tiles}).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/TODO.png}
+	\caption{Une tuile d'image annuelle \cite{nasa-api} après avoir été mise en couleurs négatives}
+	\label{nasa-worldview-tile}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/TODO.png}
+	\caption{Image globale annuelle reconstituée à partir de tuiles téléchargées \cite{nasa-api}, puis mise en couleurs négatives}
+	\label{nasa-worldview-tiles}
+\end{figure}
+
+Le script python utilisé se trouve dans Code/scraper/generate\_all.py et nécessite l'installation de la librarie Pillow pour le traitement des images, ainsi qu'urllib pour le téléchargement en soi. Son exécution peut demander plus d'une heure pour le téléchargement (vitesse limitée par le serveur), et plus de 4 Go de RAM pour l'assemblage des tuiles.
+
+\subsubsection{NOAA ?}
+La source d'images satellite retenue pour la suite du travail est celle de TODO. Des images satellites nocturnes composites sont disponibles pour les années 1992 à 2013, une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte à sur autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS \cite{qgis}.
+
+% TODO insert image ?
 
 \subsection{Grilles de population}
-Problème de format pour la superposition des rasters
+Sedac \cite[sedac] met à disposition des grilles de populations pour le monde entier, sous forme de fichier GeoTIFF. Chaque "case" de 1 $km^2$ est représentée comme un pixel et contient une estimation du nombre de personnes vivant dans cette case. QGIS \ref{qgis} s'est à nouveau montré d'une grand aide pour visualiser et manipuler ces données volumineuses.
 
-QGIS pour la visualisation et l'édition
+On remarque que la valeur de densité de population ne varie pas à l'intérieur d'un sous-région. Tous les pixels d'une grande ville ou d'un département possèdent la même valeur. Ces données ont été créées à partir de plusieurs mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires.
+
+Ces cartes sont disponibles pour les années % TODO année + gwp_concatenator.py ?
+
+% TODO insert image
 
 \subsection{Pays}
 (nightlights, poprasters, vectors, script de download)
 
 \section{Recherche de corrélation}
 Recherche de corrélation, graphes
+
+Problème de format pour la superposition des rasters
+
 
 GPD, groupement par pays, filtré par développement économique, graphes
 
@@ -196,10 +244,9 @@ installation : keras, tensorflow, setup nvidia
 métaparamètres du réseau de neurones
 
 \chapter{Conclusion}
-Travail effectuer, travail restant
+Travail effectué, travail restant
 
-\chapter{Bibliographie}
-
+\printbibliography
 
 \chapter{Authentification}
 
@@ -207,10 +254,8 @@ Travail effectuer, travail restant
 \chapter{Symboles et abréviations}
 
 
-\chapter{Figures}
-
+\listoffigures
 
 \chapter{Annexes}
-
 
 \end{document}
