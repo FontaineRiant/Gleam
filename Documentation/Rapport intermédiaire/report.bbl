@@ -19,55 +19,48 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
-    \entry{nasa-worldview}{online}{}
-      \name{author}{1}{}{%
-        {{hash=dc6f74e5cffb424b6dad404be18ff056}{%
-           family={auteur},
-           familyi={a\bibinitperiod}}}%
+    \entry{sedac}{online}{}
+      \list{organization}{1}{%
+        {CENTER FOR INTERNATIONAL EARTH SCIENCE INFORMATION NETWORK-CIESIN-COLUMBIA UNIVERSITY}%
       }
-      \name{editor}{1}{}{%
-        {{hash=9de973ecda006c28a9c3751fbc03ac13}{%
-           family={édit},
-           familyi={é\bibinitperiod}}}%
-      }
-      \strng{namehash}{dc6f74e5cffb424b6dad404be18ff056}
-      \strng{fullhash}{dc6f74e5cffb424b6dad404be18ff056}
-      \strng{bibnamehash}{dc6f74e5cffb424b6dad404be18ff056}
-      \strng{authorbibnamehash}{dc6f74e5cffb424b6dad404be18ff056}
-      \strng{authornamehash}{dc6f74e5cffb424b6dad404be18ff056}
-      \strng{authorfullhash}{dc6f74e5cffb424b6dad404be18ff056}
-      \strng{editorbibnamehash}{9de973ecda006c28a9c3751fbc03ac13}
-      \strng{editornamehash}{9de973ecda006c28a9c3751fbc03ac13}
-      \strng{editorfullhash}{9de973ecda006c28a9c3751fbc03ac13}
-      \field{sortinit}{a}
-      \field{sortinithash}{3248043b5fe8d0a34dab5ab6b8d4309b}
-      \field{labelnamesource}{author}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
       \field{labeltitlesource}{title}
-      \field{subtitle}{subtitle}
-      \field{title}{TITRE}
+      \field{subtitle}{Population Count Adjusted to Match 2015 Revision of UN WPP Country Totals, Revision 10}
+      \field{title}{Gridded Population of the World, Version 4 (GPWv4)}
+      \field{urlday}{6}
+      \field{urlmonth}{6}
+      \field{urlyear}{2018}
+      \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://worldview.earthdata.nasa.gov/
+      \verb https://doi.org/10.7927/h4jq0xzw
       \endverb
       \verb{url}
-      \verb https://worldview.earthdata.nasa.gov/
+      \verb https://doi.org/10.7927/h4jq0xzw
       \endverb
-      \warn{\item Entry 'nasa-worldview' (biblio.bib): Invalid format 'ladate' of date field 'date' - ignoring}
     \endentry
-    \entry{qgis}{online}{}
-      \field{sortinit}{f}
-      \field{sortinithash}{276475738cc058478c1677046f857703}
+    \entry{nasa-worldview}{online}{}
+      \list{organization}{1}{%
+        {NASA EOSDIS}%
+      }
+      \field{sortinit}{W}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
       \field{labeltitlesource}{title}
-      \field{title}{fesfsefs}
+      \field{title}{Worldview}
+      \field{urlday}{6}
+      \field{urlmonth}{6}
+      \field{urlyear}{2018}
+      \field{urldateera}{ce}
       \verb{urlraw}
-      \verb url
+      \verb https://worldview.earthdata.nasa.gov/
       \endverb
       \verb{url}
-      \verb url
+      \verb https://worldview.earthdata.nasa.gov/
       \endverb
-      \warn{\item Entry 'qgis' (biblio.bib): Invalid format 'date' of date field 'date' - ignoring}
     \endentry
   \enddatalist
   \missing{nasa-api}
+  \missing{noaa}
 \endrefsection
 \endinput
 

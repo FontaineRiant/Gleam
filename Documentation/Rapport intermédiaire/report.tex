@@ -12,6 +12,7 @@
 
 %% Useful packages
 \usepackage{biblatex}
+\bibliography{report.bib}
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{amsmath,amsthm,amssymb}
@@ -170,52 +171,57 @@ La première source de données explorée est l'application "Worldview" de la NA
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth]{img/TODO.png}
-	\caption{Outil de visualisation NASA Worldview \cite{nasa-worldview}}
+	\includegraphics[width=1.0\textwidth]{img/worldview.JPG}
+	\caption{Outil de visualisation NASA Worldview \cite{nasa-worldview}.}
 	\label{nasa-worldview-screenshot}
 \end{figure}
 
-Le premier jeu de données est série d'images composites. Il est mis à jour toutes les quelques heures, et présente une image composite par jour depuis %TODO insérer date de début.
-Elle possède deux défauts éliminatoires : la période d'observation actuellement disponible (à peine plus d'une année) n'est pas suffisamment longue pour observer une évolution significative des villes depuis l'espace, et les images ne sont pas traitées. Cela signifie que celles-ci sont très fortement bruitées par les nuages et la lumière ambiante due aux différentes phases de la Lune.
+Le premier jeu de données est série d'images composites capturées par le satellite Suomi NPP opéré par la NASA, la NOAA et le Département de la Défense des États-Unis. Il est mis à jour toutes les quelques heures, et présente une image composite chaque jour depuis le 30 novembre 2016. Elle possède deux défauts éliminatoires : la période d'observation actuellement disponible (à peine plus d'une année) n'est pas suffisamment longue pour observer une évolution significative des villes depuis l'espace, et les images ne sont pas traitées. Cela signifie que celles-ci sont très fortement bruitées par les nuages et la lumière ambiante due aux différentes phases de la Lune.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth]{img/TODO.png}
-	\caption{Image satellite quotidienne de NASA Worldview \cite{nasa-worldview}}
+	\includegraphics[width=0.5\textwidth]{img/worldview_clouds.JPG}
+	\caption{Image satellite quotidienne servie par NASA Worldview \cite{nasa-worldview}, représentant la Grande Bretagne et son climat nuageux.}
 	\label{nasa-worldview-daily}
 \end{figure}
 
-Les deux autres jeux de données sont des images composites : des clichés pris tout au long de l'année ont permis de fabriquer une seule image du globe dont la luminosité ambiante est constante (moyennée) et sur laquelle les nuages n'apparaissent pas. Malheureusement, l'outil Worldview ne permet pas un téléchargement direct de ces images \textit{dans leur pleine résolution}. Heureusement, la NASA a mis à disposition une API REST pour télécharger des "tuiles" de n'importe laquelle de leur image. Seulement le format PNG est disponible. Ce format ne contient pas d'information géographiques, ce qui complique leur utilisation pour la suite de ce travail. Un script Python suffit pour télécharger et assembler les tuiles (figure \ref{nasa-worldview-tile}) pour reconstituer une image complète du globe de plus de 800 millions de pixels (figure \ref{nasa-worldview-tiles}).
+Les deux autres jeux de données nocturnes sont des images composites : des clichés pris tout au long de l'année ont permis de fabriquer une seule image du globe dont la luminosité ambiante est constante (moyennée) et sur laquelle les nuages n'apparaissent pas. Malheureusement, l'outil Worldview ne permet pas un téléchargement direct de ces images \textit{dans leur pleine résolution}. Heureusement, la NASA a mis à disposition une API REST pour télécharger des "tuiles" de n'importe laquelle de leur image. Seulement le format PNG est disponible. Ce format ne contient pas d'information géographiques, ce qui complique leur utilisation pour la suite de ce travail. Un script Python suffit pour télécharger et assembler les tuiles (figure \ref{nasa-worldview-tile}) pour reconstituer une image complète du globe de plus de 800 millions de pixels (figure \ref{nasa-worldview-tiles}).
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.5\textwidth]{img/TODO.png}
-	\caption{Une tuile d'image annuelle \cite{nasa-api} après avoir été mise en couleurs négatives}
+	\includegraphics[width=0.5\textwidth]{img/018-012.png}
+	\caption{Une tuile de l'image de 2016 \cite{nasa-api} montrant la ville de Dallas (USA) après avoir été mise en couleurs négatives.}
 	\label{nasa-worldview-tile}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth]{img/TODO.png}
-	\caption{Image globale annuelle reconstituée à partir de tuiles téléchargées \cite{nasa-api}, puis mise en couleurs négatives}
+	\includegraphics[width=1.0\textwidth]{img/tiles_2016_zoom6.png}
+	\caption{Image globale annuelle (2016) reconstituée à partir de tuiles téléchargées \cite{nasa-api}, puis mise en couleurs négatives.}
 	\label{nasa-worldview-tiles}
 \end{figure}
 
 Le script python utilisé se trouve dans Code/scraper/generate\_all.py et nécessite l'installation de la librarie Pillow pour le traitement des images, ainsi qu'urllib pour le téléchargement en soi. Son exécution peut demander plus d'une heure pour le téléchargement (vitesse limitée par le serveur), et plus de 4 Go de RAM pour l'assemblage des tuiles.
 
-\subsubsection{NOAA ?}
-La source d'images satellite retenue pour la suite du travail est celle de TODO. Des images satellites nocturnes composites sont disponibles pour les années 1992 à 2013, une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte à sur autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS \cite{qgis}.
+\subsubsection{Agence américaine d'observation océanique et atmosphérique}
+La source d'images satellite retenue pour la suite du travail est celle de l'Agence américaine d'observation océanique et atmosphérique (abrégée NOAA)\cite{noaa}. Des images satellites nocturnes composites ("Average Lights X Pct") sont disponibles pour les années 1992 à 2013, une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte à sur autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS. Il s'agit en réalité des mêmes clichés fournis par Worldview (et Google Earth), mais plus nombreux et dans un format plus exploitable.
 
-% TODO insert image ?
+Ces images ont été créées en moyennant la valeur de luminosité de chaque pixel sur une année, en ignorant les pixels couverts par des nuages, et en multipliant cette moyenne par la fréquence de détection de lumière sur le pixel au cours de l'année.
 
 \subsection{Grilles de population}
-Sedac \cite[sedac] met à disposition des grilles de populations pour le monde entier, sous forme de fichier GeoTIFF. Chaque "case" de 1 $km^2$ est représentée comme un pixel et contient une estimation du nombre de personnes vivant dans cette case. QGIS \ref{qgis} s'est à nouveau montré d'une grand aide pour visualiser et manipuler ces données volumineuses.
+Sedac \cite{sedac} met à disposition des grilles de populations pour le monde entier, sous forme de fichier GeoTIFF. Chaque "case" de 1 $km^2$ est représentée comme un pixel et contient une estimation du nombre de personnes vivant dans cette case. QGIS s'est à nouveau montré d'une grande aide pour visualiser et manipuler ces données volumineuses (exemple en figure \ref{qgis-sedac}).
 
 On remarque que la valeur de densité de population ne varie pas à l'intérieur d'un sous-région. Tous les pixels d'une grande ville ou d'un département possèdent la même valeur. Ces données ont été créées à partir de plusieurs mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires.
 
-Ces cartes sont disponibles pour les années % TODO année + gwp_concatenator.py ?
+Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 
-% TODO insert image
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/pop_subset.png}
+	\caption{Extrait de la grille de population \cite{sedac} rendue par QGIS. Le blanc indique une absence d'habitant, le noir indique plus de 1000 habitants par mètre carré.}
+	\label{qgis-sedac}
+\end{figure}
+
 
 \subsection{Pays}
 (nightlights, poprasters, vectors, script de download)
