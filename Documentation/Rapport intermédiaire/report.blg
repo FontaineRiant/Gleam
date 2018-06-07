@@ -1,18 +1,17 @@
 [0] Config.pm:302> INFO - This is Biber 2.11
 [0] Config.pm:305> INFO - Logfile is 'report.blg'
-[21] biber:313> INFO - === mer jun  6, 2018, 21:59:04
-[39] Biber.pm:371> INFO - Reading 'report.bcf'
-[99] Biber.pm:857> INFO - Found 4 citekeys in bib section 0
-[111] Biber.pm:3976> INFO - Processing section 0
-[121] Biber.pm:4136> INFO - Looking for bibtex format file 'report.bib' for section 0
-[122] bibtex.pm:1500> INFO - LaTeX decoding ...
-[125] bibtex.pm:1316> INFO - Found BibTeX data source 'report.bib'
-[128] Utils.pm:193> WARN - I didn't find a database entry for 'nasa-api' (section 0)
-[128] Utils.pm:193> WARN - I didn't find a database entry for 'noaa' (section 0)
-[135] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[135] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
-[135] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
-[135] Biber.pm:3810> INFO - No sort tailoring available for locale 'fr-FR'
-[141] bbl.pm:617> INFO - Writing 'report.bbl' with encoding 'UTF-8'
-[142] bbl.pm:720> INFO - Output to report.bbl
-[142] Biber.pm:110> INFO - WARNINGS: 2
+[38] biber-MSWIN64:313> INFO - === 
+[69] Biber.pm:371> INFO - Reading 'report.bcf'
+[164] Biber.pm:857> INFO - Found 6 citekeys in bib section 0
+[180] Biber.pm:3976> INFO - Processing section 0
+[196] Biber.pm:4136> INFO - Looking for bibtex format file 'report.bib' for section 0
+[200] bibtex.pm:1500> INFO - LaTeX decoding ...
+[212] bibtex.pm:1316> INFO - Found BibTeX data source 'report.bib'
+[217] Utils.pm:193> WARN - Entry 'noaa' (report.bib): Invalid format 'date' of date field 'date' - ignoring
+[239] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[239] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[239] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
+[239] Biber.pm:3810> INFO - No sort tailoring available for locale 'fr-FR'
+[253] bbl.pm:617> INFO - Writing 'report.bbl' with encoding 'UTF-8'
+[255] bbl.pm:720> INFO - Output to report.bbl
+[257] Biber.pm:110> INFO - WARNINGS: 1

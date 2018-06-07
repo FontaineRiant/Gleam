@@ -185,19 +185,19 @@ Le premier jeu de données est série d'images composites capturées par le sate
 	\label{nasa-worldview-daily}
 \end{figure}
 
-Les deux autres jeux de données nocturnes sont des images composites : des clichés pris tout au long de l'année ont permis de fabriquer une seule image du globe dont la luminosité ambiante est constante (moyennée) et sur laquelle les nuages n'apparaissent pas. Malheureusement, l'outil Worldview ne permet pas un téléchargement direct de ces images \textit{dans leur pleine résolution}. Heureusement, la NASA a mis à disposition une API REST pour télécharger des "tuiles" de n'importe laquelle de leur image. Seulement le format PNG est disponible. Ce format ne contient pas d'information géographiques, ce qui complique leur utilisation pour la suite de ce travail. Un script Python suffit pour télécharger et assembler les tuiles (figure \ref{nasa-worldview-tile}) pour reconstituer une image complète du globe de plus de 800 millions de pixels (figure \ref{nasa-worldview-tiles}).
+Les deux autres jeux de données nocturnes sont des images composites : des clichés pris tout au long de l'année ont permis de fabriquer une seule image du globe dont la luminosité ambiante est constante (moyennée) et sur laquelle les nuages n'apparaissent pas. Malheureusement, l'outil Worldview ne permet pas un téléchargement direct de ces images \textit{dans leur pleine résolution}. Heureusement, la NASA a mis à disposition une API REST (\url{https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers}) pour télécharger des "tuiles" de n'importe laquelle de leur image. Seulement le format PNG est disponible. Ce format ne contient pas d'information géographiques, ce qui complique leur utilisation pour la suite de ce travail. Un script Python suffit pour télécharger et assembler les tuiles (figure \ref{nasa-worldview-tile}) pour reconstituer une image complète du globe de plus de 800 millions de pixels (figure \ref{nasa-worldview-tiles}).
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/018-012.png}
-	\caption{Une tuile de l'image de 2016 \cite{nasa-api} montrant la ville de Dallas (USA) après avoir été mise en couleurs négatives.}
+	\caption{Une tuile de l'image de 2016 montrant la ville de Dallas (USA) après avoir été mise en couleurs négatives.}
 	\label{nasa-worldview-tile}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth]{img/tiles_2016_zoom6.png}
-	\caption{Image globale annuelle (2016) reconstituée à partir de tuiles téléchargées \cite{nasa-api}, puis mise en couleurs négatives.}
+	\caption{Image globale annuelle (2016) reconstituée à partir de tuiles téléchargées, puis mise en couleurs négatives.}
 	\label{nasa-worldview-tiles}
 \end{figure}
 
@@ -226,14 +226,20 @@ Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 \subsection{Pays}
 Les grilles de données globales sont difficiles à créer, il n'en existe donc pas pour tous les types et toutes les dates. Afin de contourner ce problème, il existe des outils pour combiner des grilles (ici : l'image satellite) avec des données vectorielles telles que les frontières des pays.
 
-Le jeu de données TODO \cite{naturalearthdata} contient les frontières des pays à TODODATE telles que (TODO : politique de choix des frontières), ainsi que des méta-données sur chacun de ces pays (population estimée, indice de développement, différentes appellations et abréviations, etc.). Voici à quoi ressemble ces méta-données pour la Tunisie :\\
+Le jeu de données "Admin 0 - Countries" de Natural Earth \cite{naturalearthdata} contient les frontières des pays actuelles, ainsi que des méta-données sur chacun de ces pays (population estimée, indice de développement, différentes appellations et abréviations, etc.). En cas de conflits ou ambiguité politique sur les frontières, c'est le pays qui contrôle le terrain qui est marqué comme souverain. Voici à quoi ressemblent les méta-données pour la Tunisie :\\
 \begin{minipage}[t]{1.0\textwidth}
 			{('scalerank', 0), ('featurecla', 'Admin-0 country'), ('LABELRANK', 3.0), ('SOVEREIGNT', 'Tunisia'), ('SOV\_A3', 'TUN'), ('ADM0\_DIF', 0.0), ('LEVEL', 2.0), ('TYPE', 'Sovereign country'), ('ADMIN', 'Tunisia'), ('ADM0\_A3', 'TUN'), ('GEOU\_DIF', 0.0), ('GEOUNIT', 'Tunisia'), ('GU\_A3', 'TUN'), ('SU\_DIF', 0.0), ('SUBUNIT', 'Tunisia'), ('SU\_A3', 'TUN'), ('BRK\_DIFF', 0.0), ('NAME', 'Tunisia'), ('NAME\_LONG', 'Tunisia'), ('BRK\_A3', 'TUN'), ('BRK\_NAME', 'Tunisia'), ('BRK\_GROUP', None), ('ABBREV', 'Tun.'), ('POSTAL', 'TN'), ('FORMAL\_EN', 'Republic of Tunisia'), ('FORMAL\_FR', None), ('NAME\_CIAWF', 'Tunisia'), ('NOTE\_ADM0', None), ('NOTE\_BRK', None), ('NAME\_SORT', 'Tunisia'), ('NAME\_ALT', None), ('MAPCOLOR7', 4.0), ('MAPCOLOR8', 3.0), ('MAPCOLOR9', 3.0), ('MAPCOLOR13', 2.0), ('POP\_EST', 11403800.0), ('POP\_RANK', 14.0), ('GDP\_MD\_EST', 130800.0), ('POP\_YEAR', 2017.0), ('LASTCENSUS', 2004.0), ('GDP\_YEAR', 2016.0), ('ECONOMY', '6. Developing region'), ('INCOME\_GRP', '3. Upper middle income'), ('WIKIPEDIA', -99.0), ('FIPS\_10\_', 'TS'), ('ISO\_A2', 'TN'), ('ISO\_A3', 'TUN'), ('ISO\_A3\_EH', 'TUN'), ('ISO\_N3', '788'), ('UN\_A3', '788'), ('WB\_A2', 'TN'), ('WB\_A3', 'TUN'), ('WOE\_ID', 23424967.0), ('WOE\_ID\_EH', 23424967.0), ('WOE\_NOTE', 'Exact WOE match as country'), ('ADM0\_A3\_IS', 'TUN'), ('ADM0\_A3\_US', 'TUN'), ('ADM0\_A3\_UN', -99.0), ('ADM0\_A3\_WB', -99.0),	 ('CONTINENT', 'Africa'), ('REGION\_UN', 'Africa'), ('SUBREGION', 'Northern Africa'), ('REGION\_WB', 'Middle East \& North Africa'), ('NAME\_LEN', 7.0), ('LONG\_LEN', 7.0), ('ABBREV\_LEN', 4.0), ('TINY', -99.0), ('HOMEPART', 1.0), ('MIN\_ZOOM', 0.0), ('MIN\_LABEL', 3.0), ('MAX\_LABEL', 8.0)}
 \end{minipage}\\
 
 Le script Code/regionovertime/dumpstats.py superpose ces données vectorielles à l'image satellite pour ajouter à chaque pays sa luminosité moyenne sur une échelle de 0 à 63 ainsi que l'écart-type de luminosité par pixel. Puis ces données sont enregistrées dans le fichier stats.pickle pour être utilisées plus tard.
 
-Grâce à cette information de luminosité perçue par pays, on peut faire un parallèle avec une grande variété de données, dont le produit intérieur brut (GDP), la consommation en énergie, le niveau de développement, l'indice économique, les émissions de C0$_2$, etc.
+Grâce à cette information sur la luminosité perçue par pays, on peut faire un parallèle avec une grande variété de données, telles que le produit intérieur brut (GDP), la consommation en énergie, le niveau de développement, l'indice économique, les émissions de C0$_2$, etc.
+
+La source utilisée pour les données de population vient du site du Département des Affaires Économiques et Sociales des Nations Unies \cite{un-wpp}, plus précisément du la feuille Excel "Total Population - Both Sexes" de 2017.
+
+La source de données pour le produit intérieur brut en USD sont fournies par The World Bank \cite{theworldbank} et téléchargées depuis \url{http://data.un.org/Data.aspx?q=gdp&d=WDI&f=Indicator_Code%3aNY.GDP.MKTP.CD} (visité le 07.06.2018, dernière mise à jour le 12.10.2016).
+
+Les données sur la consommation en électricité par pays et par année sont tirées de \url{http://data.un.org/Data.aspx?d=EDATA&f=cmID%3AEL} (données issues de la Division Statistique des Nations Unies, mises à jour en janvier 2018). Le filtre "Electricity - Final energy consumption" a été utilisé pour ne garder que la consommation totale, sans les nombreux détails proposés par la base de données sur l'usage de l'électricité.
 
 \section{Recherche de corrélation}
 Recherche de corrélation, graphes
