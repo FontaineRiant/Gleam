@@ -7,17 +7,15 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Outil de visualisation NASA Worldview \cite {nasa-worldview}.}}{3}{figure.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Outil de visualisation NASA Worldview \cite {nasa-worldview}.}}{3}{figure.4.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Image satellite quotidienne servie par NASA Worldview \cite {nasa-worldview}, repr\IeC {\'e}sentant la Grande Bretagne et son climat nuageux.}}{4}{figure.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Image satellite quotidienne servie par NASA Worldview \cite {nasa-worldview}, repr\IeC {\'e}sentant la Grande Bretagne et son climat nuageux.}}{4}{figure.4.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Une tuile de l'image de 2016 \cite {nasa-api} montrant la ville de Dallas (USA) apr\IeC {\`e}s avoir \IeC {\'e}t\IeC {\'e} mise en couleurs n\IeC {\'e}gatives.}}{4}{figure.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Une tuile de l'image de 2016 \cite {nasa-api} montrant la ville de Dallas (USA) apr\IeC {\`e}s avoir \IeC {\'e}t\IeC {\'e} mise en couleurs n\IeC {\'e}gatives.}}{4}{figure.4.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Image globale annuelle (2016) reconstitu\IeC {\'e}e \IeC {\`a} partir de tuiles t\IeC {\'e}l\IeC {\'e}charg\IeC {\'e}es \cite {nasa-api}, puis mise en couleurs n\IeC {\'e}gatives.}}{5}{figure.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Image globale annuelle (2016) reconstitu\IeC {\'e}e \IeC {\`a} partir de tuiles t\IeC {\'e}l\IeC {\'e}charg\IeC {\'e}es \cite {nasa-api}, puis mise en couleurs n\IeC {\'e}gatives.}}{5}{figure.4.4}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Extrait de la grille de population \cite {sedac} rendue par QGIS. Le blanc indique une absence d'habitant, le noir indique plus de 1000 habitants par m\IeC {\`e}tre carr\IeC {\'e}.}}{6}{figure.4.5}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Extrait de la grille de population \cite {sedac} rendue par QGIS. Le blanc indique une absence d'habitants, le noir indique au moins 1000 habitants par m\IeC {\`e}tre carr\IeC {\'e}.}}{6}{figure.3.5}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

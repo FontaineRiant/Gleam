@@ -104,6 +104,8 @@ Yverdon-les-Bains, VD, CH
 
 \end{titlepage}
 
+\tableofcontents
+
 \chapter{Cahier des charges}
 
 \section{Résumé du problème}
@@ -149,10 +151,8 @@ Par exemple, si au cours du travail de bachelor il s'avère que la population pa
 \textbf{27 juillet 2018 :} Rapport final et application fonctionnelle
 
 \textbf{Entre le 3 et le 14 septembre 2018 :} Soutenance du travail de bachelor
-\tableofcontents
 
-
-\chapter{Résumé}
+%\chapter{Résumé}
 \pagenumbering{arabic}
 
 
@@ -218,13 +218,22 @@ Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth]{img/pop_subset.png}
-	\caption{Extrait de la grille de population \cite{sedac} rendue par QGIS. Le blanc indique une absence d'habitant, le noir indique plus de 1000 habitants par mètre carré.}
+	\caption{Extrait de la grille de population \cite{sedac} rendue par QGIS. Le blanc indique une absence d'habitants, le noir indique au moins 1000 habitants par mètre carré.}
 	\label{qgis-sedac}
 \end{figure}
 
 
 \subsection{Pays}
-(nightlights, poprasters, vectors, script de download)
+Les grilles de données globales sont difficiles à créer, il n'en existe donc pas pour tous les types et toutes les dates. Afin de contourner ce problème, il existe des outils pour combiner des grilles (ici : l'image satellite) avec des données vectorielles telles que les frontières des pays.
+
+Le jeu de données TODO \cite{naturalearthdata} contient les frontières des pays à TODODATE telles que (TODO : politique de choix des frontières), ainsi que des méta-données sur chacun de ces pays (population estimée, indice de développement, différentes appellations et abréviations, etc.). Voici à quoi ressemble ces méta-données pour la Tunisie :\\
+\begin{minipage}[t]{1.0\textwidth}
+			{('scalerank', 0), ('featurecla', 'Admin-0 country'), ('LABELRANK', 3.0), ('SOVEREIGNT', 'Tunisia'), ('SOV\_A3', 'TUN'), ('ADM0\_DIF', 0.0), ('LEVEL', 2.0), ('TYPE', 'Sovereign country'), ('ADMIN', 'Tunisia'), ('ADM0\_A3', 'TUN'), ('GEOU\_DIF', 0.0), ('GEOUNIT', 'Tunisia'), ('GU\_A3', 'TUN'), ('SU\_DIF', 0.0), ('SUBUNIT', 'Tunisia'), ('SU\_A3', 'TUN'), ('BRK\_DIFF', 0.0), ('NAME', 'Tunisia'), ('NAME\_LONG', 'Tunisia'), ('BRK\_A3', 'TUN'), ('BRK\_NAME', 'Tunisia'), ('BRK\_GROUP', None), ('ABBREV', 'Tun.'), ('POSTAL', 'TN'), ('FORMAL\_EN', 'Republic of Tunisia'), ('FORMAL\_FR', None), ('NAME\_CIAWF', 'Tunisia'), ('NOTE\_ADM0', None), ('NOTE\_BRK', None), ('NAME\_SORT', 'Tunisia'), ('NAME\_ALT', None), ('MAPCOLOR7', 4.0), ('MAPCOLOR8', 3.0), ('MAPCOLOR9', 3.0), ('MAPCOLOR13', 2.0), ('POP\_EST', 11403800.0), ('POP\_RANK', 14.0), ('GDP\_MD\_EST', 130800.0), ('POP\_YEAR', 2017.0), ('LASTCENSUS', 2004.0), ('GDP\_YEAR', 2016.0), ('ECONOMY', '6. Developing region'), ('INCOME\_GRP', '3. Upper middle income'), ('WIKIPEDIA', -99.0), ('FIPS\_10\_', 'TS'), ('ISO\_A2', 'TN'), ('ISO\_A3', 'TUN'), ('ISO\_A3\_EH', 'TUN'), ('ISO\_N3', '788'), ('UN\_A3', '788'), ('WB\_A2', 'TN'), ('WB\_A3', 'TUN'), ('WOE\_ID', 23424967.0), ('WOE\_ID\_EH', 23424967.0), ('WOE\_NOTE', 'Exact WOE match as country'), ('ADM0\_A3\_IS', 'TUN'), ('ADM0\_A3\_US', 'TUN'), ('ADM0\_A3\_UN', -99.0), ('ADM0\_A3\_WB', -99.0),	 ('CONTINENT', 'Africa'), ('REGION\_UN', 'Africa'), ('SUBREGION', 'Northern Africa'), ('REGION\_WB', 'Middle East \& North Africa'), ('NAME\_LEN', 7.0), ('LONG\_LEN', 7.0), ('ABBREV\_LEN', 4.0), ('TINY', -99.0), ('HOMEPART', 1.0), ('MIN\_ZOOM', 0.0), ('MIN\_LABEL', 3.0), ('MAX\_LABEL', 8.0)}
+\end{minipage}\\
+
+Le script Code/regionovertime/dumpstats.py superpose ces données vectorielles à l'image satellite pour ajouter à chaque pays sa luminosité moyenne sur une échelle de 0 à 63 ainsi que l'écart-type de luminosité par pixel. Puis ces données sont enregistrées dans le fichier stats.pickle pour être utilisées plus tard.
+
+Grâce à cette information de luminosité perçue par pays, on peut faire un parallèle avec une grande variété de données, dont le produit intérieur brut (GDP), la consommation en énergie, le niveau de développement, l'indice économique, les émissions de C0$_2$, etc.
 
 \section{Recherche de corrélation}
 Recherche de corrélation, graphes
@@ -235,6 +244,8 @@ Problème de format pour la superposition des rasters
 GPD, groupement par pays, filtré par développement économique, graphes
 
 deltas de luminosité par pays, incomplet
+
+plot syrie, image corée du nord
 
 \section{Données à explorer}
 Données encore pas explorées : human footprint, ...
