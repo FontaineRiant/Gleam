@@ -24,7 +24,7 @@
         {CENTER FOR INTERNATIONAL EARTH SCIENCE INFORMATION NETWORK-CIESIN-COLUMBIA UNIVERSITY}%
       }
       \field{sortinit}{G}
-      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{sortinithash}{618d986594b7198ba52cf8b00d348f3f}
       \field{labeltitlesource}{title}
       \field{subtitle}{Population Count Adjusted to Match 2015 Revision of UN WPP Country Totals, Revision 10}
       \field{title}{Gridded Population of the World, Version 4 (GPWv4)}
@@ -44,7 +44,7 @@
         {Natural Earth}%
       }
       \field{sortinit}{N}
-      \field{sortinithash}{f7242c3ed3dc50029fca1be76c497c7c}
+      \field{sortinithash}{1163c28585427c673ad5a010cbf82f52}
       \field{labeltitlesource}{title}
       \field{day}{21}
       \field{month}{3}
@@ -66,7 +66,7 @@
     \endentry
     \entry{noaa}{online}{}
       \field{sortinit}{t}
-      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
       \field{labeltitlesource}{title}
       \field{title}{title}
       \verb{urlraw}
@@ -82,7 +82,7 @@
         {The World Bank}%
       }
       \field{sortinit}{W}
-      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
       \field{labeltitlesource}{title}
       \field{day}{12}
       \field{month}{10}
@@ -108,7 +108,7 @@
         {Social Affairs, Population Division}%
       }
       \field{sortinit}{W}
-      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
       \field{labeltitlesource}{title}
       \field{day}{7}
       \field{month}{12}
@@ -132,7 +132,7 @@
         {NASA EOSDIS}%
       }
       \field{sortinit}{W}
-      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
       \field{labeltitlesource}{title}
       \field{title}{Worldview}
       \field{urlday}{6}

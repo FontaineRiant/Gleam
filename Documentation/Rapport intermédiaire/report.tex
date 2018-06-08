@@ -242,10 +242,57 @@ La source de données pour le produit intérieur brut en USD sont fournies par T
 Les données sur la consommation en électricité par pays et par année sont tirées de \url{http://data.un.org/Data.aspx?d=EDATA&f=cmID%3AEL} (données issues de la Division Statistique des Nations Unies, mises à jour en janvier 2018). Le filtre "Electricity - Final energy consumption" a été utilisé pour ne garder que la consommation totale, sans les nombreux détails proposés par la base de données sur l'usage de l'électricité.
 
 \section{Recherche de corrélation}
+\subsection{Pays}
+La superposition de deux grilles (population et image satellite) de dimensions différentes n'est pas évidente, c'est pourquoi les première données à avoir été mises en parallèles dans ce travail sont la population par pays \cite{un-wpp}, le produit intérieur brut \cite{theworldbank}, et la luminosité totale du pays perçue depuis l'espace (extraite par script Python à partir des vecteurs de frontières de Natural Earth \cite{naturalearthdata} et des images de la NOAA \cite{noaa}).
+
+Pour chaque année disponible (1992-2013), il est donc possible de dessiner pour la majorité des pays les histogrammes de luminosité, population et PIB (examples en figures \ref{sum_France}, \ref{sum_China}, \ref{sum_Japan} et \ref{sum_Armenia}). Cette représentation n'est pas idéale car l'échelle n'est pas constante entre les pays. Ce qui apparait comme une grande variation de luminosité peut ne pas en être du tout. Certains pays ne portent pas exactement le même nom dans tous les jeux de données, ils sont donc mis de côté dans les résultats.
+
+La figure \ref{sum_France} est typique des résultats obtenus. Elle laissse présager une forte corrélation entre les trois données observées. Cependant, la figure \ref{sum_China} soulève déjà des doutes : la population croît de façon linéaire, mais le PIB et la lumière perçue augmentent de plus en plus vite. Les graphes du Japon (figure \ref{sum_Japan}) semblent indiquer que la luminosité suit le PIB également lorsque ce dernier diminue. Enfin le cas de l'Arménie (figure \ref{sum_Armenia}) nous pousse à croire que le PIB a une corrélation plus forte que la population avec la luminosité.
+
+Jusqu'ici, rien n'est confirmé. Nous ne possédons que des observations par pays sur des échelles variables et il nous faudrait un seul graphe global. Sans parler de fait que 320 pays sur 21 années n'est pas une quantité de données acceptable pour entraîner un réseau de neurones.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/sum_France.png}
+	\caption{Quantité de lumière perçue depuis l'espace, population et PIB de la France entre 1992 et 2013.}
+	\label{sum_France}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/sum_China.png}
+	\caption{Quantité de lumière perçue depuis l'espace, population et PIB de la Chine entre 1992 et 2013.}
+	\label{sum_China}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/sum_Japan.png}
+	\caption{Quantité de lumière perçue depuis l'espace, population et PIB du Japon entre 1992 et 2013.}
+	\label{sum_Japan}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/sum_Armenia.png}
+	\caption{Quantité de lumière perçue depuis l'espace, population et PIB de l'Arménie entre 1992 et 2013.}
+	\label{sum_Armenia}
+\end{figure}
+
+\subsection{Grille de population}
+
+Après avoir tenté de programmer un script Python pour superposer deux grilles de dimensions différentes, il s'est avéré que l'application QGIS est capable d'effectuer cette opération.
+
+%TODO démarche QGIS
+
+La grille résultante contient donc environ 800 millions de pixels qui sont potentiellement autant de données d'entraînement pour chaque année disponible (2000, 2005, 2010, qui correspondent aux dates des grilles de population).
+
 Recherche de corrélation, graphes
 
 Problème de format pour la superposition des rasters
-
 
 GPD, groupement par pays, filtré par développement économique, graphes
 
