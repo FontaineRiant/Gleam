@@ -1,5 +1,5 @@
 % !TeX spellcheck = fr_FR
-\documentclass[a4paper]{report}
+\documentclass[a4paper, 11pt]{report}
 
 
 %% Language and font encodings
@@ -196,7 +196,7 @@ Les deux autres jeux de données nocturnes sont des images composites : des clic
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth]{img/tiles_2016_zoom6.png}
+	\includegraphics[width=0.8\paperheight, angle=-90, origin=c]{img/tiles_2016_zoom6.png}
 	\caption{Image globale annuelle (2016) reconstituée à partir de tuiles téléchargées, puis mise en couleurs négatives.}
 	\label{nasa-worldview-tiles}
 \end{figure}
@@ -239,7 +239,7 @@ La source utilisée pour les données de population vient du site du Départemen
 
 La source de données pour le produit intérieur brut en USD sont fournies par The World Bank \cite{theworldbank} et téléchargées depuis \url{http://data.un.org/Data.aspx?q=gdp&d=WDI&f=Indicator_Code%3aNY.GDP.MKTP.CD} (visité le 07.06.2018, dernière mise à jour le 12.10.2016).
 
-Les données sur la consommation en électricité par pays et par année sont tirées de \url{http://data.un.org/Data.aspx?d=EDATA&f=cmID%3AEL} (données issues de la Division Statistique des Nations Unies, mises à jour en janvier 2018). Le filtre "Electricity - Final energy consumption" a été utilisé pour ne garder que la consommation totale, sans les nombreux détails proposés par la base de données sur l'usage de l'électricité.
+Les données sur la consommation en électricité en millions de kWh par pays et par année sont tirées de \url{http://data.un.org/Data.aspx?d=EDATA&f=cmID%3AEL} (données issues de la Division Statistique des Nations Unies, mises à jour en janvier 2018). Le filtre "Electricity - Final energy consumption" a été utilisé pour ne garder que la consommation totale, sans les nombreux détails proposés par la base de données sur l'usage de l'électricité.
 
 \section{Recherche de corrélation}
 \subsection{Pays}
@@ -282,23 +282,64 @@ Jusqu'ici, rien n'est confirmé. Nous ne possédons que des observations par pay
 	\label{sum_Armenia}
 \end{figure}
 
+Il est également possible de générer des nuages de points comparant la lumière émise et, au choix, l'énergie consommée, la population du pays ou le PIB, et de colorer ces points par indice de développement économique (tiré des données vectorielles Natural Earth \cite{naturalearthdata}).
+
+Le premier de ces nuages de point compare la luminosité et la population de 2013 pour chaque pays (figure \ref{country_lightpop_scatter}). On observe immédiatement qu'il existe une corrélation. Son coefficient de Pearson est 0.56. On ne peut pas encore déterminer s'il y a une relation directe, ou si ces deux variables sont simplement corrélées à la taille du territoire. En effet, on ne fait que sommer la population et la quantité de lumière émise, on ne calcule pas de moyenne par pays.
+Sans surprise, on voit également que les pays ayant un index économique élevé émettent plus de lumière pour la même population.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/population-light.png}
+	\caption{Pays placés par population et luminosité totale émise sur une échelle logarithmique, coloré par indice économique (violet signifie élevé, jaune signifie bas).}
+	\label{country_lightpop_scatter}
+\end{figure}
+
+Le deuxième graphe généré est beaucoup plus intéressant car il compare le produit intérieur brut de chaque pays avec leur émission de lumière (figure \ref{country_gdppop_scatter}). On observe une forte corrélation, dont le coefficient de Pearson est 0.819.
+Naturellement, l'indice de développement économique est très corrélé avec le PIB (\textit{GDP} en Anglais).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/gdp-light.png}
+	\caption{Pays placés par PIB en USD et luminosité totale émise sur une échelle logarithmique, coloré par indice économique (violet signifie élevé, jaune signifie bas).}
+	\label{country_gdppop_scatter}
+\end{figure}
+
+Une autre comparaison est possible avec la consommation en électricité, illustrée en figure \ref{country_energypop_scatter}. La forte corrélation (coefficient de 0.81) entre émission de lumière et consommation d'énergie n'est pas une surprise, mais on remarque un phénomène intéressant avec l'index économique des pays. Les pays en voie de développement ont tendance à émettre beaucoup plus de lumière pour une consommation d'électricité équivalente aux pays développés. On peut spéculer sur les causes d'une telle différence (data centers, chauffages, etc.) mais ce n'est pas l'objet de ce travail.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{img/energy-light.png}
+	\caption{Pays placés par consommation en électricité en millions de kWh et luminosité totale émise sur une échelle logarithmique, coloré par indice économique (violet signifie élevé, jaune signifie bas).}
+	\label{country_energypop_scatter}
+\end{figure}
+
 \subsection{Grille de population}
 
-Après avoir tenté de programmer un script Python pour superposer deux grilles de dimensions différentes, il s'est avéré que l'application QGIS est capable d'effectuer cette opération.
+Après avoir tenté de programmer un script Python pour superposer deux grilles de dimensions différentes, il s'est avéré que l'application QGIS est capable d'effectuer cette opération. Il suffit de :
 
-%TODO démarche QGIS
+\begin{itemize}
+	\item Ouvrir les grilles avec QGIS : population et image satellite. Elles doivent apparaitre dans la liste des couches.
+	\item Dans la barre d'outils, choisir "Raster" $\rightarrow$ Divers $\rightarrow$ Fusionner.
+	\item Cocher l'option "Placer chaque fichier en entrée dans une bande séparée." puis lancer la fusion "Run in Background".
+\end{itemize}
 
-La grille résultante contient donc environ 800 millions de pixels qui sont potentiellement autant de données d'entraînement pour chaque année disponible (2000, 2005, 2010, qui correspondent aux dates des grilles de population).
+La grille résultante contient donc environ 800 millions de pixels qui sont potentiellement autant de données d'entraînement pour chaque année disponible (2000, 2005, 2010, qui correspondent aux dates des grilles de population). Après avoir ajusté ses propriétés d'affichage et inversé les couleurs, on obtient la figure \ref{lightpop_2000}. Le bleu ciel correspond à la lumière visible depuis l'espace, le rose la population (sur une échelle de 1 à 1000 habitants par km$^2$). Le bleu foncé correspond au chevauchement des deux couleurs. On peut déjà observer que, si la luminosité ne suit pas l'évolution de la population dans le temps, elle est tout de même concentrée géographiquement sur les points les plus peuplés.
 
-Recherche de corrélation, graphes
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\paperheight, angle=-90, origin=c]{img/lightpop_2000.png}
+	\caption{Superposition de l'image satellite nocturne (bleu ciel) et de la grille de population (rose).}
+	\label{lightpop_2000}
+\end{figure}
 
-Problème de format pour la superposition des rasters
+Si on pose chaque pixel sur un nuage de point dont les axes sont la luminosité et la population, on obtient la figure \ref{lightpop_scatter}. On constate qu'il sera très difficile de deviner la valeur de population à partir de l'intensité lumineuse d'un seul pixel. Cela nous oriente donc plutôt dans la direction d'un réseau de neurones à convolutions, qui considère les pixels par groupe.
 
-GPD, groupement par pays, filtré par développement économique, graphes
-
-deltas de luminosité par pays, incomplet
-
-plot syrie, image corée du nord
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/lightpop_scatter.png}
+	\caption{Valeur de luminosité et de population pour chaque km$^2$ (année 2000)}
+	\label{lightpop_scatter}
+\end{figure}
 
 \section{Données à explorer}
 Données encore pas explorées : human footprint, ...
@@ -318,14 +359,14 @@ Travail effectué, travail restant
 
 \printbibliography
 
-\chapter{Authentification}
+%\chapter{Authentification}
 
 
-\chapter{Symboles et abréviations}
+%\chapter{Symboles et abréviations}
 
 
 \listoffigures
 
-\chapter{Annexes}
+%\chapter{Annexes}
 
 \end{document}

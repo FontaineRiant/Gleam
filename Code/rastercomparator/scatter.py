@@ -4,12 +4,14 @@ import rasterio
 import matplotlib.pyplot as plt
 import numpy as np
 
+logscale = False # needs probably more RAM than you can have, not recommended
+year = '2000'
 
 valuesX = []
 valuesY = []
 valuesZ = []
 
-raster = rasterio.open('../../Data/lightpop_merged/2000.tif')
+raster = rasterio.open('../../Data/lightpop_merged/'+ year + '.tif')
 valuesX = raster.read(1) # first band
 valuesY = raster.read(2)
 
@@ -20,13 +22,17 @@ valuesY = raster.read(2)
 fig = plt.figure()
 ax1 = plt.subplot(1, 1, 1)
 
-#plt.xscale('log')
-#plt.yscale('log')
+if logscale:
+    plt.xscale('log')
+    plt.yscale('log')
 ax1.scatter(valuesX, valuesY, alpha=0.01)
 ax1.set(xlabel='?', ylabel='?')
 ax1.grid()
 
-fig.savefig("scatters/2000.png")
+if logscale:
+    fig.savefig("scatters/" + year + "_logscale.png")
+else:
+    fig.savefig("scatters/" + year + ".png")
 
 plt.close(fig)
 
