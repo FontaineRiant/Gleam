@@ -194,7 +194,7 @@ Les deux autres jeux de données nocturnes sont des images composites : des clic
 	\label{nasa-worldview-tile}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.8\paperheight, angle=-90, origin=c]{img/tiles_2016_zoom6.png}
 	\caption{Image globale annuelle (2016) reconstituée à partir de tuiles téléchargées, puis mise en couleurs négatives.}
@@ -217,8 +217,8 @@ Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1.0\textwidth]{img/pop_subset.png}
-	\caption{Extrait de la grille de population \cite{sedac} rendue par QGIS. Le blanc indique une absence d'habitants, le noir indique au moins 1000 habitants par mètre carré.}
+	\includegraphics[width=0.8\textwidth]{img/pop_subset.png}
+	\caption{Extrait de la grille de population \cite{sedac} rendu avec QGIS. Le blanc indique une absence d'habitants, le noir indique au moins 1000 habitants par mètre carré.}
 	\label{qgis-sedac}
 \end{figure}
 
@@ -325,7 +325,7 @@ Après avoir tenté de programmer un script Python pour superposer deux grilles 
 
 La grille résultante contient donc environ 800 millions de pixels qui sont potentiellement autant de données d'entraînement pour chaque année disponible (2000, 2005, 2010, qui correspondent aux dates des grilles de population). Après avoir ajusté ses propriétés d'affichage et inversé les couleurs, on obtient la figure \ref{lightpop_2000}. Le bleu ciel correspond à la lumière visible depuis l'espace, le rose la population (sur une échelle de 1 à 1000 habitants par km$^2$). Le bleu foncé correspond au chevauchement des deux couleurs. On peut déjà observer que, si la luminosité ne suit pas l'évolution de la population dans le temps, elle est tout de même concentrée géographiquement sur les points les plus peuplés.
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.8\paperheight, angle=-90, origin=c]{img/lightpop_2000.png}
 	\caption{Superposition de l'image satellite nocturne (bleu ciel) et de la grille de population (rose).}
@@ -342,10 +342,24 @@ Si on pose chaque pixel sur un nuage de point dont les axes sont la luminosité 
 \end{figure}
 
 \section{Données à explorer}
-Données encore pas explorées : human footprint, ...
+Parmi les données potentiellement intéressantes qui n'ont pas encore été explorées dans ce travail, il y a notamment des grilles pour :
+\begin{itemize}
+	\item l'impact humain sur l'environnement,
+	\item l'estimation des populations haute résolution de Facebook (digital globe),
+	\item les changements de luminosité d'une année à l'autre (à calculer à partir des images satellites),
+	\item la couverture du territoire (vert ou bétonné).
+\end{itemize}
 
-\chapter{Modèle neuronal}
+\chapter{Modèle}
 \section{Réseau de neurones}
+Pour commencer à développer le réseau de neurones, on commencera par tenter de prédire la population d'une petite région (une tuile) à partir de l'image satellite de l'année 2005, en entraînant la machine sur celle de 2000 et la grille de population correspondante \cite{sedac}.
+
+Comme on a pu observer que la prédiction à partir d'un pixel isolé n'est pas réaliste, on aimerait prendre en compte les valeurs des pixels voisins. En effet, s'il y a beaucoup de pixels proches illuminés, il y a de meilleures chances pour que la région soit densément peuplée que si un seul pixel est illuminé. De plus, si le réseau de neurones peut reconnaître les formes, il sera en mesure de différencier le centre et la périphérie d'une ville, ainsi que des routes ou villages isolés.
+
+Le système qui répond à ces exigences est le réseau de neurones à convolutions. Cependant, alors que l'usage habituel d'un tel réseau sert à la classification de données, on a besoin ici d'obtenir un nombre réel. Il s'agit d'adapter le système pour faire de la régression.
+
+
+
 réseau de neurones à convolution pour faire de la régression => chercher des cas de peoblèmes similaires
 
 \section{Environnement de développement}

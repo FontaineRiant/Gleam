@@ -27,10 +27,6 @@ cnn = models.load_model('model.h5')
 
 print('opening raster')
 
-train = rasterio.open('../../Data/lightpop_merged/2000_subset.tif')
-trainX = np.expand_dims(tile(train.read(1), input_tile_size), axis=3)
-trainY = np.mean(tile(train.read(2), input_tile_size), axis=(1, 2))
-
 test = rasterio.open('../../Data/lightpop_merged/2005_subset.tif')
 testX = np.expand_dims(tile(test.read(1), input_tile_size), axis=3)
 testY = np.mean(tile(test.read(2), input_tile_size), axis=(1, 2))

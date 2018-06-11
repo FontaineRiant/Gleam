@@ -13,27 +13,27 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Une tuile de l'image de 2016 montrant la ville de Dallas (USA) apr\IeC {\`e}s avoir \IeC {\'e}t\IeC {\'e} mise en couleurs n\IeC {\'e}gatives.}}{4}{figure.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Image globale annuelle (2016) reconstitu\IeC {\'e}e \IeC {\`a} partir de tuiles t\IeC {\'e}l\IeC {\'e}charg\IeC {\'e}es, puis mise en couleurs n\IeC {\'e}gatives.}}{9}{figure.3.4}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Image globale annuelle (2016) reconstitu\IeC {\'e}e \IeC {\`a} partir de tuiles t\IeC {\'e}l\IeC {\'e}charg\IeC {\'e}es, puis mise en couleurs n\IeC {\'e}gatives.}}{5}{figure.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Extrait de la grille de population \cite {sedac} rendue par QGIS. Le blanc indique une absence d'habitants, le noir indique au moins 1000 habitants par m\IeC {\`e}tre carr\IeC {\'e}.}}{10}{figure.3.5}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Extrait de la grille de population \cite {sedac} rendu avec QGIS. Le blanc indique une absence d'habitants, le noir indique au moins 1000 habitants par m\IeC {\`e}tre carr\IeC {\'e}.}}{7}{figure.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Quantit\IeC {\'e} de lumi\IeC {\`e}re per\IeC {\c c}ue depuis l'espace, population et PIB de la France entre 1992 et 2013.}}{11}{figure.3.6}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Quantit\IeC {\'e} de lumi\IeC {\`e}re per\IeC {\c c}ue depuis l'espace, population et PIB de la France entre 1992 et 2013.}}{9}{figure.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Quantit\IeC {\'e} de lumi\IeC {\`e}re per\IeC {\c c}ue depuis l'espace, population et PIB de la Chine entre 1992 et 2013.}}{11}{figure.3.7}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Quantit\IeC {\'e} de lumi\IeC {\`e}re per\IeC {\c c}ue depuis l'espace, population et PIB de la Chine entre 1992 et 2013.}}{10}{figure.3.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Quantit\IeC {\'e} de lumi\IeC {\`e}re per\IeC {\c c}ue depuis l'espace, population et PIB du Japon entre 1992 et 2013.}}{12}{figure.3.8}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Quantit\IeC {\'e} de lumi\IeC {\`e}re per\IeC {\c c}ue depuis l'espace, population et PIB du Japon entre 1992 et 2013.}}{11}{figure.3.8}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Quantit\IeC {\'e} de lumi\IeC {\`e}re per\IeC {\c c}ue depuis l'espace, population et PIB de l'Arm\IeC {\'e}nie entre 1992 et 2013.}}{12}{figure.3.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Pays plac\IeC {\'e}s par population et luminosit\IeC {\'e} totale \IeC {\'e}mise sur une \IeC {\'e}chelle logarithmique, color\IeC {\'e} par indice \IeC {\'e}conomique (violet signifie \IeC {\'e}lev\IeC {\'e}, jaune signifie bas).}}{13}{figure.3.10}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Pays plac\IeC {\'e}s par population et luminosit\IeC {\'e} totale \IeC {\'e}mise sur une \IeC {\'e}chelle logarithmique, color\IeC {\'e} par indice \IeC {\'e}conomique (violet signifie \IeC {\'e}lev\IeC {\'e}, jaune signifie bas).}}{12}{figure.3.10}
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {3.11}{\ignorespaces Pays plac\IeC {\'e}s par PIB en USD et luminosit\IeC {\'e} totale \IeC {\'e}mise sur une \IeC {\'e}chelle logarithmique, color\IeC {\'e} par indice \IeC {\'e}conomique (violet signifie \IeC {\'e}lev\IeC {\'e}, jaune signifie bas).}}{13}{figure.3.11}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Pays plac\IeC {\'e}s par consommation en \IeC {\'e}lectricit\IeC {\'e} en millions de kWh et luminosit\IeC {\'e} totale \IeC {\'e}mise sur une \IeC {\'e}chelle logarithmique, color\IeC {\'e} par indice \IeC {\'e}conomique (violet signifie \IeC {\'e}lev\IeC {\'e}, jaune signifie bas).}}{14}{figure.3.12}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Pays plac\IeC {\'e}s par consommation en \IeC {\'e}lectricit\IeC {\'e} en millions de kWh et luminosit\IeC {\'e} totale \IeC {\'e}mise sur une \IeC {\'e}chelle logarithmique, color\IeC {\'e} par indice \IeC {\'e}conomique (violet signifie \IeC {\'e}lev\IeC {\'e}, jaune signifie bas).}}{13}{figure.3.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Superposition de l'image satellite nocturne (bleu ciel) et de la grille de population (rose).}}{15}{figure.3.13}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Superposition de l'image satellite nocturne (bleu ciel) et de la grille de population (rose).}}{14}{figure.3.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Valeur de luminosit\IeC {\'e} et de population pour chaque km$^2$ (ann\IeC {\'e}e 2000)}}{16}{figure.3.14}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Valeur de luminosit\IeC {\'e} et de population pour chaque km$^2$ (ann\IeC {\'e}e 2000)}}{15}{figure.3.14}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
