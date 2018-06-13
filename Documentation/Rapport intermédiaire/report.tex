@@ -351,25 +351,40 @@ Parmi les données potentiellement intéressantes qui n'ont pas encore été exp
 \end{itemize}
 
 \chapter{Modèle}
+\section{Environnement de développement}
+Python est un langage largement utilisé pour manipuler des données et faire du machine learning. Il dispose de librairies optimisées précisément pour cette tâche, dont Keras.
+
+Keras est une librairie Python open source permettant le prototypage rapide de réseaux de neurones et peut fonctionner par-dessus TensorFlow (open source et développé par Google), CNTK ou Theano. Une fonctionnalité très attractive de TensorFlow est l'exploitation automatique du processeur graphique s'il est disponible. En effet, ces processeurs sont très performants pour l'apprentissage automatique, car c'est un travail hautement parallélisable.
+
+Afin d'activer l'utilisation du GPU par Tensorflow sur Windows 10, % TODO
+
 \section{Réseau de neurones}
 Pour commencer à développer le réseau de neurones, on commencera par tenter de prédire la population d'une petite région (une tuile) à partir de l'image satellite de l'année 2005, en entraînant la machine sur celle de 2000 et la grille de population correspondante \cite{sedac}.
 
 Comme on a pu observer que la prédiction à partir d'un pixel isolé n'est pas réaliste, on aimerait prendre en compte les valeurs des pixels voisins. En effet, s'il y a beaucoup de pixels proches illuminés, il y a de meilleures chances pour que la région soit densément peuplée que si un seul pixel est illuminé. De plus, si le réseau de neurones peut reconnaître les formes, il sera en mesure de différencier le centre et la périphérie d'une ville, ainsi que des routes ou villages isolés.
 
-Le système qui répond à ces exigences est le réseau de neurones à convolutions. Cependant, alors que l'usage habituel d'un tel réseau sert à la classification de données, on a besoin ici d'obtenir un nombre réel. Il s'agit d'adapter le système pour faire de la régression.
+Le système qui répond à ces exigences est le réseau de neurones à convolutions. Cependant, alors que l'usage habituel d'un tel réseau sert à la classification de données, on a besoin ici d'obtenir un nombre réel. Il s'agit d'adapter le système pour faire de la régression, ce qu'on fait lorsqu'on compte le nombre de voitures sur un parking par exemple.
+
+Pour commencer, on découpe l'image satellite nocturne en tuiles de 32 sur 32 pixels (1024 km$^2$). Chacune de ces tuiles sera considéré comme une observation à donner en entrée du modèle. La sortie sera une valeur réelle correspondant au nombre d'habitants dans la zone donnée en entrée.
+
+\section{Méta-paramètres}
 
 
-
-réseau de neurones à convolution pour faire de la régression => chercher des cas de peoblèmes similaires
-
-\section{Environnement de développement}
-installation : keras, tensorflow, setup nvidia
-
-\section{Métaparamètres}
-métaparamètres du réseau de neurones
+\section{Résultats}
+Les résultats suivants ont été obtenus en entraînant le modèle sur une région couvrant l'Europe de l'Ouest et l'Afrique du Nord en l'an 2000. La phase de test est effectuée sur la même région, mais en l'an 2005. % TODO changer de région
 
 \chapter{Conclusion}
-Travail effectué, travail restant
+Nous avons exploré les données à disposition. Nous savons désormais où chercher, quel format utiliser et comment exploiter les données géographiques. Il devrait être relativement facile de substituer la grille de population à une autre, plus utile, quand on aura démontré l'efficacité du réseau de neurones.
+
+Le travail effectué, bien que ne fournissant pas de résultat exploitable, a permis de définir clairement les priorités à court et moyen terme :
+\begin{itemize}
+	\item Adapter les méta-paramètres du modèle neural afin d'obtenir de meilleurs résultats.
+	\item Réduire la consommation en mémoire des scripts d'entraînement et de test.
+	\item Tenter de faire des parallèles avec d'autres données que la population, notamment écologiques.
+	\item Entraîner un réseau à prédire l'évolution d'une image satellite au fil des années, afin de créer des images satellites futures sur lesquelles faire d'autres prédictions (grille de population dans 20 ans par exemple).
+	\item Rendre l'utilisation des scripts d'entraînement et de test plus résistante aux changements de formats des données. Il faut qu'un nouvel utilisateur n'ait pas besoin de plonger dans le code source pour adapter la résolution de l'image satellite, par exemple.
+	\item Optimiser la performance du modèle, que ce soit par la transformation ou l'enrichissement des données d'entraînement, ou par la modification des méta-paramètres.
+\end{itemize}
 
 \printbibliography
 

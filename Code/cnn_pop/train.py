@@ -28,7 +28,7 @@ print('opening raster')
 
 train = rasterio.open('../../Data/lightpop_merged/2000_subset.tif')
 trainX = np.expand_dims(tile(train.read(1), input_tile_size), axis=3)
-trainY = np.mean(tile(train.read(2), input_tile_size), axis=(1, 2))
+trainY = np.sum(tile(train.read(2), input_tile_size), axis=(1, 2))
 
 trainX, trainY = shuffle(trainX, trainY) # shuffle lists
 
@@ -38,7 +38,7 @@ print('image shape : ' + str(trainX.shape))
 
 print('configuring cnn')
 
-nb_epoch = 100
+nb_epoch = 10
 
 batch_size = 1 # nombre de mesures avant d'update les poids
 

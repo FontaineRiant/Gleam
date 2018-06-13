@@ -29,7 +29,9 @@ print('opening raster')
 
 test = rasterio.open('../../Data/lightpop_merged/2005_subset.tif')
 testX = np.expand_dims(tile(test.read(1), input_tile_size), axis=3)
-testY = np.mean(tile(test.read(2), input_tile_size), axis=(1, 2))
+testY = np.sum(tile(test.read(2), input_tile_size), axis=(1, 2))
+
+print('mean pop in tiles : ' + str(np.mean(testY)))
 
 print('testing ...')
 
