@@ -368,10 +368,13 @@ Le système qui répond à ces exigences est le réseau de neurones à convoluti
 Pour commencer, on découpe l'image satellite nocturne en tuiles de 32 sur 32 pixels (1024 km$^2$). Chacune de ces tuiles sera considéré comme une observation à donner en entrée du modèle. La sortie sera une valeur réelle correspondant au nombre d'habitants dans la zone donnée en entrée.
 
 \section{Méta-paramètres}
+Visualisation du réseau à l'aide de TensorBoard
 
+
+Résultat du test : moyenne des erreurs absolues = 26599.643219296646, fonction objectif (moyenne des erreurs au carré) = 5381938110.040464
 
 \section{Résultats}
-Les résultats suivants ont été obtenus en entraînant le modèle sur une région couvrant l'Europe de l'Ouest et l'Afrique du Nord en l'an 2000. La phase de test est effectuée sur la même région, mais en l'an 2005. % TODO changer de région
+Les résultats suivants ont été obtenus en entraînant le modèle sur une région couvrant l'Europe de l'Ouest et l'Afrique du Nord en l'an 2000. La phase de test est effectuée sur l'Amérique du Nord et une partie de l'Amérique du Sud en l'an 2005.
 
 \chapter{Conclusion}
 Nous avons exploré les données à disposition. Nous savons désormais où chercher, quel format utiliser et comment exploiter les données géographiques. Il devrait être relativement facile de substituer la grille de population à une autre, plus utile, quand on aura démontré l'efficacité du réseau de neurones.

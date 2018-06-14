@@ -6,8 +6,11 @@ import keras.layers.core as core
 import keras.layers.convolutional as conv
 import keras.models as models
 import keras.utils.np_utils as kutils
+from keras.layers import Conv2D
 from keras import optimizers
 from sklearn.utils import shuffle
+from time import time
+from keras.callbacks import TensorBoard
 
 input_tile_size = 32
 outputs_per_tile = 1
@@ -38,7 +41,7 @@ print('image shape : ' + str(trainX.shape))
 
 print('configuring cnn')
 
-nb_epoch = 10
+nb_epoch = 100
 
 batch_size = 1 # nombre de mesures avant d'update les poids
 
@@ -49,11 +52,11 @@ nb_conv_1 = 3
 nb_conv_2 = 3
 
 cnn = models.Sequential()
-cnn.add(conv.Convolution2D(filters=nb_filters_1, kernel_size=(nb_conv_1, nb_conv_1), activation="relu", border_mode='same',
+cnn.add(Conv2D(filters=nb_filters_1, kernel_size=(nb_conv_1, nb_conv_1), activation="relu", border_mode='same',
     input_shape=(img_rows, img_cols, img_channel_count)))
 cnn.add(conv.MaxPooling2D(strides=(2,2)))
 
-cnn.add(conv.Convolution2D(filters=nb_filters_2, kernel_size=(nb_conv_2, nb_conv_2), activation="relu", border_mode='same'))
+cnn.add(Conv2D(filters=nb_filters_2, kernel_size=(nb_conv_2, nb_conv_2), activation="relu", border_mode='same'))
 cnn.add(conv.MaxPooling2D(strides=(2,2)))
 
 cnn.add(core.Flatten())
@@ -64,9 +67,11 @@ cnn.add(core.Dense(1))
 cnn.summary()
 cnn.compile(loss="mean_squared_error", optimizer=optimizers.Adam(lr=0.001), metrics=["mse", "mae"])
 
+tensorboard = TensorBoard(log_dir="logs/{}".format(time())) # logs for later inspection
+
 print('training')
 
-hist = cnn.fit(trainX, trainY, batch_size=batch_size, epochs=nb_epoch, verbose=1)
+hist = cnn.fit(trainX, trainY, batch_size=batch_size, epochs=nb_epoch, verbose=1, callbacks=[tensorboard])
 
 cnn.save('model.h5')
 
