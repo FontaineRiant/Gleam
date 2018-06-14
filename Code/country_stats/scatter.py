@@ -56,21 +56,31 @@ for k, g in csv_data.items() :
                 if row[0] == country and row[1] == year[-4:]:
                     valuesX.append(float(row[3]))
                     valuesY.append(years[year]['sum']) # disponibles : 'mean', 'std', 'median', 'sum'
-                    valuesZ.append(years[year]['ECONOMY'][0])
+                    valuesZ.append(years[year]['ECONOMY'])
                     break
                 
     # normalize Z
-    valuesZ = np.array(valuesZ).astype(np.float)
-    valuesZ = (valuesZ - np.amin(valuesZ)) / (np.amax(valuesZ) - np.amin(valuesZ))
-        
+    #valuesZ = np.array(valuesZ).astype(np.float)
+    #valuesZ = (valuesZ - np.amin(valuesZ)) / (np.amax(valuesZ) - np.amin(valuesZ))
+    
     fig = plt.figure()
     ax1 = plt.subplot(1, 1, 1)
 
     if logscale:
         plt.xscale('log')
         plt.yscale('log')
-    ax1.scatter(valuesX, valuesY, alpha=1.0, c=valuesZ)
+    
+    uniqueZ = list(set(valuesZ))
+    colors = [plt.cm.jet(float(i[0])/7) for i in sorted(uniqueZ)]
+    
+    #ax1.scatter(valuesX, valuesY, alpha=1.0, c=valuesZ)
+    for i, u in enumerate(sorted(uniqueZ)):
+        xi = [valuesX[j] for j  in range(len(valuesX)) if valuesZ[j] == u]
+        yi = [valuesY[j] for j  in range(len(valuesY)) if valuesZ[j] == u]
+        ax1.scatter(xi, yi, c=colors[i], label=str(u))
+    
     ax1.set(xlabel=k, ylabel='Light')
+    ax1.legend()
     ax1.grid()
 
     fig.savefig("scatters/" + str(k) + "-light.png")
