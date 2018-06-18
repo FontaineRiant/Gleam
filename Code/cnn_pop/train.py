@@ -1,49 +1,50 @@
-import pandas as pd
 import rasterio
-import matplotlib.pyplot as plt
 import numpy as np
 import keras.layers.core as core
 import keras.layers.convolutional as conv
 import keras.models as models
-import keras.utils.np_utils as kutils
-from keras.layers import Conv2D
 from keras import optimizers
 from sklearn.utils import shuffle
-from time import time
+import time
 from keras.callbacks import TensorBoard
 
 input_tile_size = 32
 outputs_per_tile = 1
 
-def tile(matrix, tile_size):
+
+def preprocess(raster, tile_size):
+    matrix_x = raster.read(1)
+    matrix_y = raster.read(2)
+
+    tiles_x = []
+    tiles_y = []
+    weights = []
     y = 0
-    tiles = []
-    while (y + tile_size < matrix.shape[1]):
+    while y + tile_size < matrix_x.shape[1]:
         x = 0
-        while(x + tile_size < matrix.shape[0]):
-            tiles.append(matrix[x: x + tile_size, y: y + tile_size])
-            x += tile_size
-        y += tile_size
-    tiles = np.array(tiles)
-    return tiles
+        while x + tile_size < matrix_x.shape[0]:
+            pop = np.sum(matrix_y[x: x + tile_size, y: y + tile_size])
+            if pop > 0:
+                tiles_x.append(matrix_y[x: x + tile_size, y: y + tile_size])
+                tiles_y.append(pop)
+                weights.append(pop)
+
+            x += 8
+        y += 8
+    return np.array(tiles_x), np.array(tiles_y), np.array(weights)
+
 
 print('opening raster')
 
-train = rasterio.open('../../Data/lightpop_merged/2000_subset.tif')
-trainX = np.expand_dims(tile(train.read(1), input_tile_size), axis=3)
-trainY = np.sum(tile(train.read(2), input_tile_size), axis=(1, 2))
+trainX, trainY, weights = preprocess(rasterio.open('../../Data/lightpop_merged/2000_subset.tif'), input_tile_size)
+trainX = np.expand_dims(trainX, axis=3)
 
-trainX, trainY = shuffle(trainX, trainY) # shuffle lists
-
-print(trainX.shape)
 img_count, img_rows, img_cols, img_channel_count = trainX.shape
 print('image shape : ' + str(trainX.shape))
 
 print('configuring cnn')
 
-nb_epoch = 100
-
-batch_size = 1 # nombre de mesures avant d'update les poids
+nb_epoch = 1
 
 # last filter makes the input layer for the last perceptron bigger
 nb_filters_1 = 32
@@ -52,12 +53,12 @@ nb_conv_1 = 3
 nb_conv_2 = 3
 
 cnn = models.Sequential()
-cnn.add(Conv2D(filters=nb_filters_1, kernel_size=(nb_conv_1, nb_conv_1), activation="relu", border_mode='same',
-    input_shape=(img_rows, img_cols, img_channel_count)))
-cnn.add(conv.MaxPooling2D(strides=(2,2)))
+cnn.add(conv.Convolution2D(filters=nb_filters_1, kernel_size=(nb_conv_1, nb_conv_1), activation="relu", padding='same',
+                           input_shape=(img_rows, img_cols, img_channel_count)))
+cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
-cnn.add(Conv2D(filters=nb_filters_2, kernel_size=(nb_conv_2, nb_conv_2), activation="relu", border_mode='same'))
-cnn.add(conv.MaxPooling2D(strides=(2,2)))
+cnn.add(conv.Convolution2D(filters=nb_filters_2, kernel_size=(nb_conv_2, nb_conv_2), activation="relu", padding='same'))
+cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(core.Flatten())
 cnn.add(core.Dropout(0.2))
@@ -66,20 +67,13 @@ cnn.add(core.Dense(1))
 
 cnn.summary()
 cnn.compile(loss="mean_squared_error", optimizer=optimizers.Adam(lr=0.001), metrics=["mse", "mae"])
-
-tensorboard = TensorBoard(log_dir="logs/{}".format(time())) # logs for later inspection
+# logs for tensorboard
+tensorboard = TensorBoard(log_dir="logs/{}".format(time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())))
 
 print('training')
 
-hist = cnn.fit(trainX, trainY, batch_size=batch_size, epochs=nb_epoch, verbose=1, callbacks=[tensorboard])
+cnn.fit(trainX, trainY, batch_size=32, epochs=nb_epoch, verbose=1, callbacks=[tensorboard], sample_weight=weights)
 
-cnn.save('model.h5')
-
-plt.plot(hist.history["loss"])
-plt.title("model loss")
-plt.ylabel("loss")
-plt.xlabel("epoch")
-plt.legend(["train"], loc="upper left")
-plt.savefig("epochs.png")
+cnn.save('models/{}.h5'.format(time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())))
 
 print('done !')

@@ -1,0 +1,5 @@
+pasage en "sliding window", chaque observation de 32x32 est décalée de 8 pixels de la précédente
+
+https://github.com/ArnholdInstitute/ACM-DEV
+il y a un seul output par ovservation de 32x32
+après la prédiction, ils répartissent la population selon le log de la luminosité pour recréer un raster de 32x32
