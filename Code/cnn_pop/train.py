@@ -4,9 +4,8 @@ import keras.layers.core as core
 import keras.layers.convolutional as conv
 import keras.models as models
 from keras import optimizers
-from sklearn.utils import shuffle
 import time
-from keras.callbacks import TensorBoard
+import keras.callbacks
 
 input_tile_size = 32
 outputs_per_tile = 1
@@ -36,7 +35,7 @@ def preprocess(raster, tile_size):
 
 print('opening raster')
 
-trainX, trainY, weights = preprocess(rasterio.open('../../Data/lightpop_merged/2000_subset.tif'), input_tile_size)
+trainX, trainY, weights = preprocess(rasterio.open('../../Data/lightpop_merged/2000.tif'), input_tile_size)
 trainX = np.expand_dims(trainX, axis=3)
 
 img_count, img_rows, img_cols, img_channel_count = trainX.shape
@@ -44,7 +43,7 @@ print('image shape : ' + str(trainX.shape))
 
 print('configuring cnn')
 
-nb_epoch = 1
+nb_epoch = 50
 
 # last filter makes the input layer for the last perceptron bigger
 nb_filters_1 = 32
@@ -67,13 +66,25 @@ cnn.add(core.Dense(1))
 
 cnn.summary()
 cnn.compile(loss="mean_squared_error", optimizer=optimizers.Adam(lr=0.001), metrics=["mse", "mae"])
+
 # logs for tensorboard
-tensorboard = TensorBoard(log_dir="logs/{}".format(time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())))
+time = time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())
+tensorboard = keras.callbacks.TensorBoard(log_dir="logs/" + str(time))
+
+# checkpoints
+checkpoint = keras.callbacks.ModelCheckpoint('models/' + str(time) + '.h5', save_weights_only=False)
+
+# reduce learning rate when we stopped learning anything
+keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=10, verbose=1, mode='min', min_lr=0.0001)
 
 print('training')
 
-cnn.fit(trainX, trainY, batch_size=32, epochs=nb_epoch, verbose=1, callbacks=[tensorboard], sample_weight=weights)
+cnn.fit(trainX, trainY, batch_size=8, epochs=nb_epoch, verbose=2, callbacks=[tensorboard, checkpoint],
+        sample_weight=weights)
 
-cnn.save('models/{}.h5'.format(time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())))
+cnn.save('models/' + str(time) + '.h5')
+
+print('model saved to models/' + time)
+print('logs saved to logs/' + time)
 
 print('done !')

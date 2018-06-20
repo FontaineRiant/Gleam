@@ -3,3 +3,6 @@ pasage en "sliding window", chaque observation de 32x32 est décalée de 8 pixel
 https://github.com/ArnholdInstitute/ACM-DEV
 il y a un seul output par ovservation de 32x32
 après la prédiction, ils répartissent la population selon le log de la luminosité pour recréer un raster de 32x32
+
+10 epochs, 1 couche FC, training subset : 4250 MAE
+idem, 2 couches FC : 7743 MAE (il apprend très peu en 10 itérations)
