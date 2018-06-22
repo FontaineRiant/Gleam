@@ -43,13 +43,15 @@ print('image shape : ' + str(trainX.shape))
 
 print('configuring cnn')
 
-nb_epoch = 50
+nb_epoch = 1000
 
 # last filter makes the input layer for the last perceptron bigger
 nb_filters_1 = 32
 nb_filters_2 = 32
+nb_filters_3 = 32
 nb_conv_1 = 3
 nb_conv_2 = 3
+nb_conv_3 = 3
 
 cnn = models.Sequential()
 cnn.add(conv.Convolution2D(filters=nb_filters_1, kernel_size=(nb_conv_1, nb_conv_1), activation="relu", padding='same',
@@ -57,6 +59,9 @@ cnn.add(conv.Convolution2D(filters=nb_filters_1, kernel_size=(nb_conv_1, nb_conv
 cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(conv.Convolution2D(filters=nb_filters_2, kernel_size=(nb_conv_2, nb_conv_2), activation="relu", padding='same'))
+cnn.add(conv.MaxPooling2D(strides=(2, 2)))
+
+cnn.add(conv.Convolution2D(filters=nb_filters_3, kernel_size=(nb_conv_3, nb_conv_3), activation="relu", padding='same'))
 cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(core.Flatten())
@@ -75,16 +80,16 @@ tensorboard = keras.callbacks.TensorBoard(log_dir="logs/" + str(time))
 checkpoint = keras.callbacks.ModelCheckpoint('models/' + str(time) + '.h5', save_weights_only=False)
 
 # reduce learning rate when we stopped learning anything
-keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=10, verbose=1, mode='min', min_lr=0.0001)
+rlrp = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=10, verbose=1, mode='auto', min_lr=0.0001)
 
 print('training')
 
-cnn.fit(trainX, trainY, batch_size=8, epochs=nb_epoch, verbose=2, callbacks=[tensorboard, checkpoint],
+cnn.fit(trainX, trainY, batch_size=1024, epochs=nb_epoch, verbose=2, callbacks=[tensorboard, checkpoint, rlrp],
         sample_weight=weights)
 
 cnn.save('models/' + str(time) + '.h5')
 
-print('model saved to models/' + time)
+print('model saved to models/' + time + '.h5')
 print('logs saved to logs/' + time)
 
 print('done !')

@@ -45,7 +45,7 @@ print('pop standard deviation in tiles : ' + str(np.std(testY)))
 
 print('testing ...')
 
-evaluation = cnn.evaluate(testX, testY, verbose=2)
+evaluation = cnn.evaluate(testX, testY, verbose=2, batch_size=2048)
 
 print(dict(zip(cnn.metrics_names, evaluation)))
 
