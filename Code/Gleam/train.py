@@ -44,15 +44,10 @@ cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(conv.Convolution2D(filters=nb_filters_3, kernel_size=kernel_size, activation="relu", padding='same',
                            input_shape=(img_rows, img_cols, img_channel_count)))
-						   
-cnn.add(conv.Convolution2D(filters=nb_filters_3, kernel_size=kernel_size, activation="relu", padding='same',
-                           input_shape=(img_rows, img_cols, img_channel_count)))
 
 cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(core.Flatten())
-cnn.add(core.Dropout(0.2))
-cnn.add(core.Dense(256))
 cnn.add(core.Dropout(0.2))
 cnn.add(core.Dense(256))
 cnn.add(core.Dense(1))

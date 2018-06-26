@@ -6,3 +6,4 @@ NOAA a publié une estimation du GDP haute résolution en faisant de la régression
 
 NOAA dispose de rasters pour la land cover en amérique (NASA Land Cover) : roads, population (2000), survaces imperméables, forets de conifpres, mixtes, ...
 
+light rasters mensuelles récentes : https://ngdc.noaa.gov/eog/viirs/download_dnb_composites.html

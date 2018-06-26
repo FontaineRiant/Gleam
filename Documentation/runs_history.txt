@@ -62,11 +62,13 @@ same, full dataset
 
 2018-06-25_07-17-18
 dataset 2000_usa
+MAE 10424.76317447212 sur 2000_usa
+MAE 17504.739147194206 sur 2005_usa => overfitting much ?
 
 2018-06-25_22-06-36
 conv32 - conv32 - maxpool2x2 - conv64 - conv64 - maxpool2x2 - dropout0.2 - dense256 - dropout0.2 - dense256
-MAE 18690.518735934165 sur 2005_usa
-MAE 8500.44338099518 sur 2000_usa => overfitting
+MAE 8500.44338099518 sur 2000_usa
+MAE 18690.518735934165 sur 2005_usa  => overfitting
 MAE 41529.75594972703 sur 2005_europe
 Réalité https://i.imgur.com/160RLcy.png
 Prédiction https://i.imgur.com/xx3isD8.png

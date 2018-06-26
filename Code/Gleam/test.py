@@ -4,7 +4,7 @@ import keras.models as models
 import sys
 from utils import preprocess
 
-dataset = '../../Data/lightpop_merged/2005_europe.tif'
+dataset = '../../Data/lightpop_merged/2000_europe.tif'
 input_tile_size = 32
 
 if len(sys.argv) < 2:

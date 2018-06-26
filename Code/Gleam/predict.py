@@ -4,7 +4,7 @@ import keras.models as models
 import sys
 from utils import preprocess
 
-dataset = '../../Data/lightpop_merged/2000.tif'
+dataset = '../../Data/lightpop_merged/2005.tif'
 input_tile_size = 32
 
 if len(sys.argv) < 2:
@@ -18,6 +18,7 @@ cnn = models.load_model(arg)
 print('opening raster')
 
 raster = rasterio.open(dataset)
+band = raster.read(1)
 testX, _ = preprocess(raster, input_tile_size, input_tile_size, ignore_empty_tiles=False)
 testX = np.expand_dims(testX, axis=3)
 
@@ -32,8 +33,12 @@ pred_index = 0
 while y + input_tile_size < raster.width:
     x = 0
     while x + input_tile_size < raster.height:
-        predicted_raster[x: x + input_tile_size, y: y + input_tile_size]\
-            = predicted_tiles[pred_index]
+        in_tile = band[x: x + input_tile_size, y: y + input_tile_size]
+        if np.max(in_tile) <= 0:
+            predicted_raster[x: x + input_tile_size, y: y + input_tile_size] = 0
+        else:
+            tile = predicted_tiles[pred_index] * in_tile / (np.max(in_tile) * input_tile_size * input_tile_size + 1)
+            predicted_raster[x: x + input_tile_size, y: y + input_tile_size] = tile
 
         pred_index += 1
         x += input_tile_size
