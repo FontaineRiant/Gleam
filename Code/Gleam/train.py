@@ -6,36 +6,18 @@ import keras.models as models
 from keras import optimizers
 import time
 import keras.callbacks
+from utils import preprocess
+from keras import regularizers
 
+dataset = '../../Data/lightpop_merged/2000_usa.tif'
 input_tile_size = 32
-outputs_per_tile = 1
-
-
-def preprocess(raster, tile_size):
-    matrix_x = raster.read(1)
-    matrix_y = raster.read(2)
-
-    tiles_x = []
-    tiles_y = []
-    weights = []
-    y = 0
-    while y + tile_size < matrix_x.shape[1]:
-        x = 0
-        while x + tile_size < matrix_x.shape[0]:
-            pop = np.sum(matrix_y[x: x + tile_size, y: y + tile_size])
-            if pop > 0:
-                tiles_x.append(matrix_y[x: x + tile_size, y: y + tile_size])
-                tiles_y.append(pop)
-                weights.append(pop)
-
-            x += 8
-        y += 8
-    return np.array(tiles_x), np.array(tiles_y), np.array(weights)
-
 
 print('opening raster')
 
-trainX, trainY, weights = preprocess(rasterio.open('../../Data/lightpop_merged/2000.tif'), input_tile_size)
+raster = rasterio.open(dataset)
+trainX, trainY = preprocess(raster, input_tile_size, 8)
+raster.close()
+weights = trainY
 trainX = np.expand_dims(trainX, axis=3)
 
 img_count, img_rows, img_cols, img_channel_count = trainX.shape
@@ -48,29 +30,35 @@ nb_epoch = 1000
 # last filter makes the input layer for the last perceptron bigger
 nb_filters_1 = 32
 nb_filters_2 = 32
-nb_filters_3 = 32
-nb_conv_1 = 3
-nb_conv_2 = 3
-nb_conv_3 = 3
+nb_filters_3 = 64
+kernel_size = (3, 3)
 
 cnn = models.Sequential()
-cnn.add(conv.Convolution2D(filters=nb_filters_1, kernel_size=(nb_conv_1, nb_conv_1), activation="relu", padding='same',
+cnn.add(conv.Convolution2D(filters=nb_filters_1, kernel_size=kernel_size, activation="relu", padding='same',
                            input_shape=(img_rows, img_cols, img_channel_count)))
+
+cnn.add(conv.Convolution2D(filters=nb_filters_2, kernel_size=kernel_size, activation="relu", padding='same',
+                           input_shape=(img_rows, img_cols, img_channel_count)))
+						   
 cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
-cnn.add(conv.Convolution2D(filters=nb_filters_2, kernel_size=(nb_conv_2, nb_conv_2), activation="relu", padding='same'))
-cnn.add(conv.MaxPooling2D(strides=(2, 2)))
+cnn.add(conv.Convolution2D(filters=nb_filters_3, kernel_size=kernel_size, activation="relu", padding='same',
+                           input_shape=(img_rows, img_cols, img_channel_count)))
+						   
+cnn.add(conv.Convolution2D(filters=nb_filters_3, kernel_size=kernel_size, activation="relu", padding='same',
+                           input_shape=(img_rows, img_cols, img_channel_count)))
 
-cnn.add(conv.Convolution2D(filters=nb_filters_3, kernel_size=(nb_conv_3, nb_conv_3), activation="relu", padding='same'))
 cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(core.Flatten())
 cnn.add(core.Dropout(0.2))
-cnn.add(core.Dense(32))
+cnn.add(core.Dense(256))
+cnn.add(core.Dropout(0.2))
+cnn.add(core.Dense(256))
 cnn.add(core.Dense(1))
 
 cnn.summary()
-cnn.compile(loss="mean_squared_error", optimizer=optimizers.Adam(lr=0.001), metrics=["mse", "mae"])
+cnn.compile(loss="mean_squared_error", optimizer=optimizers.Adam(lr=0.01, decay=0.0), metrics=["mse", "mae"])
 
 # logs for tensorboard
 time = time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())
@@ -80,12 +68,12 @@ tensorboard = keras.callbacks.TensorBoard(log_dir="logs/" + str(time))
 checkpoint = keras.callbacks.ModelCheckpoint('models/' + str(time) + '.h5', save_weights_only=False)
 
 # reduce learning rate when we stopped learning anything
-rlrp = keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=10, verbose=1, mode='auto', min_lr=0.0001)
+rlrp = keras.callbacks.ReduceLROnPlateau(monitor='loss', factor=0.5, patience=15, verbose=1, mode='auto', min_lr=0.00001)
 
 print('training')
 
 cnn.fit(trainX, trainY, batch_size=1024, epochs=nb_epoch, verbose=2, callbacks=[tensorboard, checkpoint, rlrp],
-        sample_weight=weights)
+        sample_weight=None)
 
 cnn.save('models/' + str(time) + '.h5')
 
