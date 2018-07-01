@@ -4,7 +4,7 @@ import keras.models as models
 import sys
 from utils import preprocess
 
-dataset = '../../data/lightpop_merged/2000_europe.tif'
+dataset = '../../data/lightpop_merged/2015_brazil.tif'
 input_tile_size = 32
 
 if len(sys.argv) < 2:
@@ -19,7 +19,7 @@ print('opening raster')
 
 raster = rasterio.open(dataset)
 testX, testY = preprocess(raster, input_tile_size, 8)
-raster.close
+raster.close()
 testX = np.expand_dims(testX, axis=3)
 
 print('mean pop in tiles : ' + str(np.mean(testY)))

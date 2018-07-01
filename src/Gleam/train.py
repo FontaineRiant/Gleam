@@ -9,7 +9,7 @@ import keras.callbacks
 from utils import preprocess
 from keras import regularizers
 
-dataset = '../../data/lightpop_merged/2000_usa.tif'
+dataset = '../../data/lightpop_merged/2015_brazil_small.tif'
 input_tile_size = 32
 
 print('opening raster')
@@ -21,11 +21,11 @@ weights = trainY
 trainX = np.expand_dims(trainX, axis=3)
 
 img_count, img_rows, img_cols, img_channel_count = trainX.shape
-print('image shape : ' + str(trainX.shape))
+print('input shape (observations, obs_width, obs_height, channels) : ' + str(trainX.shape))
 
 print('configuring cnn')
 
-nb_epoch = 1000
+nb_epoch = 100
 
 # last filter makes the input layer for the last perceptron bigger
 nb_filters_1 = 32
@@ -39,7 +39,7 @@ cnn.add(conv.Convolution2D(filters=nb_filters_1, kernel_size=kernel_size, activa
 
 cnn.add(conv.Convolution2D(filters=nb_filters_2, kernel_size=kernel_size, activation="relu", padding='same',
                            input_shape=(img_rows, img_cols, img_channel_count)))
-						   
+
 cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(conv.Convolution2D(filters=nb_filters_3, kernel_size=kernel_size, activation="relu", padding='same',
@@ -63,7 +63,8 @@ tensorboard = keras.callbacks.TensorBoard(log_dir="logs/" + str(time))
 checkpoint = keras.callbacks.ModelCheckpoint('models/' + str(time) + '.h5', save_weights_only=False)
 
 # reduce learning rate when we stopped learning anything
-rlrp = keras.callbacks.ReduceLROnPlateau(monitor='loss', factor=0.5, patience=15, verbose=1, mode='auto', min_lr=0.00001)
+rlrp = keras.callbacks.ReduceLROnPlateau(monitor='loss', factor=0.5, patience=15, verbose=1, mode='auto',
+                                         min_lr=0.00001)
 
 print('training')
 
