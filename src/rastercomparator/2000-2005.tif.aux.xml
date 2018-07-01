@@ -1,0 +1,14 @@
+<PAMDataset>
+  <Metadata domain="rio_creation_kwds">
+    <MDI key="interleave">pixel</MDI>
+    <MDI key="tiled">False</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">52.573642730713</MDI>
+      <MDI key="STATISTICS_MEAN">-0.048558707159981</MDI>
+      <MDI key="STATISTICS_MINIMUM">-53.095546722412</MDI>
+      <MDI key="STATISTICS_STDDEV">1.0035684370424</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

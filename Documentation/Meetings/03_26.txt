@@ -1,8 +1,0 @@
-
-Superposer les raster de luminosité et population.
-
-Sur les 5 dernières années, pour chaque pays, poser un point sur un graphe (x=sum_luminosity, y=GDP).
-
-Colorer les pays par augmentation (entre 1, 5, et 10 ans) de luminosité (en %).
-
-DemoGNG.js pour expérimenter

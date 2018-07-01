@@ -1,0 +1,11 @@
+scatterplots : colorer les points par année, puis par GDP et par pays
+
+Delta des luminosité par année par pays - done
+
+double check dataset gdp - done
+
+Filtrer les graphes par développement économique (top 50 rankings, gdp, health par ex)
+
+Réfléchir à un cahier des charges - done
+
+Envoyer un mail contenant les branches de master choisies - done

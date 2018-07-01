@@ -1,0 +1,19 @@
+pasage en "sliding window", chaque observation de 32x32 est décalée de 8 pixels de la précédente
+
+https://github.com/ArnholdInstitute/ACM-DEV
+il y a un seul output par ovservation de 32x32
+après la prédiction, ils répartissent la population selon le log de la luminosité pour recréer un raster de 32x32
+
+10 epochs, 1 couche FC, training subset : 4250 MAE
+idem, 2 couches FC : 7743 MAE (il apprend très peu en 10 itérations)
+
+gérérer images à partir des estimations du modèle
+=> comparer le résultat du modèle à la réalité sur des cités et des villages
+
+(VPN peut-être nécesssaire):
+http://advances.sciencemag.org/content/3/11/e1701528.full?intcmp=trendmd-adv
+http://www.mdpi.com/2072-4292/7/1/1/htm
+
+NOAA : données saisonnières : statistiques par mois (impact de noël sur l'émission de lumière)
+
+parallèle avec des données médicales : light -> insomnia

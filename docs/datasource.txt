@@ -1,0 +1,26 @@
+Link sent by M. Perez :
+https://www.nasa.gov/feature/goddard/2017/new-night-lights-maps-open-up-possible-real-time-applications
+
+Image source :
+https://earthdata.nasa.gov/about/science-system-description/eosdis-components/global-imagery-browse-services-gibs
+
+Online browser :
+https://worldview.earthdata.nasa.gov/?p=geographic&l=VIIRS_SNPP_DayNightBand_ENCC&t=2018-02-19&z=3&v=-24.874695262394233,-3.716138495002774,110.12530473760577,63.151049004997226&ab=off&as=2015-10-31&ae=2015-11-07&av=3&al=false
+
+API :
+https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers#GIBSAPIforDevelopers-%22BestAvailable%22Layers
+
+Les images téléchargées sont des png sans metadata. De toute façon les données ne sont disponibles que sur 1 an (pas assez de variations) ou ponctuellement en 2012 et 2016 (propres, sans nuages, pas besoin de scraper).
+=> Plutôt que de prendre un lieu et suivre son évolution dans le temps, on a de meilleurs données pour analyser des lieux sur un seul snapshot et prédire des données sur un lieu qui n'en possède pas.
+
+Pour ça, pas besoin de scrpit : le EOSDIS worldview propose de télécharger un snapshot en format jpeg (beurk), png (sert à rien), GeoTIFF (à voir) et KMZ (pour importation dans google earth).
+
+Grided data :
+http://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count-adjusted-to-2015-unwpp-country-totals-rev10
+
+Cartes de 1992 à 2013 : https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html
+
+Vector files for locations : http://www.naturalearthdata.com/downloads/10m-cultural-vectors/
+
+Population per country : http://data.un.org/Data.aspx?q=population&d=PopDiv&f=variableID%3a12
+GDP per country : http://data.un.org/Data.aspx?q=gdp&d=SNAAMA&f=grID%3a101%3bcurrID%3aNCU%3bpcFlag%3a0

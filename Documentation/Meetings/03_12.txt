@@ -1,8 +1,0 @@
-Difficile de superposer la grille de données sur l'image (dimensions et cadrage différents) => on remet à plus tard.
-
-Télécharger et explorer QGIS, API plugins, ...
-
-https://github.com/terrai/rastercube
-
-Télécharger les cartes : https://ngdc.noaa.gov/eog/dmsp/downloadV4composites.html
-Par python, sélectionner une région et mettre en graphe l'évolution de la luminosité _dans le temps_.

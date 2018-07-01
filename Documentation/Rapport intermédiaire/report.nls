@@ -1,8 +1,0 @@
-\begin{thenomenclature} 
-
- \nomgroup{A}
-
-  \item [{$cnn$}]\begingroup convolutional neural network\nomeqref {8.0}
-		\nompageref{12}
-
-\end{thenomenclature}
