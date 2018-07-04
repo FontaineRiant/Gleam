@@ -9,7 +9,7 @@ import keras.callbacks
 from utils import preprocess
 from keras import regularizers
 
-dataset = '../../data/lightpop_merged/2015_brazil_small.tif'
+dataset = '../../data/lightpop_merged/2015_brazil.tif'
 input_tile_size = 32
 
 print('opening raster')
@@ -37,9 +37,6 @@ cnn = models.Sequential()
 cnn.add(conv.Convolution2D(filters=nb_filters_1, kernel_size=kernel_size, activation="relu", padding='same',
                            input_shape=(img_rows, img_cols, img_channel_count)))
 
-cnn.add(conv.Convolution2D(filters=nb_filters_2, kernel_size=kernel_size, activation="relu", padding='same',
-                           input_shape=(img_rows, img_cols, img_channel_count)))
-
 cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(conv.Convolution2D(filters=nb_filters_3, kernel_size=kernel_size, activation="relu", padding='same',
@@ -49,11 +46,11 @@ cnn.add(conv.MaxPooling2D(strides=(2, 2)))
 
 cnn.add(core.Flatten())
 cnn.add(core.Dropout(0.2))
-cnn.add(core.Dense(256))
+cnn.add(core.Dense(32))
 cnn.add(core.Dense(1))
 
 cnn.summary()
-cnn.compile(loss="mean_squared_error", optimizer=optimizers.Adam(lr=0.01, decay=0.0), metrics=["mse", "mae"])
+cnn.compile(loss="mean_squared_error", optimizer=optimizers.Adam(lr=0.02, decay=0.0), metrics=["mse", "mae"])
 
 # logs for tensorboard
 time = time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())

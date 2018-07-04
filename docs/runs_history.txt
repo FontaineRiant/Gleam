@@ -12,7 +12,7 @@ conv - maxpool - conv - maxpool - conv - maxpool - dropout0.2 - dense32 - dropou
 conv - maxpool - conv - maxpool - conv - maxpool - dropout0.2
 
 2018-06-23_12-27-20
-tiles de 16x16 (erreur absolue moyenne divis�e par 4 !)
+tiles de 16x16 (erreur absolue moyenne divisée par 4 !)
 conv - maxpool - conv - maxpool - conv - maxpool - dropout0.2 - dense32
 
 2018-06-23_13-09-12
@@ -23,7 +23,7 @@ filters 8x8
 lr initial = 0.01
 filters 32x32
 conv - maxpool - conv - maxpool8x8 - dropout0.2 - dense32
-=> am�lioration des r�sultats
+=> amélioration des résultats
 
 2018-06-23_21-15-39
 full 2000 dataset
@@ -58,7 +58,7 @@ conv32 - conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.2 - dense256
 
 2018-06-24_21-42-33
 same, full dataset
-=> pas bon. clairement, il faut valider sur une r�gion qui poss�de une �conomie proche de la r�gion d'entra�nement
+=> pas bon. clairement, il faut valider sur une région qui possède une économie proche de la région d'entraînement
 
 2018-06-25_07-17-18
 dataset 2000_usa
@@ -70,5 +70,229 @@ conv32 - conv32 - maxpool2x2 - conv64 - conv64 - maxpool2x2 - dropout0.2 - dense
 MAE 8500.44338099518 sur 2000_usa
 MAE 18690.518735934165 sur 2005_usa  => overfitting
 MAE 41529.75594972703 sur 2005_europe
-R�alit� https://i.imgur.com/160RLcy.png
-Pr�diction https://i.imgur.com/xx3isD8.png
+Réalité https://i.imgur.com/160RLcy.png
+Prédiction https://i.imgur.com/xx3isD8.png
+
+==============================
+Changement de dataset => VIIRS
+==============================
+
+2018-07-02_09-26-30
+trained on 2015_south_africa.tif
+conv32 - conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.2 - dense256
+
+2018-07-02_11-10-26
+trained on 2015_south_africa_removed_low_quality.tif
+
+===============================
+Découpage précis des frontières
+===============================
+
+2018-07-02_13-32-59
+trained on 2015_safrica_namibia
+
+2018-07-02_13-51-58
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.2 - dense256
+
+2018-07-02_14-11-09
+trained on 2015_brazil_train
+MAE : 24899 en test, 3747 en training => overfitting
+
+2018-07-02_15-29-21
+Réduction de la couche dense
+toujours overfitting
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.2 - dense64
+
+2018-07-02_16-42-42
+changement du dropout
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense64
+pas d'amélioration du test
+
+2018-07-02_17-09-59
+réduction du dropout et couche dense
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.2 - dense32
+
+Il ne s'agit en fait pas d'overfitting.
+Le testing set choisi est en fait plus difficile à prédire que le training set.
+=> k-fold validation !
+
+2018-07-03_17-24-35
+200 epochs
+5-fold validation
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.2 - dense64
+K-fold validation results :
+Mean squared error : 3074240547.71 (std 934927825.01)
+Mean absolute error : 8515.42 (std 577.47)
+Sum of absolute errors : 66687657.40 (std 4522717.08)
+
+2018-07-03_18-01-45
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.2 - dense256
+K-fold validation results :
+Mean squared error : 3312275821.64 (std 1126383141.09)
+Mean absolute error : 8595.93 (std 464.07)
+Sum of absolute errors : 67318133.75 (std 3633680.87)
+
+2018-07-03_18-24-56
+4-fold validation
+K-fold validation results :
+Mean squared error : 3834088079.82 (std 1167442181.49)
+Mean absolute error : 8762.13 (std 382.85)
+Sum of absolute errors : 85774754.35 (std 3749749.90)
+
+2018-07-03_18-51-38
+conv32 - conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.2 - dense256
+K-fold validation results :
+Mean squared error : 4140704579.97 (std 753756691.34)
+Mean absolute error : 9033.28 (std 390.52)
+Sum of absolute errors : 88429014.77 (std 3821501.10)
+overfitting ?
+
+2018-07-03_21-51-00
+conv32 - maxpool2x2 - conv32 - maxpool2x2 - dropout0.2 - dense256
+K-fold validation results :
+Mean squared error : 3667568089.03 (std 1354636472.82)
+Mean absolute error : 8799.94 (std 719.16)
+Sum of absolute errors : 86144594.29 (std 7037290.17)
+overfitting
+
+2018-07-04_07-07-40
+conv32 - maxpool2x2 - conv32 - maxpool2x2 - dropout0.2 - dense128
+K-fold validation results :
+Mean squared error : 4078691752.36 (std 1151940106.33)
+Mean absolute error : 9022.69 (std 450.04)
+Sum of absolute errors : 88325387.79 (std 4406130.86)
+
+2018-07-04_07-23-27
+conv32 - maxpool2x2 - conv32 - maxpool2x2 - dropout0.2 - dense32
+K-fold validation results :
+Mean squared error : 4083318492.57 (std 1803717988.04)
+Mean absolute error : 9140.98 (std 903.45)
+Sum of absolute errors : 89483067.62 (std 8841283.11)
+
+2018-07-04_07-36-15
+tiles de 16x16 (donc 4 fois moins de pop et d'erreur par tile)
+K-fold validation results :
+Mean squared error : 520059380.27 (std 82062811.29)
+Mean absolute error : 2541.44 (std 185.58)
+Sum of absolute errors : 96468414.60 (std 7043711.30)
+not good
+
+2018-07-04_07-58-28
+tiles 32x32
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense256
+K-fold validation results :
+Mean squared error : 3242174991.07 (std 652983247.87)
+Mean absolute error : 8262.26 (std 371.13)
+Sum of absolute errors : 80881151.48 (std 3630040.33)
+le dropout semble être plus efficace que simplifier le réseau
+
+2018-07-04_08-14-55
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - dropout0.5 - dense256
+K-fold validation results :
+Mean squared error : 3168670021.25 (std 1202781732.64)
+Mean absolute error : 8236.29 (std 411.65)
+Sum of absolute errors : 80626988.92 (std 4026996.31)
+
+2018-07-04_09-22-41
+conv16 - maxpool2x2 - conv32 - maxpool2x2 - dropout0.5 - dense256
+K-fold validation results :
+Mean squared error : 3630805009.74 (std 968141949.02)
+Mean absolute error : 8845.95 (std 351.15)
+Sum of absolute errors : 86595320.49 (std 3439826.83)
+
+2018-07-04_09-35-42
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense256 - dropout0.5 - dense256
+K-fold validation results :
+Mean squared error : 3820808053.10 (std 666692952.60)
+Mean absolute error : 9041.43 (std 781.09)
+Sum of absolute errors : 88508886.71 (std 7646818.33)
+
+2018-07-04_10-01-01
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 3496371426.30 (std 754176946.20)
+Mean absolute error : 8383.72 (std 348.50)
+Sum of absolute errors : 82070366.85 (std 3412597.26)
+
+2018-07-04_10-19-31
+maxpool2x2 - conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 4515681468.54 (std 1339732186.95)
+Mean absolute error : 8627.52 (std 383.31)
+Sum of absolute errors : 84456949.72 (std 3752457.02)
+
+2018-07-04_11-33-24
+preprocess : use empty tiles too
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 1377256071.61 (std 435014807.24)
+Mean absolute error : 3434.01 (std 256.23)
+Sum of absolute errors : 84730677.19 (std 6322187.93)
+training mean_absolute_error: 2737.9049
+
+Réalisation : l'échantillonage utilisé lors de la fusion entre pop et light est celui du plus proche voisin.
+Les populations sont donc fausses dans les données d'entraînement (4 fois trop grandes exactement).
+=> le script rescale_pop.py divise toutes les population par 4
+QGIS ne permet pas de redimensionner des rasters sans déteriorer les données d'un raster de densité
+
+2018-07-04_16-40-12
+preprocess : ignore empty tiles again
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 3512581458.26 (std 860376600.76)
+Mean absolute error : 8462.29 (std 292.97)
+Sum of absolute errors : 82839494.38 (std 2869586.14)
+
+
+2018-07-04_17-02-25
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.75 - dense256
+K-fold validation results :
+Mean squared error : 3158786170.81 (std 743372720.78)
+Mean absolute error : 8353.06 (std 353.39)
+Sum of absolute errors : 81770140.85 (std 3457555.50)
+training mean_absolute_error: 7612.7598
+
+2018-07-04_17-21-46
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense128 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 3796530846.84 (std 1005869348.87)
+Mean absolute error : 8853.26 (std 546.34)
+Sum of absolute errors : 86666744.65 (std 5347127.20)
+
+2018-07-04_17-49-11
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.75 - dense1024
+K-fold validation results :
+Mean squared error : 3399256889.58 (std 1637374828.98)
+Mean absolute error : 8270.20 (std 866.84)
+Sum of absolute errors : 80959096.80 (std 8486389.66)
+
+2018-07-04_18-20-51
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dense1024
+K-fold validation results :
+Mean squared error : 4073750159.23 (std 1178199163.44)
+Mean absolute error : 9560.98 (std 454.11)
+Sum of absolute errors : 93594805.33 (std 4444281.73)
+training mean_absolute_error: 4736.9008
+
+2018-07-04_19-10-28
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - dense64
+K-fold validation results :
+Mean squared error : 4769415489.42 (std 1294480583.07)
+Mean absolute error : 10244.73 (std 739.47)
+Sum of absolute errors : 100288494.59 (std 7242034.05)
+training mean_absolute_error: 5318.9719
+
+2018-07-04_19-26-52
+conv32 - maxpool2x2 - dense32
+n'apprend pas
+
+2018-07-04_19-32-35
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - conv128 - maxpool2x2 - dense64
+K-fold validation results :
+Mean squared error : 4301103376.08 (std 713719932.41)
+Mean absolute error : 9286.72 (std 542.12)
+Sum of absolute errors : 90910185.78 (std 5308849.90)
+training mean_absolute_error: 4574.2442
+
+2018-07-04_19-52-38
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - conv128 - maxpool2x2 - dropout0.5 - dense64

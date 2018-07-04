@@ -36,7 +36,7 @@
       \strng{authornamehash}{6b17ef7f35f935796cd3765e3a012b0b}
       \strng{authorfullhash}{6b17ef7f35f935796cd3765e3a012b0b}
       \field{sortinit}{C}
-      \field{sortinithash}{095692fd22cc3c74d7fe223d02314dbd}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Gridded Population of the World, Version 4 (GPWv4): Population Count Adjusted to Match 2015 Revision of UN WPP Country Totals, Revision 10}
@@ -66,7 +66,7 @@
       \strng{authornamehash}{439a45de2c5d8c20c84ca7783bb69e04}
       \strng{authorfullhash}{439a45de2c5d8c20c84ca7783bb69e04}
       \field{sortinit}{C}
-      \field{sortinithash}{095692fd22cc3c74d7fe223d02314dbd}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Version 4 DMSP-OLS Nighttime Lights Time Series}
@@ -114,7 +114,7 @@
       \strng{authornamehash}{0738440d2c31837b7713634afe403522}
       \strng{authorfullhash}{7d3d31d9d168c4fb0f4d1bd99fa4ad5f}
       \field{sortinit}{D}
-      \field{sortinithash}{d10b5413de1f3d197b20897dd0d565bb}
+      \field{sortinithash}{2ef1bd9a78cc71eb74d7231c635177b8}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the 7th Annual Symposium on Computing for Development - {ACM} {DEV} {'}16}
@@ -135,7 +135,7 @@
         {Natural Earth}%
       }
       \field{sortinit}{N}
-      \field{sortinithash}{1163c28585427c673ad5a010cbf82f52}
+      \field{sortinithash}{f7242c3ed3dc50029fca1be76c497c7c}
       \field{labeltitlesource}{title}
       \field{day}{21}
       \field{month}{3}
@@ -160,7 +160,7 @@
         {The World Bank}%
       }
       \field{sortinit}{W}
-      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
       \field{labeltitlesource}{title}
       \field{day}{12}
       \field{month}{10}
@@ -186,7 +186,7 @@
         {Social Affairs, Population Division}%
       }
       \field{sortinit}{W}
-      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
       \field{labeltitlesource}{title}
       \field{day}{7}
       \field{month}{12}
@@ -210,7 +210,7 @@
         {NASA EOSDIS}%
       }
       \field{sortinit}{W}
-      \field{sortinithash}{6d25b3eefe5aa2147d1f339686808918}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
       \field{labeltitlesource}{title}
       \field{title}{Worldview}
       \field{urlday}{6}

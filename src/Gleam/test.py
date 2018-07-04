@@ -28,7 +28,10 @@ print('pop standard deviation in tiles : ' + str(np.std(testY)))
 print('testing ...')
 
 evaluation = cnn.evaluate(testX, testY, verbose=2, batch_size=1024)
+evaluation = dict(zip(cnn.metrics_names, evaluation))
 
-print(dict(zip(cnn.metrics_names, evaluation)))
+print('Mean squared error (loss) = ' + str(evaluation['mean_squared_error']))
+print('Mean absolute error (loss) = ' + str(evaluation['mean_absolute_error']))
+print('Sum of absolute errors (loss) = ' + str(evaluation['mean_absolute_error'] * len(testY)))
 
 print('done !')

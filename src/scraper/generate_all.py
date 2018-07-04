@@ -8,5 +8,3 @@ for year in years:
     folder_name = "tiles_" + str(year) + "_zoom" + str(zoom)
     scraper.scrape(year, zoom, folder_name)
     concatenator.concat(folder_name)
-    # TODO : resize png
-    # TODO : read png as a matrix, compare to GWP

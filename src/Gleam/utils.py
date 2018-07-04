@@ -21,7 +21,7 @@ def preprocess(raster, tile_size, offset):
     return np.array(tiles_x), np.array(tiles_y)
 
 
-def preprocess_predict(raster, tile_size, offset):
+def preprocess_predict(raster, tile_size):
     matrix_x = raster.read(1)
     tiles_x = []
     y = 0
@@ -29,6 +29,6 @@ def preprocess_predict(raster, tile_size, offset):
         x = 0
         while x + tile_size < matrix_x.shape[0]:
             tiles_x.append(matrix_x[x: x + tile_size, y: y + tile_size])
-            x += offset
-        y += offset
+            x += tile_size
+        y += tile_size
     return np.array(tiles_x)

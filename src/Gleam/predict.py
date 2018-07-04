@@ -6,7 +6,7 @@ import keras.models as models
 import sys
 from utils import preprocess_predict
 
-filename = '2015_brazil.tif'
+filename = '2015_south_america.tif'
 dataset_folder = '../../data/lightpop_merged/'
 dataset = dataset_folder + filename
 input_tile_size = 32
@@ -26,7 +26,7 @@ band = raster.read(1)
 profile = raster.profile
 profile.update(count=1)
 width, height = raster.width, raster.height
-testX = preprocess_predict(raster, input_tile_size, input_tile_size)
+testX = preprocess_predict(raster, input_tile_size)
 raster.close()
 testX = np.expand_dims(testX, axis=3)
 
@@ -55,7 +55,6 @@ while y + input_tile_size < width:
     y += input_tile_size
 
 predicted_raster = np.array(predicted_raster)
-
 
 with rasterio.open('predictions/' + filename, 'w', **profile) as dst:
     dst.write(predicted_raster.astype(rasterio.float32), 1)
