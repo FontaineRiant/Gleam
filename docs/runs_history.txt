@@ -294,5 +294,5 @@ Mean absolute error : 9286.72 (std 542.12)
 Sum of absolute errors : 90910185.78 (std 5308849.90)
 training mean_absolute_error: 4574.2442
 
-2018-07-04_19-52-38
+
 conv32 - maxpool2x2 - conv64 - maxpool2x2 - conv128 - maxpool2x2 - dropout0.5 - dense64
