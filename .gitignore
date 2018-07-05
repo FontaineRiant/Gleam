@@ -1,6 +1,7 @@
 .idea/
 
 # raw data
+./data
 *.tif
 *.aux.xml
 *.asc
