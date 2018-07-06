@@ -1,0 +1,14 @@
+
+Depuis le dernier rendez-vous :
+téléchargment des données VIIRS
+script d'extraction
+script de médiane annuelle
+assemblage et découpage pour les pays d'intérêt
+upsampling inadapté => ajustement en divisant les pop par 4
+k-fold validation
+notebooks
+training
+
+pearson correlation entre prediction et pop réelle
+évolution le la population prédite
+comparer à la déforestation
