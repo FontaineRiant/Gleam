@@ -139,11 +139,11 @@ Elle ne possèdera pas nécessairement d'interface utilisateur.
 L'utilisateur sera responsable de fournir les données à l'application dans un format supporté.
 
 \section{Description fonctionnelle}
-L'application prend en argument au moins deux jeux de données géographiques de format imposé : une image satellite nocturne et un autre type de donnée à déterminer au cours du projet. Après un long temps d'entraînement (une semaine au maximum, dépend de la machine utilisée), un modèle est généré.
+L'application prend en argument au moins deux jeux de données géographiques de format imposé : une image satellite nocturne et un autre type de données à déterminer au cours du projet. Après un long temps d'entraînement (une semaine au maximum, dépend de la machine utilisée), un modèle est généré.
 
-Une fois le modèle généré, il est sauvegardé et réutilisable sur une autre image satellite nocturne (d'une date et/ou d'une région différente). Lorsque le modèle est appliqué sur une image satellite, une carte est recréée, affichant le résultats des prédictions.
+Une fois le modèle généré, il est sauvegardé et réutilisable sur une autre image satellite nocturne (d'une date et/ou d'une région différente). Lorsque le modèle est appliqué sur une image satellite, une carte est recréée, affichant le résultat des prédictions.
 
-Par exemple, si au cours du travail de bachelor il s'avère que la population par kilomètre carré est une donnée utile et utilisable, l'application devra prendre en argument une image satellite nocturne ainsi qu'une carte des populations de même taille et de même résolution pour entraîner le réseau de neurones. Une fois le modèle généré, l'application devra être capable de regénéré une approximation de la carte de population par kilomètre carré à partir d'une image satellite.
+Par exemple, si au cours du travail de bachelor il s'avère que la population par kilomètre carré est une donnée utile et utilisable, l'application devra prendre en argument une image satellite nocturne ainsi qu'une carte des populations de même taille et de même résolution pour entraîner le réseau de neurones. Une fois le modèle généré, l'application devra être capable de regénérer une approximation de la carte de population par kilomètre carré à partir d'une image satellite.
 
 \section{Délais}
 \textbf{15 juin 2018 :} Rapport intermédiaire
@@ -157,17 +157,17 @@ Par exemple, si au cours du travail de bachelor il s'avère que la population pa
 
 \chapter{Introduction}
 \pagenumbering{arabic}
-Les produits d'imagerie satellite sont devenus abondants et largement accessible au cours des dernières décennies. De nombreux satellites prennent des photographies de la Terre à chaque heure du jour \textit{et de la nuit}. Les observations nocturnes révèlent des caractéristiques peu évidentes de jour, parfois même cachées. Les routes apparaissent, les villes montrent leurs lumières, même les bateaux de pêche aveuglent les océans avec des projecteurs pour attirer les poissons.
+Les produits d'imagerie satellite sont devenus abondants et largement accessibles au cours des dernières décennies. De nombreux satellites prennent des photographies de la Terre à chaque heure du jour \textit{et de la nuit}. Les observations nocturnes révèlent des caractéristiques peu évidentes de jour, parfois même cachées. Les routes apparaissent, les villes montrent leurs lumières, même les bateaux de pêche aveuglent les océans avec des projecteurs pour attirer les poissons.
 
-La disponibilité, la résolution et l'uniformité de la qualité de ces données contraste fortement avec le manque de fiabilité d'autres informations géographiques utiles lors de prises de décisions importantes. Par exemple, la densité de la population est une estimation précise en Suisse mais très approximative au Kenya. D'autres mesures intéressantes incluent : la consommation en électricité, les émissions de C0$_2$, la couverture végétale et la présence de faune. Les lumières nocturnes observées depuis l'espace donnent des indications sur chacune de ces mesures alors qu'elles peuvent manquer dans une région à une date donnée.
+La disponibilité, la résolution et l'uniformité de la qualité de ces données contrastent fortement avec le manque de fiabilité d'autres informations géographiques utiles lors de prises de décisions importantes. Par exemple, la densité de la population est une estimation précise en Suisse mais très approximative au Kenya. D'autres mesures intéressantes incluent : la consommation en électricité, les émissions de C0$_2$, la couverture végétale et la présence de faune. Les lumières nocturnes observées depuis l'espace donnent des indications sur chacune de ces mesures alors qu'elles peuvent manquer dans une région à une date donnée.
 
-Le but de ce projet est d'extraire autant d'information que possible de l'imagerie satellite nocturne en utilisant l'apprentissage automatique (\textit{machine learning}) sous la forme dê réseau de neurones.
+Le but de ce projet est d'extraire autant d'informations que possible de l'imagerie satellite nocturne en utilisant l'apprentissage automatique (\textit{machine learning}) sous la forme de réseau de neurones.
 
 \chapter{Exploration des données}
 \section{Jeux de données}
 \subsection{Images satellite}
 \subsubsection{NASA Worldview}
-La première source de données explorée est l'application "Worldview" de la NASA \cite{nasa-worldview}. Elle permet de visionner un grand nombre d'images satellite composites sur un globe en trois dimensions (voir figure \ref{nasa-worldview-screenshot}). Parmi les jeu de données disponibles sont trois jeux d'images nocturnes.
+La première source de données explorée est l'application "Worldview" de la NASA \cite{nasa-worldview}. Elle permet de visionner un grand nombre d'images satellite composites sur un globe en trois dimensions (voir figure \ref{nasa-worldview-screenshot}). Parmi les jeux de données disponibles sont trois jeux d'images nocturnes.
 
 \begin{figure}[h]
 	\centering
@@ -176,7 +176,7 @@ La première source de données explorée est l'application "Worldview" de la NA
 	\label{nasa-worldview-screenshot}
 \end{figure}
 
-Le premier jeu de données est série d'images composites capturées par le satellite Suomi NPP opéré par la NASA, la NOAA et le Département de la Défense des États-Unis. Il est mis à jour toutes les quelques heures, et présente une image composite chaque jour depuis le 30 novembre 2016. Elle possède deux défauts éliminatoires : la période d'observation actuellement disponible (à peine plus d'une année) n'est pas suffisamment longue pour observer une évolution significative des villes depuis l'espace, et les images ne sont pas traitées. Cela signifie que celles-ci sont très fortement bruitées par les nuages et la lumière ambiante due aux différentes phases de la Lune.
+Le premier jeu de données est une série d'images composites capturées par le satellite Suomi NPP opéré par la NASA, la NOAA et le Département de la Défense des États-Unis. Il est mis à jour toutes les quelques heures, et présente une image composite chaque jour depuis le 30 novembre 2016. Elle possède deux défauts éliminatoires : la période d'observation actuellement disponible (à peine plus d'une année) n'est pas suffisamment longue pour observer une évolution significative des villes depuis l'espace, et les images ne sont pas traitées. Cela signifie que celles-ci sont très fortement bruitées par les nuages et la lumière ambiante due aux différentes phases de la Lune.
 
 \begin{figure}[h]
 	\centering
@@ -185,7 +185,7 @@ Le premier jeu de données est série d'images composites capturées par le sate
 	\label{nasa-worldview-daily}
 \end{figure}
 
-Les deux autres jeux de données nocturnes sont des images composites : des clichés pris tout au long de l'année ont permis de fabriquer une seule image du globe dont la luminosité ambiante est constante (moyennée) et sur laquelle les nuages n'apparaissent pas. Malheureusement, l'outil Worldview ne permet pas un téléchargement direct de ces images \textit{dans leur pleine résolution}. Heureusement, la NASA a mis à disposition une API REST (\url{https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers}) pour télécharger des "tuiles" de n'importe laquelle de leur image. Seulement le format PNG est disponible. Ce format ne contient pas d'information géographiques, ce qui complique leur utilisation pour la suite de ce travail. Un script Python suffit pour télécharger et assembler les tuiles (figure \ref{nasa-worldview-tile}) pour reconstituer une image complète du globe de plus de 800 millions de pixels (figure \ref{nasa-worldview-tiles}).
+Les deux autres jeux de données nocturnes sont des images composites : des clichés pris tout au long de l'année ont permis de fabriquer une seule image du globe dont la luminosité ambiante est constante (moyennée) et sur laquelle les nuages n'apparaissent pas. Malheureusement, l'outil Worldview ne permet pas un téléchargement direct de ces images \textit{dans leur pleine résolution}. Heureusement, la NASA a mis à disposition une API REST (\url{https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers}) pour télécharger des "tuiles" de n'importe laquelle de leur image. Seulement le format PNG est disponible. Ce format ne contient pas d'informations géographiques, ce qui complique leur utilisation pour la suite de ce travail. Un script Python suffit pour télécharger et assembler les tuiles (figure \ref{nasa-worldview-tile}) pour reconstituer une image complète du globe de plus de 800 millions de pixels (figure \ref{nasa-worldview-tiles}).
 
 \begin{figure}[h]
 	\centering
@@ -204,14 +204,14 @@ Les deux autres jeux de données nocturnes sont des images composites : des clic
 Le script Python utilisé se trouve dans Code/scraper/generate\_all.py et nécessite l'installation de la librarie Pillow pour le traitement des images, ainsi qu'urllib pour le téléchargement en soi. Son exécution peut demander plus d'une heure pour le téléchargement (vitesse limitée par le serveur), et plus de 4 Go de RAM pour l'assemblage des tuiles.
 
 \subsubsection{Agence américaine d'observation océanique et atmosphérique}
-La source d'images satellite retenue pour la suite du travail est celle de l'Agence américaine d'observation océanique et atmosphérique (abrégé NOAA)\cite{noaa}. Des images satellite nocturnes composites ("Average Lights X Pct") sont disponibles pour les années 1992 à 2013, une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte à sur autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS. Il s'agit en réalité des mêmes clichés fournis par Worldview (et Google Earth), mais plus nombreux et dans un format plus exploitable.
+La source d'images satellite retenue pour la suite du travail est celle de l'Agence américaine d'observation océanique et atmosphérique (abrégé NOAA)\cite{noaa}. Des images satellite nocturnes composites ("Average Lights X Pct") sont disponibles pour les années 1992 à 2013, une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte sur autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS. Il s'agit en réalité des mêmes clichés fournis par Worldview (et Google Earth), mais plus nombreux et dans un format plus exploitable.
 
 Ces images ont été créées en moyennant la valeur de luminosité de chaque pixel sur une année, en ignorant les pixels couverts par des nuages, et en multipliant cette moyenne par la fréquence de détection de lumière sur le pixel au cours de l'année.
 
 \subsection{Grilles de population}
 Sedac \cite{sedac} met à disposition des grilles de populations pour le monde entier, sous forme de fichier GeoTIFF. Chaque "case" de 1 km$^2$ est représentée comme un pixel et contient une estimation du nombre de personnes vivant dans cette case. QGIS s'est à nouveau montré d'une grande aide pour visualiser et manipuler ces données volumineuses (exemple en figure \ref{qgis-sedac}).
 
-On remarque que la valeur de densité de population ne varie pas à l'intérieur d'un sous-région. Tous les pixels d'une grande ville ou d'un département possèdent la même valeur. Ces données ont été créées à partir de plusieurs mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré comme fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires.
+On remarque que la valeur de densité de population ne varie pas à l'intérieur d'une sous-région. Tous les pixels d'une grande ville ou d'un département possèdent la même valeur. Ces données ont été créées à partir de plusieurs mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré comme fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires.
 
 Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 
@@ -224,7 +224,7 @@ Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 
 
 \subsection{Pays}
-Les grilles de données globales sont difficiles à créer, il n'en existe donc pas pour tous les types et toutes les dates. Afin de contourner ce problème, il y a des outils pour combiner des grilles (ici : l'image satellite) avec des données vectorielles telles que les frontières des pays. L'outil utilisé ici est a librairie Python \texttt{rasterstats}.
+Les grilles de données globales sont difficiles à créer, il n'en existe donc pas pour tous les types et toutes les dates. Afin de contourner ce problème, il y a des outils pour combiner des grilles (ici : l'image satellite) avec des données vectorielles telles que les frontières des pays. L'outil utilisé ici est la librairie Python \texttt{rasterstats}.
 
 Le jeu de données "Admin 0 - Countries" de Natural Earth \cite{naturalearthdata} contient les frontières des pays actuelles, ainsi que des méta-données sur chacun de ces pays (population estimée, indice de développement, différentes appellations et abréviations, etc.). En cas de conflits ou ambiguïté politique sur les frontières, c'est le pays qui contrôle le terrain qui est marqué comme souverain. Voici à quoi ressemblent les méta-données pour la Tunisie :\\
 \begin{minipage}[t]{1.0\textwidth}
@@ -243,7 +243,7 @@ Les données sur la consommation en électricité en millions de kWh par pays et
 
 \section{Recherche de corrélation}
 \subsection{Pays}
-La superposition de deux grilles (population et image satellite) de dimensions différentes n'est pas évidente, c'est pourquoi les première données à avoir été mises en parallèles dans ce travail sont la population par pays \cite{un-wpp}, le produit intérieur brut \cite{theworldbank}, et la luminosité totale du pays perçue depuis l'espace (extraite par script Python à partir des vecteurs de frontières de Natural Earth \cite{naturalearthdata} et des images de la NOAA \cite{noaa}).
+La superposition de deux grilles (population et image satellite) de dimensions différentes n'est pas évidente, c'est pourquoi les premières données à avoir été mises en parallèles dans ce travail sont la population par pays \cite{un-wpp}, le produit intérieur brut \cite{theworldbank}, et la luminosité totale du pays perçue depuis l'espace (extraite par script Python à partir des vecteurs de frontières de Natural Earth \cite{naturalearthdata} et des images de la NOAA \cite{noaa}).
 
 Pour chaque année disponible (1992-2013), il est donc possible de dessiner pour la majorité des pays les histogrammes de luminosité, population et PIB (examples en figures \ref{sum_France}, \ref{sum_China}, \ref{sum_Japan} et \ref{sum_Armenia}). Cette représentation n'est pas idéale car l'échelle n'est pas constante entre les pays. Ce qui apparait comme une grande variation de luminosité peut ne pas en être du tout. Certains pays ne portent pas exactement le même nom dans tous les jeux de données, ils sont donc mis de côté dans les résultats.
 
