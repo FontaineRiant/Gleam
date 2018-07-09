@@ -230,10 +230,6 @@ Mean absolute error : 3434.01 (std 256.23)
 Sum of absolute errors : 84730677.19 (std 6322187.93)
 training mean_absolute_error: 2737.9049
 
-Réalisation : l'échantillonage utilisé lors de la fusion entre pop et light est celui du plus proche voisin.
-Les populations sont donc fausses dans les données d'entraînement (4 fois trop grandes exactement).
-=> le script rescale_pop.py divise toutes les population par 4
-QGIS ne permet pas de redimensionner des rasters sans déteriorer les données d'un raster de densité
 
 2018-07-04_16-40-12
 preprocess : ignore empty tiles again
@@ -294,5 +290,168 @@ Mean absolute error : 9286.72 (std 542.12)
 Sum of absolute errors : 90910185.78 (std 5308849.90)
 training mean_absolute_error: 4574.2442
 
-
+2018-07-06_11-38-51
 conv32 - maxpool2x2 - conv64 - maxpool2x2 - conv128 - maxpool2x2 - dropout0.5 - dense64
+K-fold validation results :
+Mean squared error : 3633904242.11 (std 685508202.41)
+Mean absolute error : 8062.49 (std 309.26)
+Sum of absolute errors : 78925730.47 (std 3027642.99)
+training mean_absolute_error: 5568.3134
+
+2018-07-06_11-57-51
+conv32 - maxpool2x2 - conv64 - maxpool2x2 - conv128 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 3464024785.86 (std 696287585.39)
+Mean absolute error : 7918.42 (std 420.12)
+Sum of absolute errors : 77515491.70 (std 4115536.51)
+training mean_absolute_error: 5668.0298
+
+2018-07-06_12-21-58
+conv16 - maxpool2x2 - conv32 - maxpool2x2 - conv64 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 3784288368.30 (std 1431847563.51)
+Mean absolute error : 8373.60 (std 828.29)
+Sum of absolute errors : 81971097.43 (std 8106517.33)
+training mean_absolute_error: 6709.5775
+
+2018-07-06_12-48-15
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 3681586921.84 (std 876057089.37)
+Mean absolute error : 7996.78 (std 305.76)
+Sum of absolute errors : 78282515.39 (std 2994125.49)
+training mean_absolute_error: 6063.7604
+
+2018-07-06_13-24-49
+conv64 - maxpool2x2 - dropout0.2 - conv128 - maxpool2x2 - dropout0.2 - conv256 - maxpool2x2 - dropout0.2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 6804188954.55 (std 2300339711.77)
+Mean absolute error : 9692.64 (std 783.85)
+Sum of absolute errors : 94883483.54 (std 7670648.94)
+training mean_absolute_error: 7155 - 8115
+
+2018-07-06_14-08-42
+conv64 - maxpool2x2 - dropout0.5 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 10992734483.39 (std 4840519412.55)
+Mean absolute error : 10718.59 (std 1268.75)
+Sum of absolute errors : 104927272.11 (std 12423039.74)
+training mean_absolute_error: 7247.5304 - 8200.3715
+
+2018-07-06_14-51-49
+conv128 - maxpool2x2 - conv256 - maxpool2x2 - conv512 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 11497597177.64 (std 13066602403.03)
+Mean absolute error : 14287.82 (std 10268.33)
+Sum of absolute errors : 139865664.55 (std 100515527.71)
+training mean_absolute_error: 6194.4423 - 32000
+
+2018-07-06_16-11-02
+conv128 - maxpool2x2 - conv128 - maxpool2x2 - conv128 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 3463054382.12 (std 841102987.71)
+Mean absolute error : 8278.85 (std 652.63)
+Sum of absolute errors : 81043616.66 (std 6386895.92)
+training mean_absolute_error: 5500.5624
+
+2018-07-06_16-55-42
+1000 iterations
+retour sur :
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.5 - dense128
+training MAE : 5200
+K-fold validation results :
+Mean squared error : 3562516433.97 (std 1713717108.22)
+Mean absolute error : 7902.34 (std 481.44)
+Sum of absolute errors : 77357825.06 (std 4711033.07)
+
+018-07-06_20-04-43
+200 epochs
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.5 - dense256
+K-fold validation results :
+Mean squared error : 3931866299.02 (std 731092864.74)
+Mean absolute error : 8119.39 (std 494.82)
+Sum of absolute errors : 79482822.33 (std 4845081.71)
+training mean_absolute_error: 5551.6650
+
+2018-07-07_06-02-49
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.25 - dense128
+Mean squared error : 3660571357.01 (std 1396239285.27)
+Mean absolute error : 8150.10 (std 261.00)
+Sum of absolute errors : 79783294.68 (std 2552176.53)
+training mean_absolute_error: 6777.0883
+
+2018-07-07_06-39-59
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.25 - dense64
+K-fold validation results :
+Mean squared error : 3229412842.37 (std 1380182521.56)
+Mean absolute error : 7985.96 (std 472.14)
+Sum of absolute errors : 78176609.45 (std 4622655.82)
+training mean_absolute_error: 5770.2925
+
+2018-07-07_07-34-55
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.9 - dense64
+K-fold validation results :
+Mean squared error : 3415359491.16 (std 317062863.72)
+Mean absolute error : 8205.26 (std 433.22)
+Sum of absolute errors : 80323331.60 (std 4240923.74)
+training mean_absolute_error: 7364.8496
+
+2018-07-07_09-00-01
+early_stopping, min_lr réduit à 0.0000001
+retour sur :
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 3736955814.35 (std 1465170502.83)
+Mean absolute error : 8063.33 (std 502.95)
+Sum of absolute errors : 78934161.93 (std 4927135.12)
+training mae : 5800
+
+
+Réalisation : l'échantillonage utilisé lors de la fusion entre pop et light est celui du plus proche voisin.
+Les populations sont donc fausses dans les données d'entraînement (4 fois trop grandes exactement).
+approx 500 m par pixel => 0.25 km^2
+=> le script rescale_pop.py divise toutes les population par 4
+QGIS ne permet pas de redimensionner des rasters sans déteriorer les données d'un raster de densité
+
+2018-07-08_08-20-31
+conv64 - maxpool2x2 - conv128 - maxpool2x2 - conv256 - maxpool2x2 - dropout0.5 - dense128
+training mean_absolute_error: 1508.75
+K-fold validation results :
+Mean squared error : 250179823.54 (std 76514704.36)
+Mean absolute error : 2070.48 (std 186.27)
+Sum of absolute errors : 20268356.59 (std 1822660.50)
+
+2018-07-08_10-17-12
+AVERAGE POOLING
+conv64 - avgpool2x2 - conv128 - avgpool2x2 - conv256 - avgpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 234181700.80 (std 99980235.55)
+Mean absolute error : 2021.24 (std 194.84)
+Sum of absolute errors : 19786348.86 (std 1906802.05)
+
+2018-07-08_12-43-14
+avgpool2x2 - conv64 - avgpool2x2 - conv128 - avgpool2x2 - conv256 - avgpool2x2 - dropout0.5 - dense128
+K-fold validation results :
+Mean squared error : 255614311.08 (std 90609931.54)
+Mean absolute error : 2047.48 (std 155.40)
+Sum of absolute errors : 20043311.72 (std 1522074.81)
+
+2018-07-08_13-34-43
+avgpool2x2 - conv64 - avgpool2x2 - conv128 - avgpool2x2 - conv256 - dropout0.5 - dense128
+doesn't train !
+
+2018-07-08_13-57-15
+avgpool2x2 - conv64 - avgpool2x2 - conv128 - avgpool2x2 - conv256 - avgpool2x2 - conv256 - avgpool2x2 - dropout0.5 - dense128
+doeesn't train
+
+2018-07-08_19-55-56
+idem avec un offset de 8 => overlap des images de train et test
+1 seule validation
+K-fold validation results :
+Mean squared error : 39785609.88 (std 0.00)
+Mean absolute error : 1326.73 (std 0.00)
+Sum of absolute errors : 207860205.86 (std 0.00)
+training mean_absolute_error: 1259.9472
+
+2018-07-09_05-56-23
+training sur adj_2015_safrica_namibia.tif
