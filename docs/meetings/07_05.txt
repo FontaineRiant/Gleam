@@ -10,5 +10,5 @@ notebooks
 training
 
 pearson correlation entre prediction et pop réelle
-évolution le la population prédite
+évolution de la population prédite
 comparer à la déforestation

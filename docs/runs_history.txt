@@ -454,4 +454,14 @@ Sum of absolute errors : 207860205.86 (std 0.00)
 training mean_absolute_error: 1259.9472
 
 2018-07-09_05-56-23
+training sur adj_brazil.tif
+
+2018-07-10_20-28-42
 training sur adj_2015_safrica_namibia.tif
+
+TESTS PREDICTION entrainé sur brezil 2015
+brésil 2015 pop - pred brésil 2015
+0.60771883  corrcoef en distribution linéaire à l'intérieur de chaque tile
+0.69339848  en exp
+0.63450044  en log
+0.658673 en square

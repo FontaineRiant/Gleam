@@ -7,7 +7,7 @@ from nightime satellite imagery.
 
 # Requirements
 
-
+- python 3.7
 
 # Installation
 
@@ -18,18 +18,18 @@ Download them from [Christoph Gohlke's website](https://www.lfd.uci.edu/~gohlke/
 Then, on both Windows and Linux, use the command line `pip install -r src/requirements.txt` from the project's root folder.
 
 (optional) In order to enable training on the GPU, follow the [TensorFlow tutorial](https://www.tensorflow.org/install/)
-for your platform under "Requirements to run TensorFlow with GPU support".
+of your platform under "Requirements to run TensorFlow with GPU support".
 
 # Usage
 
 Use the command `python -m notebook` to browse notebooks on Windows, or `jupyter notebook` on Linux.
 
 # Notebooks
-Chaque notebook se trouve dans le répertoire src/ puis dans un dossier du même nom que le notebook.
+Each notebook can be found in src/ in the folder with the notebook's name.
 
 ## country_stats
 This set of scripts computes the sum of light perceived from space for each country, and compares these values with 
-other miscellaneous per country data.
+other miscellaneous per country data. This was only useful for data exploration.
 
 ## gleam
 This notebook preprocesses a raster with two bands : nighttime satellite picture and population density raster. It is
@@ -39,6 +39,9 @@ satellite picture.
 ## rastercomparator
 This notebook compares two rasters to either compile a scatterplots of the values of each pixel, or compile the difference
 between two rasters in order to visualize the evolution from one year to the next for example.
+
+## scraper
+This notebook downloads and assembles tiles from [NASA's GIBS API](https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+API+for+Developers). There really is no point in using this now.
 
 ## viirs_extractor
 This notebook answers to the specific need to extract the huge quantity of
