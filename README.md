@@ -15,7 +15,7 @@ On Windows, some scientific packages have some compatibility issues. Those are `
 Download them from [Christoph Gohlke's website](https://www.lfd.uci.edu/~gohlke/pythonlibs/) and manually install them
 (use `pip install packagename.whl`).
 
-Then, on both Windows and Linux, use the command line `pip install -r src/requirements.txt` from the project's root folder.
+Then, on both Windows and Linux, use the command line `pip install -r requirements.txt` from the project's root folder.
 
 (optional) In order to enable training on the GPU, follow the [TensorFlow tutorial](https://www.tensorflow.org/install/)
 of your platform under "Requirements to run TensorFlow with GPU support".
@@ -25,7 +25,7 @@ of your platform under "Requirements to run TensorFlow with GPU support".
 Use the command `python -m notebook` to browse notebooks on Windows, or `jupyter notebook` on Linux.
 
 # Notebooks
-Each notebook can be found in src/ in the folder with the notebook's name.
+Each notebook can be found in the folder with the notebook's name.
 
 ## country_stats
 This set of scripts computes the sum of light perceived from space for each country, and compares these values with 
