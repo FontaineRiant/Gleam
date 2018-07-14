@@ -2,7 +2,7 @@
 
 This project was done as part of a bachelor's thesis at HEIG-VD.
 It is a collection of notebooks that were used to explore different types of geographical data. They also enable the user
-to train a convolutional neural network that predict the population density of a region with a high resolution (500-1000m)
+to train a convolutional neural network that predicts the population density of a region with a high resolution (500-1000m)
 from nightime satellite imagery.
 
 # Requirements
