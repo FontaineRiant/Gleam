@@ -46,6 +46,41 @@
       \endverb
       \keyw{population}
     \endentry
+    \entry{noaa-viirs}{online}{}
+      \name{author}{2}{}{%
+        {{hash=909e62889b7cf36d6abadb18e3c1b2e4}{%
+           family={Center},
+           familyi={C\bibinitperiod},
+           given={NOAA's\bibnamedelimb National\bibnamedelimb Geophysical\bibnamedelima Data},
+           giveni={N\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=7265a836e8c636508cf3cf8d516c0289}{%
+           family={Agency},
+           familyi={A\bibinitperiod},
+           given={US\bibnamedelima Air\bibnamedelimb Force\bibnamedelima Weather},
+           giveni={U\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{439a45de2c5d8c20c84ca7783bb69e04}
+      \strng{fullhash}{439a45de2c5d8c20c84ca7783bb69e04}
+      \strng{bibnamehash}{439a45de2c5d8c20c84ca7783bb69e04}
+      \strng{authorbibnamehash}{439a45de2c5d8c20c84ca7783bb69e04}
+      \strng{authornamehash}{439a45de2c5d8c20c84ca7783bb69e04}
+      \strng{authorfullhash}{439a45de2c5d8c20c84ca7783bb69e04}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Version 1 VIIRS Day/Night Band Nighttime Lights}
+      \field{urlday}{15}
+      \field{urlmonth}{7}
+      \field{urlyear}{2018}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ngdc.noaa.gov/eog/viirs/download_dnb_composites.html
+      \endverb
+      \verb{url}
+      \verb https://ngdc.noaa.gov/eog/viirs/download_dnb_composites.html
+      \endverb
+    \endentry
     \entry{noaa}{online}{}
       \name{author}{2}{}{%
         {{hash=909e62889b7cf36d6abadb18e3c1b2e4}{%

@@ -1,11 +1,13 @@
 import rasterio
 import numpy as np
 
+## PARAMETERS ##
 directory = '../data/lightpop_merged/'
 
-divide_pop_by = 4
+input_files = ['2015_usa.tif', '2015_italy.tif']
 
-input_files = ['2015_brazil.tif', '2015_colombia.tif', '2015_safrica_namibia.tif', '2015_south_america.tif']
+divide_pop_by = 4
+################
 
 for input_file in input_files:
     reference = rasterio.open(directory + input_file)

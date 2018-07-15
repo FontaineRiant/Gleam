@@ -1,17 +1,15 @@
-[2] Config.pm:302> INFO - This is Biber 2.11
-[262] Config.pm:305> INFO - Logfile is 'report.blg'[3135[30718] biber-MSWIN64:313> INFO - =[50784] Biber.pm:371> INFO - Reading 'report.bcf'
-[67176] Biber.pm:857> INFO - Found 7 citekeys in bib section 0
-[77535] Biber.pm:3976> INFO - Processing section 0
-[84578] Biber.pm:4136> INFO - Looking for bibtex format file 'report.bib' for section 0
-[88228] bibtex.pm:1500> INFO - LaTeX decoding ...
-[98689] bibtex.pm:1316> INFO - Found BibTeX data source 'report.bib'
-[1[133446] Utils.pm:193> WARN - BibTeX subsystem: C:\Users\Bertral\AppData\Local\Temp\fybJ33LhJc\report.bib_18440.utf8, line 30, warning: 103 characters of junk seen at toplevel
-[136695] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
-[136695] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[136695] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
-[136695] Biber.pm:3810> INFO - No sort tailoring available for locale 'fr-FR'
-[138086] bbl.pm:617> INFO - Writing 'report.bbl' with encoding 'UTF-8'
-[138089] bbl.pm:720> INFO - Output to report.bbl
-[138093] Biber.pm:110> INFO - WARNINGS: 1
-1
-
+[0] Config.pm:302> INFO - This is Biber 2.11
+[1] Config.pm:305> INFO - Logfile is 'report.blg'
+[88] biber-MSWIN64:313> INFO - === 
+[322] Biber.pm:371> INFO - Reading 'report.bcf'
+[451] Biber.pm:857> INFO - Found 8 citekeys in bib section 0
+[491] Biber.pm:3976> INFO - Processing section 0
+[508] Biber.pm:4136> INFO - Looking for bibtex format file 'report.bib' for section 0
+[539] bibtex.pm:1500> INFO - LaTeX decoding ...
+[7[821] bibtex.pm:1316> INFO - Found BibTeX data source 'report.bib'[875] Utils.pm:193> WARN - BibTeX subsystem: C:\Users\Bertral\AppData\Local\Temp\YkNqYLZOZY\report.bib_8776.utf8, line 30, warning: 103 characters of junk seen at toplevel
+[[1003] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1004] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1004] Biber.pm:3804> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
+[1004] Biber.pm:3810> INFO - No sort tailoring available for locale 'fr-[1011[1060] bbl.pm:617> INFO - Writing 'report.bbl' with encoding 'UTF-8'
+[1065] bbl.pm:720> INFO - Output to report.bbl
+[1074] Biber.pm:110> INFO - WARNINGS: 1

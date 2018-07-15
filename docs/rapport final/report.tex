@@ -159,9 +159,14 @@ Par exemple, si au cours du travail de bachelor il s'avère que la population pa
 \pagenumbering{arabic}
 Les produits d'imagerie satellite sont devenus abondants et largement accessibles au cours des dernières décennies. De nombreux satellites prennent des photographies de la Terre à chaque heure du jour \textit{et de la nuit}. Les observations nocturnes révèlent des caractéristiques peu évidentes de jour, parfois même cachées. Les routes apparaissent, les villes montrent leurs lumières, même les bateaux de pêche aveuglent les océans avec des projecteurs pour attirer les poissons.
 
-La disponibilité, la résolution et l'uniformité de la qualité de ces données contrastent fortement avec le manque de fiabilité d'autres informations géographiques utiles lors de prises de décisions importantes. Par exemple, la densité de la population est une estimation précise en Suisse mais très approximative au Kenya. D'autres mesures intéressantes incluent : la consommation en électricité, les émissions de C0$_2$, la couverture végétale et la présence de faune. Les lumières nocturnes observées depuis l'espace donnent des indications sur chacune de ces mesures alors qu'elles peuvent manquer dans une région à une date donnée.
+La disponibilité, la résolution et l'uniformité de la qualité de ces données contrastent fortement avec le manque de fiabilité d'autres informations géographiques utiles lors de prises de décisions importantes. Par exemple, la répartition de la population est une estimation précise en Suisse mais très approximative au Kenya. D'autres mesures intéressantes incluent : la consommation en électricité, les émissions de C0$_2$, la couverture végétale et la présence de faune. Les lumières nocturnes observées depuis l'espace donnent des indications sur chacune de ces mesures alors qu'elles peuvent manquer dans une région à une date donnée.
 
 Le but de ce projet est d'extraire autant d'informations que possible de l'imagerie satellite nocturne en utilisant l'apprentissage automatique (\textit{machine learning}) sous la forme de réseau de neurones.
+
+\chapter{Gleam}
+
+Le projet Gleam ("lueur") se présente comme un ensemble de notebooks Jupyter.
+% TODO
 
 \chapter{Exploration des données}
 \section{Jeux de données}
@@ -201,17 +206,18 @@ Les deux autres jeux de données nocturnes sont des images composites : des clic
 	\label{nasa-worldview-tiles}
 \end{figure}
 
-Le script Python utilisé se trouve dans Code/scraper/generate\_all.py et nécessite l'installation de la librarie Pillow pour le traitement des images, ainsi qu'urllib pour le téléchargement en soi. Son exécution peut demander plus d'une heure pour le téléchargement (vitesse limitée par le serveur), et plus de 4 Go de RAM pour l'assemblage des tuiles.
+Le script Python utilisé se trouve dans le notebook \texttt{scraper} et nécessite l'installation de la librarie Pillow pour le traitement des images, ainsi qu'urllib pour le téléchargement en soi. Son exécution peut demander plus d'une heure pour le téléchargement (vitesse limitée par le serveur), et plus de 4 Go de RAM pour l'assemblage des tuiles.
 
 \subsubsection{Agence américaine d'observation océanique et atmosphérique}
-La source d'images satellite retenue pour la suite du travail est celle de l'Agence américaine d'observation océanique et atmosphérique (abrégé NOAA)\cite{noaa}. Des images satellite nocturnes composites ("Average Lights X Pct") sont disponibles pour les années 1992 à 2013, une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte sur autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS. Il s'agit en réalité des mêmes clichés fournis par Worldview (et Google Earth), mais plus nombreux et dans un format plus exploitable.
+La source d'images satellite retenue pour la suite du travail est celle de l'Agence américaine d'observation océanique et atmosphérique (abrégé NOAA). Des images satellite nocturnes composites ("Average Lights X Pct") sont disponibles pour les années 1992 à 2013 \cite{noaa} (1km par pixel, unités arbitraire de 0 à 63) et 2012 à 2018 \cite{noaa-viirs} (mensuelles, 500m par pixel, radiance en nanoWatts/cm$^2$/sr), une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte sur autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS. Il s'agit en réalité des mêmes clichés fournis par Worldview (et Google Earth), mais plus nombreux et dans un format bien plus exploitable.
 
 Ces images ont été créées en moyennant la valeur de luminosité de chaque pixel sur une année, en ignorant les pixels couverts par des nuages, et en multipliant cette moyenne par la fréquence de détection de lumière sur le pixel au cours de l'année.
 
 \subsection{Grilles de population}
 Sedac \cite{sedac} met à disposition des grilles de populations pour le monde entier, sous forme de fichier GeoTIFF. Chaque "case" de 1 km$^2$ est représentée comme un pixel et contient une estimation du nombre de personnes vivant dans cette case. QGIS s'est à nouveau montré d'une grande aide pour visualiser et manipuler ces données volumineuses (exemple en figure \ref{qgis-sedac}).
 
-On remarque que la valeur de densité de population ne varie pas à l'intérieur d'une sous-région. Tous les pixels d'une grande ville ou d'un département possèdent la même valeur. Ces données ont été créées à partir de plusieurs mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré comme fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires.
+On remarque que la valeur de densité de population ne varie souvent pas à l'intérieur d'une sous-région. En effet, la qualité des données fournies par ces grilles est très variable selon les pays. Parmi les régions les plus détaillées on trouve les USA, l'Italie, le Portugal et le Brésil. En plus de cette disparité, il faut garder à l'esprit que ces répartitions sont les résultats de comptages qui ont eu lieu entre 2005 et 2014, puis ajustés en fonction du décompte des populations par pays. Il en résulte que les totaux de population sont fiables, mais la répartition de ces personnes à l'intérieur des territoires peut être périmée.
+Ces données ont été créées à partir de plusieurs mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré comme fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires, ce qui pourrait avoir comme effet d'améliorer la capacité de notre réseau de neurones à apprendre de ces données (corrélation forte).
 
 Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 
@@ -222,7 +228,6 @@ Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 	\label{qgis-sedac}
 \end{figure}
 
-
 \subsection{Pays}
 Les grilles de données globales sont difficiles à créer, il n'en existe donc pas pour tous les types et toutes les dates. Afin de contourner ce problème, il y a des outils pour combiner des grilles (ici : l'image satellite) avec des données vectorielles telles que les frontières des pays. L'outil utilisé ici est la librairie Python \texttt{rasterstats}.
 
@@ -231,7 +236,7 @@ Le jeu de données "Admin 0 - Countries" de Natural Earth \cite{naturalearthdata
 			{('scalerank', 0), ('featurecla', 'Admin-0 country'), ('LABELRANK', 3.0), ('SOVEREIGNT', 'Tunisia'), ('SOV\_A3', 'TUN'), ('ADM0\_DIF', 0.0), ('LEVEL', 2.0), ('TYPE', 'Sovereign country'), ('ADMIN', 'Tunisia'), ('ADM0\_A3', 'TUN'), ('GEOU\_DIF', 0.0), ('GEOUNIT', 'Tunisia'), ('GU\_A3', 'TUN'), ('SU\_DIF', 0.0), ('SUBUNIT', 'Tunisia'), ('SU\_A3', 'TUN'), ('BRK\_DIFF', 0.0), ('NAME', 'Tunisia'), ('NAME\_LONG', 'Tunisia'), ('BRK\_A3', 'TUN'), ('BRK\_NAME', 'Tunisia'), ('BRK\_GROUP', None), ('ABBREV', 'Tun.'), ('POSTAL', 'TN'), ('FORMAL\_EN', 'Republic of Tunisia'), ('FORMAL\_FR', None), ('NAME\_CIAWF', 'Tunisia'), ('NOTE\_ADM0', None), ('NOTE\_BRK', None), ('NAME\_SORT', 'Tunisia'), ('NAME\_ALT', None), ('MAPCOLOR7', 4.0), ('MAPCOLOR8', 3.0), ('MAPCOLOR9', 3.0), ('MAPCOLOR13', 2.0), ('POP\_EST', 11403800.0), ('POP\_RANK', 14.0), ('GDP\_MD\_EST', 130800.0), ('POP\_YEAR', 2017.0), ('LASTCENSUS', 2004.0), ('GDP\_YEAR', 2016.0), ('ECONOMY', '6. Developing region'), ('INCOME\_GRP', '3. Upper middle income'), ('WIKIPEDIA', -99.0), ('FIPS\_10\_', 'TS'), ('ISO\_A2', 'TN'), ('ISO\_A3', 'TUN'), ('ISO\_A3\_EH', 'TUN'), ('ISO\_N3', '788'), ('UN\_A3', '788'), ('WB\_A2', 'TN'), ('WB\_A3', 'TUN'), ('WOE\_ID', 23424967.0), ('WOE\_ID\_EH', 23424967.0), ('WOE\_NOTE', 'Exact WOE match as country'), ('ADM0\_A3\_IS', 'TUN'), ('ADM0\_A3\_US', 'TUN'), ('ADM0\_A3\_UN', -99.0), ('ADM0\_A3\_WB', -99.0),	 ('CONTINENT', 'Africa'), ('REGION\_UN', 'Africa'), ('SUBREGION', 'Northern Africa'), ('REGION\_WB', 'Middle East \& North Africa'), ('NAME\_LEN', 7.0), ('LONG\_LEN', 7.0), ('ABBREV\_LEN', 4.0), ('TINY', -99.0), ('HOMEPART', 1.0), ('MIN\_ZOOM', 0.0), ('MIN\_LABEL', 3.0), ('MAX\_LABEL', 8.0)}
 \end{minipage}\\
 
-Le script Code/regionovertime/dumpstats.py superpose ces données vectorielles à l'image satellite pour ajouter à chaque pays sa luminosité moyenne sur une échelle de 0 à 63 ainsi que l'écart-type de luminosité par pixel. Puis ces données sont enregistrées dans le fichier stats.pickle pour être utilisées plus tard.
+Le notebook country\_stats superpose ces données vectorielles à l'image satellite pour ajouter à chaque pays sa luminosité moyenne sur une échelle de 0 à 63 ainsi que l'écart-type de luminosité par pixel. Puis ces données sont enregistrées dans le fichier stats.pickle pour être utilisées plus tard.
 
 Grâce à cette information sur la luminosité perçue par pays, on peut faire un parallèle avec une grande variété de données, telles que le produit intérieur brut (GDP), la consommation en énergie, le niveau de développement, l'indice économique, les émissions de C0$_2$, etc.
 
@@ -243,9 +248,9 @@ Les données sur la consommation en électricité en millions de kWh par pays et
 
 \section{Recherche de corrélation}
 \subsection{Pays}
-La superposition de deux grilles (population et image satellite) de dimensions différentes n'est pas évidente, c'est pourquoi les premières données à avoir été mises en parallèles dans ce travail sont la population par pays \cite{un-wpp}, le produit intérieur brut \cite{theworldbank}, et la luminosité totale du pays perçue depuis l'espace (extraite par script Python à partir des vecteurs de frontières de Natural Earth \cite{naturalearthdata} et des images de la NOAA \cite{noaa}).
+La superposition de deux grilles (population et image satellite) de dimensions différentes n'est pas évidente, c'est pourquoi les premières données à avoir été mises en parallèles dans ce travail sont la population par pays \cite{un-wpp}, le produit intérieur brut \cite{theworldbank}, et la luminosité totale du pays perçue depuis l'espace (extraite par script Python (notebook country\_stats) à partir des vecteurs de frontières de Natural Earth \cite{naturalearthdata} et des images de la NOAA \cite{noaa}).
 
-Pour chaque année disponible (1992-2013), il est donc possible de dessiner pour la majorité des pays les histogrammes de luminosité, population et PIB (examples en figures \ref{sum_France}, \ref{sum_China}, \ref{sum_Japan} et \ref{sum_Armenia}). Cette représentation n'est pas idéale car l'échelle n'est pas constante entre les pays. Ce qui apparait comme une grande variation de luminosité peut ne pas en être du tout. Certains pays ne portent pas exactement le même nom dans tous les jeux de données, ils sont donc mis de côté dans les résultats.
+Pour chaque année disponible de 1992 à 2013, il est donc possible de dessiner pour la majorité des pays les histogrammes de luminosité, population et PIB (examples en figures \ref{sum_France}, \ref{sum_China}, \ref{sum_Japan} et \ref{sum_Armenia}). Cette représentation n'est pas idéale car l'échelle n'est pas constante entre les pays. Ce qui apparait comme une grande variation de luminosité peut ne pas en être du tout. Certains pays ne portent pas exactement le même nom dans tous les jeux de données, ils sont donc mis de côté dans les résultats.
 
 La figure \ref{sum_France} est typique des résultats obtenus. Elle laisse présager une forte corrélation entre les trois données observées. Cependant, la figure \ref{sum_China} soulève déjà des doutes : la population croît de façon linéaire, mais le PIB et la lumière perçue augmentent de plus en plus vite. Les graphes du Japon (figure \ref{sum_Japan}) semblent indiquer que la luminosité suit le PIB également lorsque ce dernier diminue. Enfin le cas de l'Arménie (figure \ref{sum_Armenia}) nous pousse à croire que le PIB a une corrélation plus forte que la population avec la luminosité.
 
@@ -281,9 +286,9 @@ Jusqu'ici, rien n'est confirmé. Nous ne possédons que des observations par pay
 	\label{sum_Armenia}
 \end{figure}
 
-Il est également possible de générer des nuages de points comparant la lumière émise et, au choix, l'énergie consommée, la population du pays ou le PIB, et de colorer ces points par indice de développement économique (tiré des données vectorielles Natural Earth \cite{naturalearthdata}).
+Il est également possible de générer des nuages de points comparant la lumière émise et, au choix, l'énergie consommée, la population du pays ou le PIB, et de colorer ces points par indice de développement économique (tiré des données vectorielles Natural Earth \cite{naturalearthdata}). Ces graphes sont générés grâce au notebook country\_stats.
 
-Le premier de ces nuages de points compare la luminosité et la population de 2013 pour chaque pays (figure \ref{country_lightpop_scatter}). On observe immédiatement qu'il existe une corrélation. Son coefficient de Pearson est 0.56. On ne peut pas encore déterminer s'il y a une relation directe, ou si ces deux variables sont simplement corrélées à la taille du territoire. En effet, on ne fait que sommer la population et la quantité de lumière émise, on ne calcule pas de moyenne par pays.
+Le premier de ces nuages de points compare la luminosité et la population de 2013 pour chaque pays (figure \ref{country_lightpop_scatter}). On observe immédiatement qu'il existe une corrélation. Son coefficient de Pearson est 0.56. Il est très important de constater que cette corrélation n'apparaît que lorsque l'échelle est logarithmique, il faudra donc retenir que cette relation n'est pas linéaire. On ne peut pas encore déterminer s'il y a une relation directe, ou si ces deux variables sont simplement corrélées à la taille du territoire. En effet, on ne fait que sommer la population et la quantité de lumière émise, on ne calcule pas de moyenne par pays.
 Sans surprise, on voit également que les pays ayant un index économique élevé émettent plus de lumière que d'autres pays à population équivalente.
 
 \begin{figure}
@@ -314,7 +319,7 @@ Une autre comparaison est possible avec la consommation en électricité, illust
 
 \subsection{Grille de population}
 
-Après avoir tenté de programmer un script Python pour superposer deux grilles de dimensions différentes, il s'est avéré que l'application QGIS est capable d'effectuer cette opération. Il suffit de :
+Après avoir tenté d'écrire un script Python pour superposer deux grilles de dimensions différentes, il s'est avéré que l'application QGIS est capable d'effectuer cette opération. Il suffit de :
 
 \begin{itemize}
 	\item Ouvrir les grilles avec QGIS : population et image satellite. Elles doivent apparaitre dans la liste des couches.
@@ -322,7 +327,8 @@ Après avoir tenté de programmer un script Python pour superposer deux grilles 
 	\item Cocher l'option "Placer chaque fichier en entrée dans une bande séparée." puis lancer la fusion "Run in Background".
 \end{itemize}
 
-La grille résultante contient donc environ 800 millions de pixels (possédant chacun une valeur de population et de luminosité) qui sont potentiellement autant de données d'entraînement pour chaque année disponible (2000, 2005, 2010, qui correspondent aux dates des grilles de population). Après avoir ajusté ses propriétés d'affichage et inversé les couleurs, on obtient la figure \ref{lightpop_2000}. Le bleu ciel correspond à la lumière visible depuis l'espace, le rose la population (sur une échelle de 1 à 1000 habitants par km$^2$). Le bleu foncé correspond au chevauchement des deux couleurs. On peut déjà observer que, si la luminosité ne suit pas l'évolution de la population dans le temps à l'échelle d'un pays, elle est tout de même concentrée géographiquement sur les points les plus peuplés.
+La grille résultante contient donc environ 800 millions de pixels (possédant chacun une valeur de population et de luminosité) qui sont potentiellement autant de données d'entraînement pour chaque année disponible (2000, 2005, 2010, qui correspondent aux dates des grilles de population DMSP-OLS \cite{noaa}). Après avoir ajusté ses propriétés d'affichage et inversé les couleurs, on obtient la figure \ref{lightpop_2000}. Le bleu ciel correspond à la lumière visible depuis l'espace, le rose la population (sur une échelle de 1 à 1000 habitants par km$^2$). Le bleu foncé correspond au chevauchement des deux couleurs. On peut déjà observer que, si la luminosité ne suit pas l'évolution de la population dans le temps à l'échelle d'un pays, elle est tout de même concentrée géographiquement sur les points les plus peuplés.
+
 
 \begin{figure}
 	\centering
@@ -331,14 +337,40 @@ La grille résultante contient donc environ 800 millions de pixels (possédant c
 	\label{lightpop_2000}
 \end{figure}
 
-Si on pose chaque pixel sur un nuage de point dont les axes sont la luminosité et la population, on obtient la figure \ref{lightpop_scatter}. On constate qu'il sera très difficile de deviner la valeur de population à partir de l'intensité lumineuse d'un seul pixel. Cela nous oriente donc plutôt dans la direction d'un réseau de neurones à convolutions, qui considère les pixels par groupes.
+La superposition des grilles de population (1 pixel par km) avec un image satellite issue de VIIRS \cite{noaa-viirs} dont la résolution est 4 fois plus élevée. Les outils de traitement de cartes on tendance à augmenter la résolution de la grille de population en utilisant la méthode du plus proche voisin. Chaque pixel donne donc correctement la densité de population par kilomètre carré, mais la population totale est multipliée par 4. La figure \ref{upsampling} illustre ce problème. Pour corriger cela, il est nécessaire d'ajuster la population par pixel en la divisant par 4. C'est le rôle du script \texttt{gleam/rescale\_pop.py} (attention à ajuster les constantes avant de le lancer).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/upsampling.png}
+	\caption{Effet de l'augmentation de la résolution de la grille de population lors de la fusion}
+	\label{upsampling}
+\end{figure}
+
+Si on pose chaque pixel sur un nuage de point dont les axes sont la luminosité et la population, on obtient la figure \ref{lightpop_scatter}. La figure \ref{2015_brazil_light_vs_pop} représente uniquement le Brésil en 2015. On constate qu'il sera très difficile de deviner la valeur de population à partir de l'intensité lumineuse d'un seul pixel. Cela nous oriente donc plutôt dans la direction d'un réseau de neurones à convolutions, qui considère les pixels par groupes.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/lightpop_scatter.png}
-	\caption{Valeur de luminosité et de population pour chaque km$^2$ (année 2000)}
+	\caption{Valeur de luminosité et de population mondiale pour chaque km$^2$ (année 2000)}
 	\label{lightpop_scatter}
 \end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{img/2015_brazil_light_vs_pop.png}
+	\caption{Valeur de luminosité et de population pour chaque 0.25km$^2$ du Brésil (année 2015)}
+	\label{2015_brazil_light_vs_pop}
+\end{figure}
+
+Enfin, les données vectorielles de Natural Earth \cite{naturalearthdata} peuvent nous permettre d'isoler précisément un pays du reste de la grille :
+\begin{itemize}
+	\item Ouvrir la grille et le fichier vectoriel des pays avec QGIS dans le même projet.
+	\item Cliquer sur la couche vectorielle, puis sélectionner sur la carte le pays à isoler (avec l'outil de sélection d'entité).
+	\item Dans la barre d'outils, sous "Raster", choisir "Extraction" puis "Découper un raster selon une couche masque".
+	\item Définir la grille comme couche source, et la couche vectorielle comme masque.
+	\item Cocher "Entité(s) sélectionnée(s) uniquement.
+	\item Lancer l'extraction "Run in Background".
+\end{itemize}
 
 \section{Données à explorer}
 Parmi les données potentiellement intéressantes qui n'ont pas encore été explorées dans ce travail, il y a notamment des grilles pour :
@@ -356,7 +388,7 @@ Python est un langage largement utilisé pour manipuler des données et faire de
 
 Keras est une librairie Python open source permettant le prototypage rapide de réseaux de neurones et peut fonctionner au-dessus de TensorFlow (open source et développé par Google), CNTK ou Theano. Une fonctionnalité très attractive de TensorFlow est l'exploitation automatique du processeur graphique s'il est disponible. En effet, ces processeurs sont très performants pour l'apprentissage automatique, car c'est un travail hautement parallélisable.
 
-Afin d'activer l'utilisation d'un GPU Nvidia par Tensorflow sur Windows 10, il faut installer la librairie tensorflow-gpu, le CUDA Toolkit de Nvidia en version 9.0 et le SDK cuDNN (\textit{CUDA Deep Neural Network library}) de Nvidia en version 7.0 (instructions détaillées : \url{https://www.tensorflow.org/install/install_linux}).
+Afin d'activer l'utilisation d'un GPU Nvidia par Tensorflow sur Windows 10, il faut installer la librairie tensorflow-gpu, le CUDA Toolkit de Nvidia en version 9.0 et le SDK cuDNN (\textit{CUDA Deep Neural Network library}) de Nvidia en version 7.0 (instructions détaillées sur \url{https://www.tensorflow.org/install/install_linux}).
 
 \section{Réseau de neurones}
 Pour commencer à développer le réseau de neurones, on commencera par tenter de prédire la population d'une petite région (une tuile) à partir de l'image satellite de l'année 2005, en entraînant la machine sur celle de 2000 et la grille de population correspondante \cite{sedac}.
@@ -367,7 +399,7 @@ Le système qui répond à ces exigences est le réseau de neurones à convoluti
 
 Avant de commencer l'entraînement, on découpe l'image satellite nocturne en tuiles de 32 sur 32 pixels (1024 km$^2$). Chacune de ces tuiles sera considéré comme une observation à donner en entrée du modèle. La sortie sera une valeur réelle correspondant au nombre d'habitants dans la zone donnée en entrée.
 
-\section{Méta-paramètres}
+\section{Premipre topologie}
 
 \begin{figure}
 	\centering
@@ -376,7 +408,7 @@ Avant de commencer l'entraînement, on découpe l'image satellite nocturne en tu
 	\label{net1}
 \end{figure}
 
-La topologie du réseau (figure \ref{net1}) s'inspire grossièrement du travail effectué par l'Arnhold Institute for Global Health \cite{netpop-article}, qui consiste à estimer les populations de petites régions à partir d'images satellite de jour \textit{et} de nuit.
+La topologie du réseau (figure \ref{net1}) s'inspire grossièrement du travail effectué par l'Arnhold Institute for Global Health \cite{netpop-article}, qui consiste à estimer les populations de petites régions à partir d'images satellite de jour \textit{et} de nuit. La première version de notre réseau de neurones en utilise une variante très allégée.
 
 Les couches sont définies comme suit :
 \begin{itemize}
@@ -391,7 +423,7 @@ Les couches sont définies comme suit :
 
 L'optimiseur utilisé est Adam. C'est généralement un bon choix par défaut grâce à sa performance en terme de vitesse de calcul, et à sa capacité à répondre aux besoins d'un grand nombre de problèmes. Le \textit{learning rate} choisi (après quelques essais) est 0.001. Enfin, la fonction objectif à optimiser est la moyenne des erreurs au carré.
 
-\section{Résultats}
+\section{Premiers résultats}
 
 Les résultats suivants ont été obtenus en entraînant le modèle sur une région couvrant l'Europe de l'Ouest et l'Afrique du Nord en l'an 2000. La phase de test est effectuée sur l'Amérique du Nord et une partie de l'Amérique du Sud en l'an 2005.
 
@@ -422,6 +454,51 @@ Améliorations possibles :
 	\item Augmenter le nombre de neurones de sortie pour correspondre à une grille de population plutôt qu'une somme sur tous les pixels de la région.
 \end{itemize}
 
+\section{Améliorations}
+\subsection{Pré-traitement}
+Dataset : trop grand, divers
+
+Mauvaise qualité de la résolution pour la plupart des régions
+
+=> Restriction à 1 pays ayant de bonnes données => peu de données => moving window in preprocess => trop de données => ignore empty tiles
+
+plus petites tuiles => mauvais résultats
+
+\subsection{Topologie}
+
+inputs pondérés par la population => mauvais résultats
+
+runs_history pour les tests de topologies
+
+
+\section{Réseau final}
+
+description du réseau final
+
+\section{Résultats}
+
+A coups de rastercomparator et rasterstats
+
+Aperçu :
+Brésil réalité 2015 vs prédiction 2017
+Pearson correlation : 0.7499682639089719
+Sum of values : 204777100.0, 272478200.0
+Sum increase : 67701100.0 (33.060875790098095 \%)
+Mean absolute error (by pixel) : 2.044411
+
+Brésil réalité 2015 vs prédiction 2015
+Pearson correlation : 0.693398475250684
+Sum of values : 204777100.0, 204874460.0
+Sum increase : 97360.0 (0.047544377812863296 \%)
+Mean absolute error (by pixel) : 1.5557544
+
+italie réalité vs italie prédiction, entrainé \textit{partiellement} sur USA :
+Pearson correlation : 0.5192059500037354
+Sum of values : 58895904.0, 39399708.0
+Sum increase : -19496196.0 (-33.102804568548606 \%)
+Mean absolute error (by pixel) : 5.861093
+
+
 \chapter{Conclusion}
 Nous avons exploré une partie des données à disposition. Nous savons désormais où chercher, quel format utiliser et comment exploiter les données géographiques. Il devrait être relativement facile de substituer la grille de population à une autre, plus utile, quand on aura démontré l'efficacité du réseau de neurones.
 
@@ -438,9 +515,9 @@ Le travail effectué, bien que ne fournissant pas de résultat exploitable, a pe
 
 \printbibliography
 
-%\chapter{Authentification}
+\chapter{Authentification}
 
-%\chapter{Symboles et abréviations}
+\chapter{Symboles et abréviations}
 
 \listoffigures
 
