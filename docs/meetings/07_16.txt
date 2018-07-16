@@ -1,0 +1,18 @@
+population totale colombie vs predite
+
+conclusion :
+données de fiabilité moyenne => il y a toujours une erreur visible
+=> difficile de valider les estimations
+malgré ça, on obtient des prédictions de _haute résolution_ peu fiables mais _instantanées_, ce qui n'est pas le cas des recensements
+la luminosité est plus indicateur du GDP, mais on n'a pas de carte de répartition du GDP => la population prédite ne prend pas en compte le facteur le plus important : le développement économique
+
+défauts :
+le cnn a parfois de la difficulté à converger
+overfitting non négligeable
+
+améliorations futures :
+ajouter le GDP du pays comme variable en input du cnn
+réentrainer un réseau lorsqu'une nouvelle grille de population sera créée
+augmenter la résolution de la prédiction (plus d'output variables)
+exploiter des cartes satellite de jour ! elles contiennent plus d'informations
+continuer à chercher des rasters de données à prédire

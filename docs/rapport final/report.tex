@@ -399,7 +399,7 @@ Le système qui répond à ces exigences est le réseau de neurones à convoluti
 
 Avant de commencer l'entraînement, on découpe l'image satellite nocturne en tuiles de 32 sur 32 pixels (1024 km$^2$). Chacune de ces tuiles sera considéré comme une observation à donner en entrée du modèle. La sortie sera une valeur réelle correspondant au nombre d'habitants dans la zone donnée en entrée.
 
-\section{Premipre topologie}
+\section{Première topologie}
 
 \begin{figure}
 	\centering
@@ -468,8 +468,13 @@ plus petites tuiles => mauvais résultats
 
 inputs pondérés par la population => mauvais résultats
 
-runs_history pour les tests de topologies
+runs\_history pour les tests de topologies
 
+\subsection{Prédiction}
+
+années, pas 2012 ou 2018 => incomplet
+
+tests de répartition avec différentes échelles, exp est meilleur pour compenser le log
 
 \section{Réseau final}
 
