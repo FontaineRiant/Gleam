@@ -1974,29 +1974,39 @@
     <bcf:datasource type="file" datatype="bibtex">report.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">nasa-worldview</bcf:citekey>
-    <bcf:citekey order="2">nasa-worldview</bcf:citekey>
+    <bcf:citekey order="1">winlibs</bcf:citekey>
+    <bcf:citekey order="2">noaa-viirs</bcf:citekey>
     <bcf:citekey order="3">nasa-worldview</bcf:citekey>
     <bcf:citekey order="4">nasa-worldview</bcf:citekey>
-    <bcf:citekey order="5">noaa</bcf:citekey>
-    <bcf:citekey order="6">noaa-viirs</bcf:citekey>
-    <bcf:citekey order="7">sedac</bcf:citekey>
-    <bcf:citekey order="8">sedac</bcf:citekey>
+    <bcf:citekey order="5">nasa-worldview</bcf:citekey>
+    <bcf:citekey order="6">nasa-worldview</bcf:citekey>
+    <bcf:citekey order="7">noaa</bcf:citekey>
+    <bcf:citekey order="8">noaa-viirs</bcf:citekey>
     <bcf:citekey order="9">sedac</bcf:citekey>
-    <bcf:citekey order="10">naturalearthdata</bcf:citekey>
-    <bcf:citekey order="11">un-wpp</bcf:citekey>
-    <bcf:citekey order="12">theworldbank</bcf:citekey>
+    <bcf:citekey order="10">sedac</bcf:citekey>
+    <bcf:citekey order="11">sedac</bcf:citekey>
+    <bcf:citekey order="12">naturalearthdata</bcf:citekey>
     <bcf:citekey order="13">un-wpp</bcf:citekey>
     <bcf:citekey order="14">theworldbank</bcf:citekey>
-    <bcf:citekey order="15">naturalearthdata</bcf:citekey>
-    <bcf:citekey order="16">noaa</bcf:citekey>
+    <bcf:citekey order="15">un-wpp</bcf:citekey>
+    <bcf:citekey order="16">theworldbank</bcf:citekey>
     <bcf:citekey order="17">naturalearthdata</bcf:citekey>
     <bcf:citekey order="18">noaa</bcf:citekey>
-    <bcf:citekey order="19">noaa-viirs</bcf:citekey>
-    <bcf:citekey order="20">naturalearthdata</bcf:citekey>
-    <bcf:citekey order="21">sedac</bcf:citekey>
-    <bcf:citekey order="22">netpop-article</bcf:citekey>
-    <bcf:citekey order="23">netpop-article</bcf:citekey>
+    <bcf:citekey order="19">naturalearthdata</bcf:citekey>
+    <bcf:citekey order="20">noaa</bcf:citekey>
+    <bcf:citekey order="21">noaa-viirs</bcf:citekey>
+    <bcf:citekey order="22">naturalearthdata</bcf:citekey>
+    <bcf:citekey order="23">sedac</bcf:citekey>
+    <bcf:citekey order="24">blog-reg</bcf:citekey>
+    <bcf:citekey order="25">blog-cra</bcf:citekey>
+    <bcf:citekey order="26">blog-han</bcf:citekey>
+    <bcf:citekey order="27">blog-obj</bcf:citekey>
+    <bcf:citekey order="28">blog-eva</bcf:citekey>
+    <bcf:citekey order="29">netpop-article</bcf:citekey>
+    <bcf:citekey order="30">naturalearthdata</bcf:citekey>
+    <bcf:citekey order="31">sedac</bcf:citekey>
+    <bcf:citekey order="32">noaa-viirs</bcf:citekey>
+    <bcf:citekey order="33">netpop-article</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

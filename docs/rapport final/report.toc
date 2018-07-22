@@ -13,54 +13,76 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.5}D\IeC {\'e}lais}{iv}{section.1.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Introduction}{1}{chapter.2}
+\contentsline {chapter}{\numberline {2}R\IeC {\'e}sum\IeC {\'e}}{v}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Gleam}{2}{chapter.3}
+\contentsline {chapter}{\numberline {3}Introduction}{1}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Exploration des donn\IeC {\'e}es}{3}{chapter.4}
+\contentsline {chapter}{\numberline {4}Gleam}{2}{chapter.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Jeux de donn\IeC {\'e}es}{3}{section.4.1}
+\contentsline {section}{\numberline {4.1}Installation}{2}{section.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.1}Images satellite}{3}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Notebooks}{2}{section.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{NASA Worldview}{3}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.2.1}country\_stats}{2}{subsection.4.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Agence am\IeC {\'e}ricaine d'observation oc\IeC {\'e}anique et atmosph\IeC {\'e}rique}{6}{figure.4.4}
+\contentsline {subsection}{\numberline {4.2.2}gleam}{3}{subsection.4.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.2}Grilles de population}{6}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2.3}rastercomparator}{3}{subsection.4.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.3}Pays}{6}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.2.4}scraper}{3}{subsection.4.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Recherche de corr\IeC {\'e}lation}{8}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.5}viirs\_extractor}{3}{subsection.4.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.1}Pays}{8}{subsection.4.2.1}
+\contentsline {chapter}{\numberline {5}Exploration des donn\IeC {\'e}es}{4}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.2}Grille de population}{13}{subsection.4.2.2}
+\contentsline {section}{\numberline {5.1}Jeux de donn\IeC {\'e}es}{4}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Donn\IeC {\'e}es \IeC {\`a} explorer}{16}{section.4.3}
+\contentsline {subsection}{\numberline {5.1.1}Images satellite}{4}{subsection.5.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Mod\IeC {\`e}le}{17}{chapter.5}
+\contentsline {subsubsection}{NASA Worldview}{4}{subsection.5.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Environnement de d\IeC {\'e}veloppement}{17}{section.5.1}
+\contentsline {subsubsection}{Agence am\IeC {\'e}ricaine d'observation oc\IeC {\'e}anique et atmosph\IeC {\'e}rique}{7}{figure.5.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}R\IeC {\'e}seau de neurones}{17}{section.5.2}
+\contentsline {subsection}{\numberline {5.1.2}Grilles de population}{7}{subsection.5.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Premipre topologie}{18}{section.5.3}
+\contentsline {subsection}{\numberline {5.1.3}Pays}{7}{subsection.5.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Premiers r\IeC {\'e}sultats}{18}{section.5.4}
+\contentsline {section}{\numberline {5.2}Recherche de corr\IeC {\'e}lation}{9}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.5}Am\IeC {\'e}liorations}{20}{section.5.5}
+\contentsline {subsection}{\numberline {5.2.1}Pays}{9}{subsection.5.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5.1}Pr\IeC {\'e}-traitement}{20}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.2.2}Grille de population}{14}{subsection.5.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5.2}Topologie}{20}{subsection.5.5.2}
+\contentsline {chapter}{\numberline {6}Mod\IeC {\`e}le}{18}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.6}R\IeC {\'e}seau final}{20}{section.5.6}
+\contentsline {section}{\numberline {6.1}Environnement de d\IeC {\'e}veloppement}{18}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.7}R\IeC {\'e}sultats}{20}{section.5.7}
+\contentsline {section}{\numberline {6.2}R\IeC {\'e}seau de neurones}{18}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{22}{chapter.6}
+\contentsline {section}{\numberline {6.3}Premi\IeC {\`e}re topologie}{19}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Authentification}{24}{chapter.7}
+\contentsline {section}{\numberline {6.4}Premiers r\IeC {\'e}sultats}{19}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Symboles et abr\IeC {\'e}viations}{25}{chapter.8}
+\contentsline {section}{\numberline {6.5}Am\IeC {\'e}liorations}{21}{section.6.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.5.1}Pr\IeC {\'e}-traitement}{21}{subsection.6.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.5.2}Topologie et param\IeC {\`e}tres}{22}{subsection.6.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.5.3}Pr\IeC {\'e}diction}{22}{subsection.6.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.6}R\IeC {\'e}seau final}{23}{section.6.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.7}R\IeC {\'e}sultats}{24}{section.6.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.8}Discussion}{24}{section.6.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Conclusion}{25}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Discussion finale}{25}{section.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Pour aller plus loin}{25}{section.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}Authentification}{28}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {9}Symboles et abr\IeC {\'e}viations}{29}{chapter.9}

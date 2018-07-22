@@ -19,6 +19,176 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{blog-cra}{online}{}
+      \name{author}{1}{}{%
+        {{hash=915af163e2107106fced5dd3164d9a8e}{%
+           family={Brownlee},
+           familyi={B\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{fullhash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{bibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorbibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authornamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorfullhash}{915af163e2107106fced5dd3164d9a8e}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{24}
+      \field{month}{6}
+      \field{title}{Crash Course in Convolutional Neural Networks for Machine Learning}
+      \field{urlday}{23}
+      \field{urlmonth}{4}
+      \field{urlyear}{2018}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://machinelearningmastery.com/crash-course-convolutional-neural-networks/
+      \endverb
+      \verb{url}
+      \verb https://machinelearningmastery.com/crash-course-convolutional-neural-networks/
+      \endverb
+    \endentry
+    \entry{blog-eva}{online}{}
+      \name{author}{1}{}{%
+        {{hash=915af163e2107106fced5dd3164d9a8e}{%
+           family={Brownlee},
+           familyi={B\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{fullhash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{bibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorbibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authornamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorfullhash}{915af163e2107106fced5dd3164d9a8e}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{26}
+      \field{month}{5}
+      \field{title}{Evaluate the Performance Of Deep Learning Models in Keras}
+      \field{urlday}{23}
+      \field{urlmonth}{4}
+      \field{urlyear}{2018}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://machinelearningmastery.com/evaluate-performance-deep-learning-models-keras/
+      \endverb
+      \verb{url}
+      \verb https://machinelearningmastery.com/evaluate-performance-deep-learning-models-keras/
+      \endverb
+    \endentry
+    \entry{blog-han}{online}{}
+      \name{author}{1}{}{%
+        {{hash=915af163e2107106fced5dd3164d9a8e}{%
+           family={Brownlee},
+           familyi={B\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{fullhash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{bibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorbibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authornamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorfullhash}{915af163e2107106fced5dd3164d9a8e}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{27}
+      \field{month}{6}
+      \field{title}{Handwritten Digit Recognition using Convolutional Neural Networks in Python with Keras}
+      \field{urlday}{23}
+      \field{urlmonth}{4}
+      \field{urlyear}{2018}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/
+      \endverb
+      \verb{url}
+      \verb https://machinelearningmastery.com/handwritten-digit-recognition-using-convolutional-neural-networks-python-keras/
+      \endverb
+    \endentry
+    \entry{blog-obj}{online}{}
+      \name{author}{1}{}{%
+        {{hash=915af163e2107106fced5dd3164d9a8e}{%
+           family={Brownlee},
+           familyi={B\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{fullhash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{bibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorbibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authornamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorfullhash}{915af163e2107106fced5dd3164d9a8e}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{month}{7}
+      \field{title}{Object Recognition with Convolutional Neural Networks in the Keras Deep Learning Library}
+      \field{urlday}{23}
+      \field{urlmonth}{4}
+      \field{urlyear}{2018}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://machinelearningmastery.com/object-recognition-convolutional-neural-networks-keras-deep-learning-library/
+      \endverb
+      \verb{url}
+      \verb https://machinelearningmastery.com/object-recognition-convolutional-neural-networks-keras-deep-learning-library/
+      \endverb
+    \endentry
+    \entry{blog-reg}{online}{}
+      \name{author}{1}{}{%
+        {{hash=915af163e2107106fced5dd3164d9a8e}{%
+           family={Brownlee},
+           familyi={B\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{fullhash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{bibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorbibnamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authornamehash}{915af163e2107106fced5dd3164d9a8e}
+      \strng{authorfullhash}{915af163e2107106fced5dd3164d9a8e}
+      \field{sortinit}{B}
+      \field{sortinithash}{276475738cc058478c1677046f857703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{9}
+      \field{month}{6}
+      \field{title}{Regression Tutorial with the Keras Deep Learning Library in Python}
+      \field{urlday}{23}
+      \field{urlmonth}{4}
+      \field{urlyear}{2018}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://machinelearningmastery.com/regression-tutorial-keras-deep-learning-library-python/
+      \endverb
+      \verb{url}
+      \verb https://machinelearningmastery.com/regression-tutorial-keras-deep-learning-library-python/
+      \endverb
+    \endentry
     \entry{sedac}{misc}{}
       \name{author}{1}{}{%
         {{hash=6b17ef7f35f935796cd3765e3a012b0b}{%
@@ -163,6 +333,36 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.1145/3001913.3001921
+      \endverb
+    \endentry
+    \entry{winlibs}{online}{}
+      \name{author}{1}{}{%
+        {{hash=52e2684c111b194e1f15fa06b0ce4544}{%
+           family={Gohlke},
+           familyi={G\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{52e2684c111b194e1f15fa06b0ce4544}
+      \strng{fullhash}{52e2684c111b194e1f15fa06b0ce4544}
+      \strng{bibnamehash}{52e2684c111b194e1f15fa06b0ce4544}
+      \strng{authorbibnamehash}{52e2684c111b194e1f15fa06b0ce4544}
+      \strng{authornamehash}{52e2684c111b194e1f15fa06b0ce4544}
+      \strng{authorfullhash}{52e2684c111b194e1f15fa06b0ce4544}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Unofficial Windows Binaries for Python Extension Packages}
+      \field{urlday}{9}
+      \field{urlmonth}{7}
+      \field{urlyear}{2018}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.lfd.uci.edu/~gohlke/pythonlibs/
+      \endverb
+      \verb{url}
+      \verb https://www.lfd.uci.edu/~gohlke/pythonlibs/
       \endverb
     \endentry
     \entry{naturalearthdata}{online}{}

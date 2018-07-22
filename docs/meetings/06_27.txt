@@ -1,14 +1,14 @@
-Plus de 25 runs d'entraÓnement pour ajuster la topologie du rÈseau
-RÈsultats trËs mauvais lorsqu'entraÓnÈ sur la carte du monde => diffÈrences Èconomiques trop importantes.
-Meilleurs rÈsultats sur des rÈgions de mÍme Èconomies.
+Plus de 25 runs d'entra√Ænement pour ajuster la topologie du r√©seau
+R√©sultats tr√®s mauvais lorsqu'entra√Æn√© sur la carte du monde => diff√©rences √©conomiques trop importantes.
+Meilleurs r√©sultats sur des r√©gions de m√™me √©conomies.
 
-NOAA a publiÈ une estimation du GDP haute rÈsolution en faisant de la rÈgression sur les images satellites nocturnes (sans rÈseau de neurones, ce qui est probablement mieux pour gÈnÈraliser).
+NOAA a publi√© une estimation du GDP haute r√©solution en faisant de la r√©gression sur les images satellites nocturnes (sans r√©seau de neurones, ce qui est probablement mieux pour g√©n√©raliser).
 
-NOAA dispose de rasters pour la land cover en amÈrique (NASA Land Cover) : roads, population (2000), survaces impermÈables, forets de conifpres, mixtes, ...
+NOAA dispose de rasters pour la land cover en am√©rique (NASA Land Cover) : roads, population (2000), survaces imperm√©ables, forets de conifpres, mixtes, ...
 
-light rasters mensuelles rÈcentes : https://ngdc.noaa.gov/eog/viirs/download_dnb_composites.html
+light rasters mensuelles r√©centes : https://ngdc.noaa.gov/eog/viirs/download_dnb_composites.html
 
-Colombie -> migration gr‚ce aux accords de paix
-train le cnn ‡ prÈdire les pop gr‚ce aux images rÈcentes
-faire une moyenne des images rÈcentes pour obetnir des donnÈes annuelles
-faire des diff sur les prÈdictions de pop ?
+Colombie -> migration gr√¢ce aux accords de paix
+train le cnn √† pr√©dire les pop gr√¢ce aux images r√©centes
+faire une moyenne des images r√©centes pour obetnir des donn√©es annuelles
+faire des diff sur les pr√©dictions de pop ?
