@@ -2,7 +2,6 @@
 
 # raw data
 ./data
-*.tif
 *.aux.xml
 *.asc
 *.prj

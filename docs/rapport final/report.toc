@@ -75,14 +75,20 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.7}R\IeC {\'e}sultats}{24}{section.6.7}
 \defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.7.1}Validation crois\IeC {\'e}e}{24}{subsection.6.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.7.2}\IeC {\'E}valuation des pr\IeC {\'e}dictions}{24}{subsection.6.7.2}
+\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.8}Discussion}{24}{section.6.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusion}{25}{chapter.7}
+\contentsline {section}{\numberline {6.9}Pr\IeC {\'e}dictions non valid\IeC {\'e}es}{27}{section.6.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Discussion finale}{25}{section.7.1}
+\contentsline {chapter}{\numberline {7}Conclusion}{31}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Pour aller plus loin}{25}{section.7.2}
+\contentsline {section}{\numberline {7.1}Discussion finale}{31}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Authentification}{28}{chapter.8}
+\contentsline {section}{\numberline {7.2}Pour aller plus loin}{31}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {9}Symboles et abr\IeC {\'e}viations}{29}{chapter.9}
+\contentsline {chapter}{\numberline {8}Authentification}{34}{chapter.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {9}Symboles et abr\IeC {\'e}viations}{35}{chapter.9}

@@ -4,7 +4,7 @@ import numpy as np
 ## PARAMETERS ##
 directory = '../data/lightpop_merged/'
 
-input_files = ['2015_portugal.tif']
+input_files = ['2015_british_islands.tif']
 
 divide_pop_by = 4
 ################

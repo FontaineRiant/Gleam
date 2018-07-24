@@ -46,6 +46,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{Antoine \textsc{Friant}}
+\lhead{La Terre de nuit vue de l'espace}
 \cfoot{\thepage}
 
 \titleformat{\chapter}{\normalfont\huge}{\bf\thechapter}{12pt}{\huge\bf}
@@ -73,7 +74,7 @@
 %----------------------------------------------------------------------------------------
 
 \textsc{\LARGE HEIG-VD}\\[1.5cm] % Name of your university/college
-\textsc{\Large Rapport intermédiaire}\\[0.5cm] % Major heading such as course name
+\textsc{\Large Travail de Bachelor}\\[0.5cm] % Major heading such as course name
 
 %----------------------------------------------------------------------------------------
 %	TITLE SECTION
@@ -162,7 +163,7 @@ Par exemple, si au cours du travail de bachelor il s'avère que la population pa
 
 \chapter{Résumé}
 
-Les techniques d'apprentissage automatique offrent de nouvelles opportunités en matière de traitement données volumineuses. Ce projet s'intéresse en particulier au images satellites de la Terre de nuit. La disponibilité d'observations récentes en font une excellente base pour les prédictions d'une intelligence artificielle.
+Les techniques d'apprentissage automatique offrent de nouvelles opportunités en matière de traitement de données volumineuses. Ce projet s'intéresse en particulier aux images satellites de la Terre de nuit. La disponibilité d'observations récentes en font une excellente base pour les prédictions d'une intelligence artificielle.
 
 Ce travail consiste à explorer ces images, ainsi que d'autres données géographiques avec lesquelles il serait possible de tirer un parallèle : la démographie, l'écologie, l'économie, etc. Une fois un type d'information choisi, il s'agit d'entraîner un réseau de neurones capable de générer une prédiction pour ces valeurs à partir d'une image satellite nocturne.
 
@@ -257,7 +258,7 @@ Ces images ont été créées en moyennant la valeur de luminosité de chaque pi
 \subsection{Grilles de population}
 Sedac \cite{sedac} met à disposition des grilles de populations pour le monde entier, sous forme de fichier GeoTIFF. Chaque "case" de 1 km$^2$ est représentée comme un pixel et contient une estimation du nombre de personnes vivant dans cette case. QGIS s'est à nouveau montré d'une grande aide pour visualiser et manipuler ces données volumineuses (exemple en figure \ref{qgis-sedac}).
 
-On remarque que la valeur de densité de population ne varie souvent pas à l'intérieur d'une sous-région. En effet, la qualité des données fournies par ces grilles est très variable selon les pays. Parmi les régions les plus détaillées on trouve les USA, l'Italie, le Portugal et le Brésil. En plus de cette disparité, il faut garder à l'esprit que ces répartitions sont les résultats de comptages qui ont eu lieu entre 2005 et 2014, puis ajustés en fonction du décompte des populations par pays. Il en résulte que les totaux de population sont fiables, mais la répartition de ces personnes à l'intérieur des territoires peut être périmée.
+On remarque que la valeur de densité de population ne varie souvent pas à l'intérieur d'une sous-région. En effet, la qualité des données fournies par ces grilles est très variable selon les pays. Parmi les régions les plus détaillées on trouve les USA, l'Italie, le Portugal et le Brésil. En plus de cette disparité, il faut garder à l'esprit que ces répartitions sont les résultats de comptages qui ont eu lieu entre 2005 et 2014 \cite{sedac}, puis ajustés en fonction du décompte des populations par pays. Il en résulte que les totaux de population sont fiables, mais la répartition de ces personnes à l'intérieur des territoires peut être périmée.
 Ces données ont été créées à partir de plusieurs mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré comme fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires, ce qui pourrait avoir comme effet d'améliorer la capacité de notre réseau de neurones à apprendre de ces données (corrélation forte).
 
 Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
@@ -529,8 +530,9 @@ Cette constatation nous permet de répartir approximativement la population pré
 \section{Réseau final}
 \label{Réseaufinal}
 
-La topologie du réseau retenu est la suivante :
-
+\begin{table}[h]
+\centering
+\caption{Topologie du réseau en version finale}
 \begin{tabular}{ l r r }
 	\hline
 	\textbf{Couche (nb de neurones)} & \textbf{Dimensions de la sortie} & \textbf{Nb de paramètres} \\
@@ -558,11 +560,14 @@ La topologie du réseau retenu est la suivante :
 	\textbf{Total} &  & 894209 \\
 	\hline
 \end{tabular}
+\label{topologie}
+\end{table}
 
-Paramètres supplémentaires :
+La topologie du réseau retenu est détaillée sur la table \ref{topologie}.
+Les paramètres supplémentaires sont les suivants :
 \begin{itemize}
 	\item La taille des filtres est 3 sur 3 pixels pour toutes les couches de convolution.
-	\item Chaque average pooling divis la largeur et la hauteur de l'image en entrée de la couchee par 2.
+	\item Chaque average pooling divise la largeur et la hauteur de l'image en entrée de la couchee par 2.
 	\item Le dropout abandonne 50\% des neurones lors des étapes d'entraînement pour éviter le surapprentissage.
 	\item L'ajustement des paramètres (rétropropagation) utilise l'algorithme Adam, et ne s'effectue que toutes les 1024 mesures. Cela permet de paralléliser les calculs efficacement pour un processeur graphique et réduit le nombre de rétropropagations à effectuer.
 	\item La fonction objectif est l'erreur quadratique moyenne. Cela permet de réduire la variance des erreurs ainsi que l'erreur absolue.
@@ -573,13 +578,219 @@ Paramètres supplémentaires :
 \end{itemize}
 
 \section{Résultats}
+\subsection{Validation croisée}
+Le résultat de la validation croisée 4-fold lors de l'entraînement sur le Brésil en 2015 est présenté dans la table \ref{k-fold}. Le pré-traitement utilisé pour la validation croisée ne génère pas d'observations qui se superposent (chaque tuile est décalée de 32 pixels de la précédente).
 
-A coups de rastercomparator et rasterstats
+\begin{table}[h]
+\centering
+\caption{Résultat de la validation croisée lors de l'entraînement sur le Brésil}
+\begin{tabular}{ l r r }
+	\hline
+	\textbf{Mesure} & \textbf{Valeur moyenne} & \textbf{Écart-type} \\
+	\hline\hline
+	Erreur quadratique moyenne & 234181700.80 & 99980235.55 \\
+	\hline
+	Erreur absolue moyenne & 2021.24 & 194.84 \\
+	\hline
+	Erreur absolue moyenne par km$^2$ & 7.9 & 0.76 \\
+	\hline
+	Somme des erreurs absolues & 19786348.86 & 1906802.05 \\
+	\hline
+\end{tabular}
+\label{k-fold}
+\end{table}
 
-La comparaisons pixel par pixel ignore ceux qui ont une valeur égale à 0 dans les deux images.
+La validation étant 4-fold, elle consiste en 4 entraînements indépendants dont les données de validation sont toujours différentes. L'écart-type indiqué dans les résultats est l'écart-type entre les 4 mesure obtenues.
 
+\subsection{Évaluation des prédictions}
+Afin d'évaluer la qualité des prédictions, on compare la prédiction avec la grille de population \cite{sedac} utilisée lors de l'entraînement, pixel par pixel, grâce au notebook rastercomparator. Cette comparaison ignore les pixels qui ont une valeur égale à 0. Cela permet d'éliminer les océans et les territoires hors frontières du calcul du coefficient de corrélation et de l'erreur moyenne. Sans cela, l'erreur serait anormalement basse.
+
+Les pays choisis pour les mesures sont des pays pour lesquelles la grille de population \cite{sedac} est la plus précise : Brésil, USA, Portugal, Italie, Iles de Bretagne. Les modèles testés sont ceux qui ont été entraînés sur le Brésil ou les USA en 2015 à cause de leur grande superficie. On tente de mettre en relation des pays dont le développement économique est vaguement proche. Les résultats sont présentés dans les tables \ref{stats-brazil-brazil} à \ref{stats-usa-britishislands}.
+
+Afin de donner des pistes pour comprendre la source des erreurs, on peut soustraire les données prédites à la grille de population. Un extrait du résultat est présenté en figure \ref{act_vs_pred}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{img/act_vs_pred.png}
+	\caption{Résultat de la soustraction de la grille de population SEDAC \cite{sedac} par la prédiction du modèle entraîné sur le Brésil en 2015. La ville représentée est Brasilia. Le blanc signifie une surestimation de la population de 500, le noir signifie une sous-estimation de la population de 500 par pixel (0.25 km$^2$).}
+	\label{act_vs_pred}
+\end{figure}
+
+\begin{table}
+	\centering
+	\caption{Modèle entraîné sur le Brésil en 2015, prédiction du Brésil en 2015}
+	\begin{tabular}{ l r }
+		\hline
+		\textbf{Mesure} & \textbf{Valeur} \\
+		\hline\hline
+		Population totale réelle & 204777020 \\
+		\hline
+		Population totale prédite & 203754690 \\
+		\hline
+		Augmentation du total & -1022336 \\
+		\hline
+		Augmentation du total (\%) & -0.49924\% \\
+		\hline
+		Erreur absolue moyenne par km$^2$ & 16.80172 \\
+		\hline
+		Corrélation de Pearson & 0.69289 \\
+		\hline
+	\end{tabular}
+	\label{stats-brazil-brazil}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Modèle entraîné sur le Brésil en 2015, prédiction du Portugal en 2015}
+	\begin{tabular}{ l r }
+		\hline
+		\textbf{Mesure} & \textbf{Valeur} \\
+		\hline\hline
+		Population totale réelle & 10074708 \\
+		\hline
+		Population totale prédite & 25155508 \\
+		\hline
+		Augmentation du total & 15080800 \\
+		\hline
+		Augmentation du total (\%) & 149.68969\% \\
+		\hline
+		Erreur absolue moyenne par km$^2$ & 139.74304 \\
+		\hline
+		Corrélation de Pearson & 0.77799 \\
+		\hline
+	\end{tabular}
+	\label{stats-brazil-portugal}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Modèle entraîné sur les USA en 2015, prédiction des USA en 2015}
+	\begin{tabular}{ l r }
+		\hline
+		\textbf{Mesure} & \textbf{Valeur} \\
+		\hline\hline
+		Population totale réelle & 319627900 \\
+		\hline
+		Population totale prédite & 306326000 \\
+		\hline
+		Augmentation du total & -13301888 \\
+		\hline
+		Augmentation du total (\%) & -4.16167\% \\
+		\hline
+		Erreur absolue moyenne par km$^2$ & 26.88018 \\
+		\hline
+		Corrélation de Pearson & 0.66294 \\
+		\hline
+	\end{tabular}
+	\label{stats-usa-usa}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Modèle entraîné sur les USA en 2015, prédiction de l'Italie en 2015}
+	\begin{tabular}{ l r }
+		\hline
+		\textbf{Mesure} & \textbf{Valeur} \\
+		\hline\hline
+		Population totale réelle & 58895960 \\
+		\hline
+		Population totale prédite & 37188820 \\
+		\hline
+		Augmentation du total & -21707140 \\
+		\hline
+		Augmentation du total (\%) & -36.85675\% \\
+		\hline
+		Erreur absolue moyenne par km$^2$ & 117.458312 \\
+		\hline
+		Corrélation de Pearson & 0.63246 \\
+		\hline
+	\end{tabular}
+	\label{stats-usa-italy}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Modèle entraîné sur les USA en 2015, prédiction du Portugal en 2015}
+	\begin{tabular}{ l r }
+		\hline
+		\textbf{Mesure} & \textbf{Valeur} \\
+		\hline\hline
+		Population totale réelle & 10074708 \\
+		\hline
+		Population totale prédite & 8911347 \\
+		\hline
+		Augmentation du total & -1163361 \\
+		\hline
+		Augmentation du total (\%) & -11.54734\% \\
+		\hline
+		Erreur absolue moyenne par km$^2$ & 59.62044 \\
+		\hline
+		Corrélation de Pearson & 0.71329 \\
+		\hline
+	\end{tabular}
+	\label{stats-usa-portugal}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Modèle entraîné sur les USA en 2015, prédiction des Iles de Bretagne en 2015}
+	\begin{tabular}{ l r }
+		\hline
+		\textbf{Mesure} & \textbf{Valeur} \\
+		\hline\hline
+		Population totale réelle & 68446010 \\
+		\hline
+		Population totale prédite & 35654788 \\
+		\hline
+		Augmentation du total & -32791220 \\
+		\hline
+		Augmentation du total (\%) & -47.90815\% \\
+		\hline
+		Erreur absolue moyenne par km$^2$ & 84.077484 \\
+		\hline
+		Corrélation de Pearson & 0.59551 \\
+		\hline
+	\end{tabular}
+	\label{stats-usa-britishislands}
+\end{table}
 
 \section{Discussion}
+La validation croisée nous donne une idée de la performance du modèle sans l'algorithme de prédiction qui reconstruit la grille complète. Le résultat est donc un seul nombre pour la population sur une tuile de 32 sur 32 pixels, ce qui représente dans ce cas une zone de 256 km$^2$. Il est important de rappeler que, lors de la validation croisée, afin que toutes les observations ne se superposent pas, le pré-traitement ne génère que le quart des tuiles qui sont à disposition lors de l'entraînement complet.
+
+Selon The World Bank \cite{theworldbank}, en 2015 le Brésil possédait 24.642 habitants par km$^2$. Notre modèle se trompe en moyenne de 7.9 habitants par km$^2$. Bien que cette erreur ne soit pas négligeable, ce résultat paraît très satisfaisant si l'on considère le jeu de données réduit, et le fait que la grille servant à l'entraînement utilise une répartition de la population datant de 2005 à 2014 \cite{sedac}. Nous n'avons malheureusement pas de moyen de savoir dans quelle proportion cette erreur est due au jeu de données vieillissant ou à la performance du réseau de neurones.
+
+Passons aux cartes générées en pleine résolution après la prédiction par un modèle bien entraîné (mais sans validation croisée). Le résultat de ces mesures (tables \ref{stats-brazil-brazil} à \ref{stats-usa-britishislands}) sont fortement dépendants de la façon dont on répartit la population prédite à l'intérieur des tuiles. Cela explique l'erreur par $km^2$ de la table \ref{stats-brazil-brazil} plus élevée que lors de la validation croisée.
+
+Comparer la population totale prédite avec la réalité peut indiquer si deux pays sont comparables, c'est-à-dire si un pays peut décemment servir de données d'entraînement pour une prédiction sur l'autre pays. Cependant, la mesure n'est pas bonne pour évaluer la qualité d'une prédiction. Le modèle cherche à estimer correctement la population d'une région de 256 km$^2$ indépendamment des autres observations. Il ne fait aucun rapprochement avec la population totale du pays, ce qui fait que de petites erreurs peuvent s'accumuler.
+
+Le modèle entraîné sur le Brésil se trompe en moyenne de 34.19 habitants par pixel, soit 139.74 par km$^2$, lorsqu'il est appliqué à l'image satellite du Portugal. C'est moins bon que le modèle entraîné sur les USA, qui se trompe de 59.62 par $km^2$. La densité de population du Portugal était de 113.072 en 2015 selon The World Bank \cite{theworldbank}. Le coefficient de corrélation plus élevé pour la prédiction du modèle entraîné sur le Brésil semble indiquer qu'il produit cependant moins de grosses erreurs. Cet exemple illustre l'importance de bien choisir les pays à comparer.
+
+De manière générale, les coefficients de corrélation sont plutôt bons. Cela laisse penser qu'il est possible d'améliorer l'algorithme de distribution de la population à l'intérieur des tuiles pour réduire l'erreur moyenne absolue.
+
+Enfin, la figure \ref{act_vs_pred} nous montre où sont les grosses erreurs. On aperçoit les routes en blanc. En effet, celles-ci émettent beaucoup de lumière sans confirmer pour autant la présence d'habitants au bord de ces routes, ce qui a pour conséquence une surestimation de la population à ces endroits.
+
+L'autre anomalie qui saut aux yeux est le bruit observé en centre ville. On trouve des pixels très noirs à côté d'autres très clairs. Ce n'est pas dû au hasard. Si l'on compare ces taches à la carte de Brasilia, on remarque que les quartiers où l'on surestime la population sont commerciaux ou riches, alors que ceux où l'on sous-estime la population sont pauvres et densément peuplés. On touche donc à la limite des informations que les images satellites nocturnes peuvent nous offrir.
+
+\section{Prédictions non validées}
+Pour exploiter ce modèle, on aimerait générer des cartes de population pour des pays qui n'en disposent pas. La Colombie est notamment intéressante, car l'apaisement du conflit contre les Forces armées révolutionnaires de Colombie pourrait provoquer un déplacement de la population hors des villes et près de la forêt Amazonienne. Bien que l'on n'en perçoive pas encore l'impact sur la luminosité émise par les habitations dans ces régions, il serait très intéressant d'observer des changements sur les années qui viennent. Notre modèle serait en mesure d'approximativement quantifier les migrations.
+
+Toutes les prédictions effectuées sont sauvegardées dans le répertoire \texttt{gleam/predictions}. Le nom des fichiers suit la convention \texttt{année et pays d'entraînement \_to\_ année et pays de la prédiction.tif}. À titre d'exemple, la figure \ref{pred_colombia_2017} représente la répartition de la population colombienne en 2017 telle que le modèle entraîné sur le Brésil en 2015 l'a prédite d'après l'image satellite de 2017. La figure \ref{pred_brazil_2017} prédit la répartition de la population brésilienne en 2017. Le blanc correspond à 0 habitants et le noir correspond à 500 habitants ou plus.
+
+À titre indicatif, la population totale prédite pour le Brésil en 2017 est 272478315 (environ 30\% de plus que la réalité), et 31904347 (environ 35\% de moins que la réalité) pour la Colombie.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{img/pred_colombia_2017.png}
+	\caption{Distribution de la population en Colombie en 2017 selon le modèle entraîné sur le Brésil en 2015.}
+	\label{pred_colombia_2017}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{img/pred_brazil_2017.png}
+	\caption{Distribution de la population au Brésil en 2017 selon le modèle entraîné sur le Brésil en 2015.}
+	\label{pred_brazil_2017}
+\end{figure}
 
 \chapter{Conclusion}
 \section{Discussion finale}
@@ -598,7 +809,7 @@ Le travail effectué, bien que ne fournissant pas de résultat exploitable, a pe
 
 \section{Pour aller plus loin}
 
-Plus de pays
+Plus de pays, identifier les paramètres (PIB, démographie, politique, ...) qui permettraient de déterminer que 2 pays se ressemblent suffisamment
 
 ajouter les images de jour
 
