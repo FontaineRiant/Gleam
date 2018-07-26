@@ -128,7 +128,7 @@ Le travail à effectuer consiste à explorer différents types de données géog
 Le TB consiste dans un premier temps à explorer les données suivantes :
 
 \begin{itemize}
-\item Images satellites noctures de la Terre,
+\item Images satellites nocturnes de la Terre,
 \item Population humaine,
 \item Population animale,
 \item Densité végétale,
@@ -163,30 +163,30 @@ Par exemple, si au cours du travail de bachelor il s'avère que la population pa
 
 \chapter{Résumé}
 
-Les techniques d'apprentissage automatique offrent de nouvelles opportunités en matière de traitement de données volumineuses. Ce projet s'intéresse en particulier aux images satellites de la Terre de nuit. La disponibilité d'observations récentes en font une excellente base pour les prédictions d'une intelligence artificielle.
+Les techniques d'apprentissage automatique offrent de nouvelles opportunités en matière de traitement de données volumineuses. Ce projet s'intéresse en particulier aux images satellites de la Terre de nuit. La disponibilité d'observations récentes en fait une excellente base pour les prédictions d'une intelligence artificielle.
 
 Ce travail consiste à explorer ces images, ainsi que d'autres données géographiques avec lesquelles il serait possible de tirer un parallèle : la démographie, l'écologie, l'économie, etc. Une fois un type d'information choisi, il s'agit d'entraîner un réseau de neurones capable de générer une prédiction pour ces valeurs à partir d'une image satellite nocturne.
 
-Le modèle ainsi entraîné est capable de prédire, par exemple, la répartition de la population en Colombie avec un résolution au quart de kilomètre carré. Cette alternative aux comptages, bien que moins fiable, est disponible dès lors que l'image satellite est publiée car la génération d'une prédiction ne prend que quelques secondes. Celle-ci sera également de résolution plus élevée et bien moins coûteuse à produire.
+Le modèle ainsi entraîné est capable de prédire, par exemple, la répartition de la population en Colombie avec une résolution au quart de kilomètre carré. Cette alternative aux comptages, bien que moins fiable, est disponible dès lors que l'image satellite est publiée, car la génération d'une prédiction ne prend que quelques secondes. Celle-ci sera également de résolution plus élevée et bien moins coûteuse à produire.
 
 \chapter{Introduction}
 \pagenumbering{arabic}
-Les produits d'imagerie satellite sont devenus abondants et largement accessibles au cours des dernières décennies. De nombreux satellites prennent des photographies de la Terre à chaque heure du jour \textit{et de la nuit}. Les observations nocturnes révèlent des caractéristiques peu évidentes de jour, parfois même cachées. Les routes apparaissent, les villes montrent leurs lumières, même les bateaux de pêche aveuglent les océans avec des projecteurs pour attirer les poissons.
+Les produits d'imagerie satellite sont devenus abondants et largement accessibles au cours des dernières décennies. De nombreux satellites prennent des photographies de la Terre chaque heure du jour \textit{et de la nuit}. Les observations nocturnes révèlent des caractéristiques peu évidentes de jour, parfois même cachées. Les routes apparaissent, les villes montrent leurs lumières, même les bateaux de pêche aveuglent les océans avec des projecteurs pour attirer les poissons.
 
-La disponibilité, la résolution et l'uniformité de la qualité de ces données contrastent fortement avec le manque de fiabilité d'autres informations géographiques utiles lors de prises de décisions importantes. Par exemple, la répartition de la population est une estimation précise en Suisse mais très approximative au Kenya. D'autres mesures intéressantes incluent : la consommation en électricité, les émissions de C0$_2$, la couverture végétale et la présence de faune. Les lumières nocturnes observées depuis l'espace donnent des indications sur chacune de ces mesures alors qu'elles peuvent manquer dans une région à une date donnée.
+La disponibilité, la résolution et l'uniformité de la qualité de ces données contrastent fortement avec le manque de fiabilité d'autres informations géographiques utiles lors de prises de décisions importantes. Par exemple, la répartition de la population est une estimation précise en Suisse, mais très approximative au Kenya. D'autres mesures intéressantes incluent : la consommation en électricité, les émissions de C0$_2$, la couverture végétale et la présence de faune. Les lumières nocturnes observées depuis l'espace donnent des indications sur chacune de ces mesures alors qu'elles peuvent manquer dans une région à une date donnée.
 
 Le but de ce projet est d'extraire autant d'informations que possible de l'imagerie satellite nocturne en utilisant l'apprentissage automatique (\textit{machine learning}) sous la forme de réseau de neurones.
 
 \chapter{Gleam}
 
-Le projet Gleam ("lueur") se présente comme un ensemble de notebooks Jupyter disponible sur GitHub à l'adresse \url{https://github.com/Bertral/Gleam}. Il contient tous les scripts écrits au cours de ce travail. Les données brutes telles que les grilles de population, images satellites, cartes des frontières et statistiques officielles ne sont pas incluses dans le projet. Il est donc de la responsabilité de l'utilisateur de les obtenir depuis leur source d'origine, ainsi que de les traiter de manière à les rendre utilisables à l'aide de logiciels GIS (tels que QGIS) et des scripts du projet Gleam.
+Le projet Gleam ("lueur") se présente comme un ensemble de notebooks Jupyter disponible sur GitHub à l'adresse \url{https://github.com/Bertral/Gleam}. Il contient tous les scripts écrits au cours de ce travail. Les données brutes telles que les grilles de population, images satellites, cartes des frontières et statistiques officielles ne sont pas incluses dans le projet en ligne. Il est donc de la responsabilité de l'utilisateur de les obtenir depuis leur source d'origine, ainsi que de les traiter de manière à les rendre utilisables à l'aide de logiciels GIS (tels que QGIS) et des scripts du projet Gleam.
 
 \section{Installation}
 Les notebooks nécessitent la version 3.7 de Python. Ils ont été testés sur Windows 10 et Archlinux, mais devraient fonctionner sur toutes les versions de Windows et Linux.
 
-Les librairies tierces \texttt{shapely}, \texttt{gdal}, \texttt{fiona} et \texttt{rasterio} sont compilées à partir de code C dans le but d'optimiser leur performance, mais cela a pour conséquence de n'être compatibles qu'avec Linux. Les utilisateurs Windows doivent donc les télécharger et les installer manuellement (\texttt{pip install nomdupackage.whl}) depuis le site de  Christoph Gohlke \cite{winlibs}, qui regroupe un grand nombre de librairies scientifiques recompilées pour Windows. Ce sont les versions "cp37" qui sont compatibles avec Python 3.7. 
+Les librairies tierces \texttt{shapely}, \texttt{gdal}, \texttt{fiona} et \texttt{rasterio} sont compilées à partir de code C dans le but d'optimiser leur performance, mais cela a pour conséquence qu'elles ne sont compatibles qu'avec Linux. Les utilisateurs Windows doivent donc les télécharger et les installer manuellement (\texttt{pip install nomdupackage.whl}) depuis le site de  Christoph Gohlke \cite{winlibs}, qui regroupe un grand nombre de librairies scientifiques recompilées pour Windows. Ce sont les versions "cp37" qui sont compatibles avec Python 3.7. 
 
-Pour installer le reste des pré-requis sur Linux et Windows, il suffit de lancer la ligne de commande \texttt{pip install -r requirements.txt} depuis la racine du projet.
+Pour installer le reste des prérequis sur Linux et Windows, il suffit de lancer la ligne de commande \texttt{pip install -r requirements.txt} depuis la racine du projet.
 
 Pour naviguer à travers les notebook sur Windows, il faut lancer la commande \texttt{python -m notebook}, ou \texttt{jupyter notebook} sur Linux.
 
@@ -199,20 +199,20 @@ Ce notebook permet de compiler des statistiques sur la luminosité émise par ch
 Cette visualisation a pour but de chercher une corrélation à exploiter lors de la création du modèle.
 
 \subsection{gleam}
-Ce notebook est l'aboutissement du projet. Il entraîne un réseau de neurone à convolutions puis fait un prédiction sur la répartition de la population sur une zone géographique à partir d'une image satellite nocturne.
+Ce notebook est l'aboutissement du projet. Il entraîne un réseau de neurones à convolutions puis fait une prédiction de la répartition de la population sur une zone géographique à partir d'une image satellite nocturne.
 
 \subsection{rastercomparator}
-Ce notebook regroupe différentes manières de comparer deux fichiers GeoTIFF de même emprise : carte des différences par pixel, coefficient de corrélation et différence entre la somme des pixels. Il est utile pour évaluer la qualité d'une prédiction ou observer l'évolution d'une carte d'une année à l'autre.
+Ce notebook regroupe différentes manières de comparer deux fichiers GeoTIFF de même emprise : carte des différences par pixel, coefficient de corrélation et différence entre les sommes de pixels. Il est utile pour évaluer la qualité d'une prédiction ou observer l'évolution d'une carte d'une année à l'autre.
 
 \subsection{scraper}
-Ce script télécharge des images satellite fragmentées au format PNG et les assemble pour recréer des images globales. Comme le format GeoTIFF est largement supérieur au format PNG pour le travail à effectuer, ce notebook n'a pas servi pour le reste du projet.
+Ce script télécharge des images satellites fragmentées au format PNG et les assemble pour recréer des images globales. Comme le format GeoTIFF est largement plus adapté que le format PNG pour le travail à effectuer, ce notebook n'a pas servi pour le reste du projet.
 
 \subsection{viirs\_extractor}
-Ce script répond au besoin spécifique d'extraire les archives volumineuses  de la NOAA \cite{noaa-viirs} contenant des image satellites haute résolution. Puis, il calcule une médiane annuelle pour chaque pixel des images mensuelles afin d'en éliminer les valeurs atypiques dues à l'absence d'observations sans nuages ou bruit.
+Ce script répond au besoin spécifique d'extraire les archives volumineuses  de la NOAA \cite{noaa-viirs} contenant des images satellites haute résolution. Puis, il calcule une médiane annuelle pour chaque pixel des images mensuelles afin d'en éliminer les valeurs atypiques dues à l'absence occasionnelle d'observations sans nuages ou bruit.
 
 \chapter{Exploration des données}
 \section{Jeux de données}
-\subsection{Images satellite}
+\subsection{Images satellites}
 \subsubsection{NASA Worldview}
 La première source de données explorée est l'application "Worldview" de la NASA \cite{nasa-worldview}. Elle permet de visionner un grand nombre d'images satellite composites sur un globe en trois dimensions (voir figure \ref{nasa-worldview-screenshot}). Parmi les jeux de données disponibles sont trois jeux d'images nocturnes.
 
@@ -228,7 +228,7 @@ Le premier jeu de données est une série d'images composites capturées par le 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/worldview_clouds.JPG}
-	\caption{Image satellite quotidienne servie par NASA Worldview \cite{nasa-worldview}, représentant la Grande Bretagne et son climat nuageux.}
+	\caption{Image satellite quotidienne servie par NASA Worldview \cite{nasa-worldview}, représentant la Grande-Bretagne et son climat nuageux.}
 	\label{nasa-worldview-daily}
 \end{figure}
 
@@ -248,18 +248,19 @@ Les deux autres jeux de données nocturnes sont des images composites : des clic
 	\label{nasa-worldview-tiles}
 \end{figure}
 
-Le script Python utilisé se trouve dans le notebook \texttt{scraper} et nécessite l'installation de la librarie Pillow pour le traitement des images, ainsi qu'urllib pour le téléchargement en soi. Son exécution peut demander plus d'une heure pour le téléchargement (vitesse limitée par le serveur), et plus de 4 Go de RAM pour l'assemblage des tuiles.
+Le script Python utilisé se trouve dans le notebook \texttt{scraper} et nécessite l'installation de la librairie Pillow pour le traitement des images, ainsi qu'urllib pour le téléchargement en soi. Son exécution peut demander plus d'une heure pour le téléchargement (vitesse limitée par le serveur), et plus de 4 Go de RAM pour l'assemblage des tuiles.
 
 \subsubsection{Agence américaine d'observation océanique et atmosphérique}
-La source d'images satellite retenue pour la suite du travail est celle de l'Agence américaine d'observation océanique et atmosphérique (abrégé NOAA). Des images satellite nocturnes composites ("Average Lights X Pct") sont disponibles pour les années 1992 à 2013 \cite{noaa} (1km par pixel, unités arbitraire de 0 à 63) et 2012 à 2018 \cite{noaa-viirs} (mensuelles, 500m par pixel, radiance en nanoWatts/cm$^2$/sr), une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte sur autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS. Il s'agit en réalité des mêmes clichés fournis par Worldview (et Google Earth), mais plus nombreux et dans un format bien plus exploitable.
+La source d'images satellites retenue pour la suite du travail est celle de l'Agence américaine d'observation océanique et atmosphérique (abrégé NOAA). Des images satellite nocturnes composites ("Average Lights X Pct") sont disponibles pour les années 1992 à 2013 \cite{noaa} (1km par pixel, unité arbitraire de 0 à 63) et 2012 à 2018 \cite{noaa-viirs} (mensuelles, 500m par pixel, radiance en nanowatts/cm$^2$/sr), une période suffisante pour observer des changements depuis l'espace. De plus, ces données sont disponibles en format GeoTIFF, qui contient les informations géographiques nécessaires pour superposer cette carte sur une autre. Il est donc possible d'explorer et manipuler ces cartes à l'aide de logiciels libres tels que QGIS. Il s'agit en réalité des mêmes clichés fournis par Worldview (et Google Earth), mais plus nombreux et dans un format bien plus exploitable.
 
 Ces images ont été créées en moyennant la valeur de luminosité de chaque pixel sur une année, en ignorant les pixels couverts par des nuages, et en multipliant cette moyenne par la fréquence de détection de lumière sur le pixel au cours de l'année. Les images mensuelles de 2012 à 2018, en revanche, possèdent des pixels pour lesquels il n'y a pas d'observation sans nuages ou lumière parasite. Pour éliminer ces valeurs atypiques, le notebook \texttt{viirs\_extractor} créé une carte compilant la médiane annuelle de chaque pixel.
 
 \subsection{Grilles de population}
-Sedac \cite{sedac} met à disposition des grilles de populations pour le monde entier, sous forme de fichier GeoTIFF. Chaque "case" de 1 km$^2$ est représentée comme un pixel et contient une estimation du nombre de personnes vivant dans cette case. QGIS s'est à nouveau montré d'une grande aide pour visualiser et manipuler ces données volumineuses (exemple en figure \ref{qgis-sedac}).
+Le Socioeconomic Data and Applications Center (SEDAC) \cite{sedac} met à disposition des grilles de populations pour le monde entier, sous forme de fichier GeoTIFF. Chaque "case" de 1 km$^2$ est représentée comme un pixel et contient une estimation du nombre de personnes vivant dans cette case. QGIS s'est à nouveau montré d'une grande aide pour visualiser et manipuler ces données volumineuses (exemple en figure \ref{qgis-sedac}).
 
-On remarque que la valeur de densité de population ne varie souvent pas à l'intérieur d'une sous-région. En effet, la qualité des données fournies par ces grilles est très variable selon les pays. Parmi les régions les plus détaillées on trouve les USA, l'Italie, le Portugal et le Brésil. En plus de cette disparité, il faut garder à l'esprit que ces répartitions sont les résultats de comptages qui ont eu lieu entre 2005 et 2014 \cite{sedac}, puis ajustés en fonction du décompte des populations par pays. Il en résulte que les totaux de population sont fiables, mais la répartition de ces personnes à l'intérieur des territoires peut être périmée.
-Ces données ont été créées à partir de plusieurs mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré comme fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires, ce qui pourrait avoir comme effet d'améliorer la capacité de notre réseau de neurones à apprendre de ces données (corrélation forte).
+On remarque que la valeur de densité de population ne varie souvent pas à l'intérieur d'une sous-région. En effet, la qualité des données fournies par ces grilles est très variable selon les pays. Parmi les régions les plus détaillées, on trouve les USA, l'Italie, le Portugal et le Brésil. En plus de cette disparité, il faut garder à l'esprit que ces répartitions sont les résultats d'études qui ont eu lieu entre 2005 et 2014 \cite{sedac}, puis ajustés en fonction du décompte des populations par pays. Il en résulte que les totaux de population sont fiables, mais la répartition de ces personnes à l'intérieur des territoires peut être périmée.
+
+Ces données ont été créées à partir de multiples mesures lorsque le décompte de la population pour une sous-région n'a pas été considéré comme fiable. Les images satellites font d'ailleurs partie de ces mesures supplémentaires, ce qui pourrait avoir comme effet d'améliorer la capacité de notre réseau de neurones à apprendre de ces données (corrélation forte).
 
 Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 
@@ -270,17 +271,17 @@ Ces cartes sont disponibles pour les années 2000, 2005, 2010, 2015 et 2020.
 	\label{qgis-sedac}
 \end{figure}
 
-\subsection{Pays}
-Les grilles de données globales sont difficiles à créer, il n'en existe donc pas pour tous les types et toutes les dates. Afin de contourner ce problème, il y a des outils pour combiner des grilles (ici : l'image satellite) avec des données vectorielles telles que les frontières des pays. L'outil utilisé ici est la librairie Python \texttt{rasterstats}.
+\subsection{Statistiques nationales}
+Les grilles de données globales sont difficiles à créer, il n'en existe donc pas de tous les types et toutes les dates. Afin de contourner ce problème, il y a des outils pour combiner des grilles (ici : l'image satellite) avec des données vectorielles telles que les frontières des pays. L'outil utilisé par le notebook \texttt{country\_stats} est la librairie Python \texttt{rasterstats}.
 
-Le jeu de données "Admin 0 - Countries" de Natural Earth \cite{naturalearthdata} contient les frontières des pays actuelles, ainsi que des méta-données sur chacun de ces pays (population estimée, indice de développement, différentes appellations et abréviations, etc.). En cas de conflits ou ambiguïté politique sur les frontières, c'est le pays qui contrôle le terrain qui est marqué comme souverain. Voici à quoi ressemblent les méta-données pour la Tunisie :\\
+Le jeu de données "Admin 0 - Countries" de Natural Earth \cite{naturalearthdata} contient les frontières des pays actuelles, ainsi que des métadonnées sur chacun de ces pays (population estimée, indice de développement, différentes appellations et abréviations, etc.). En cas de conflits ou ambiguïtés politiques sur les frontières, c'est le pays qui contrôle le terrain qui est marqué comme souverain. Voici à quoi ressemblent les métadonnées pour la Tunisie :\\
 \begin{minipage}[t]{1.0\textwidth}
 			{('scalerank', 0), ('featurecla', 'Admin-0 country'), ('LABELRANK', 3.0), ('SOVEREIGNT', 'Tunisia'), ('SOV\_A3', 'TUN'), ('ADM0\_DIF', 0.0), ('LEVEL', 2.0), ('TYPE', 'Sovereign country'), ('ADMIN', 'Tunisia'), ('ADM0\_A3', 'TUN'), ('GEOU\_DIF', 0.0), ('GEOUNIT', 'Tunisia'), ('GU\_A3', 'TUN'), ('SU\_DIF', 0.0), ('SUBUNIT', 'Tunisia'), ('SU\_A3', 'TUN'), ('BRK\_DIFF', 0.0), ('NAME', 'Tunisia'), ('NAME\_LONG', 'Tunisia'), ('BRK\_A3', 'TUN'), ('BRK\_NAME', 'Tunisia'), ('BRK\_GROUP', None), ('ABBREV', 'Tun.'), ('POSTAL', 'TN'), ('FORMAL\_EN', 'Republic of Tunisia'), ('FORMAL\_FR', None), ('NAME\_CIAWF', 'Tunisia'), ('NOTE\_ADM0', None), ('NOTE\_BRK', None), ('NAME\_SORT', 'Tunisia'), ('NAME\_ALT', None), ('MAPCOLOR7', 4.0), ('MAPCOLOR8', 3.0), ('MAPCOLOR9', 3.0), ('MAPCOLOR13', 2.0), ('POP\_EST', 11403800.0), ('POP\_RANK', 14.0), ('GDP\_MD\_EST', 130800.0), ('POP\_YEAR', 2017.0), ('LASTCENSUS', 2004.0), ('GDP\_YEAR', 2016.0), ('ECONOMY', '6. Developing region'), ('INCOME\_GRP', '3. Upper middle income'), ('WIKIPEDIA', -99.0), ('FIPS\_10\_', 'TS'), ('ISO\_A2', 'TN'), ('ISO\_A3', 'TUN'), ('ISO\_A3\_EH', 'TUN'), ('ISO\_N3', '788'), ('UN\_A3', '788'), ('WB\_A2', 'TN'), ('WB\_A3', 'TUN'), ('WOE\_ID', 23424967.0), ('WOE\_ID\_EH', 23424967.0), ('WOE\_NOTE', 'Exact WOE match as country'), ('ADM0\_A3\_IS', 'TUN'), ('ADM0\_A3\_US', 'TUN'), ('ADM0\_A3\_UN', -99.0), ('ADM0\_A3\_WB', -99.0),	 ('CONTINENT', 'Africa'), ('REGION\_UN', 'Africa'), ('SUBREGION', 'Northern Africa'), ('REGION\_WB', 'Middle East \& North Africa'), ('NAME\_LEN', 7.0), ('LONG\_LEN', 7.0), ('ABBREV\_LEN', 4.0), ('TINY', -99.0), ('HOMEPART', 1.0), ('MIN\_ZOOM', 0.0), ('MIN\_LABEL', 3.0), ('MAX\_LABEL', 8.0)}
 \end{minipage}\\
 
-Le notebook country\_stats superpose ces données vectorielles à l'image satellite pour ajouter à chaque pays sa luminosité moyenne sur une échelle de 0 à 63 ainsi que l'écart-type de luminosité par pixel. Puis ces données sont enregistrées dans le fichier stats.pickle pour être utilisées plus tard.
+Le notebook \texttt{country\_stats} superpose ces données vectorielles à l'image satellite pour ajouter à chaque pays sa luminosité moyenne ainsi que l'écart-type de luminosité par pixel. Puis ces données sont enregistrées dans le fichier \texttt{stats.pickle} pour être utilisées plus tard.
 
-Grâce à cette information sur la luminosité perçue par pays, on peut faire un parallèle avec une grande variété de données, telles que le produit intérieur brut (GDP), la consommation en énergie, le niveau de développement, l'indice économique, les émissions de C0$_2$, etc.
+Grâce à cette information sur la luminosité perçue par pays, on peut faire un parallèle avec une grande variété de données nationales, telles que le produit intérieur brut (GDP), la consommation en énergie, le niveau de développement, l'indice économique, les émissions de C0$_2$, etc.
 
 La source utilisée pour les données de population par pays et par année vient du site du Département des Affaires Économiques et Sociales des Nations Unies \cite{un-wpp}, plus précisément de la feuille Excel "Total Population - Both Sexes" de 2017.
 
@@ -289,14 +290,14 @@ La source de données pour le produit intérieur brut en USD par année est four
 Les données sur la consommation en électricité en millions de kWh par pays et par année sont tirées de \url{http://data.un.org/Data.aspx?d=EDATA&f=cmID%3AEL} (données issues de la Division Statistique des Nations Unies, mises à jour en janvier 2018). Le filtre "Electricity - Final energy consumption" a été utilisé pour ne garder que la consommation totale, sans les nombreux détails proposés par la base de données sur l'usage de l'électricité.
 
 \section{Recherche de corrélation}
-\subsection{Pays}
-La superposition de deux grilles (population et image satellite) de dimensions différentes n'est pas évidente, c'est pourquoi les premières données à avoir été mises en parallèles dans ce travail sont la population par pays \cite{un-wpp}, le produit intérieur brut \cite{theworldbank}, et la luminosité totale du pays perçue depuis l'espace (extraite par script Python (notebook country\_stats) à partir des vecteurs de frontières de Natural Earth \cite{naturalearthdata} et des images de la NOAA \cite{noaa}).
+\subsection{Statistiques nationales}
+La superposition de deux grilles (population et image satellite) de dimensions différentes n'est pas triviale, c'est pourquoi les premières données à avoir été mises en parallèle dans ce travail sont la population par pays \cite{un-wpp}, le produit intérieur brut \cite{theworldbank}, et la luminosité totale du pays perçue depuis l'espace (extraite par script Python (notebook country\_stats) à partir des vecteurs de frontières de Natural Earth \cite{naturalearthdata} et des images de la NOAA \cite{noaa}).
 
-Pour chaque année disponible de 1992 à 2013, il est donc possible de dessiner pour la majorité des pays les histogrammes de luminosité, population et PIB (examples en figures \ref{sum_France}, \ref{sum_China}, \ref{sum_Japan} et \ref{sum_Armenia}). Cette représentation n'est pas idéale car l'échelle n'est pas constante entre les pays. Ce qui apparait comme une grande variation de luminosité peut ne pas en être du tout. Certains pays ne portent pas exactement le même nom dans tous les jeux de données, ils sont donc mis de côté dans les résultats.
+Pour chaque année disponible de 1992 à 2013, il est donc possible de dessiner pour la majorité des pays les histogrammes de luminosité, population et PIB (exemples en figures \ref{sum_France}, \ref{sum_China}, \ref{sum_Japan} et \ref{sum_Armenia}). Cette représentation n'est pas idéale, car l'échelle n'est pas constante entre les pays. Ce qui apparait comme une grande variation de luminosité peut ne pas en être du tout. Certains pays ne portent pas exactement le même nom dans tous les jeux de données, ils sont donc mis de côté dans les résultats.
 
-La figure \ref{sum_France} est typique des résultats obtenus. Elle laisse présager une forte corrélation entre les trois données observées. Cependant, la figure \ref{sum_China} soulève déjà des doutes : la population croît de façon linéaire, mais le PIB et la lumière perçue augmentent de plus en plus vite. Les graphes du Japon (figure \ref{sum_Japan}) semblent indiquer que la luminosité suit le PIB également lorsque ce dernier diminue. Enfin le cas de l'Arménie (figure \ref{sum_Armenia}) nous pousse à croire que le PIB a une corrélation plus forte que la population avec la luminosité.
+La figure \ref{sum_France} est typique des résultats obtenus. Elle laisse présager une forte corrélation entre les trois données observées. Cependant, la figure \ref{sum_China} soulève déjà des doutes : la population croît de façon linéaire, mais le PIB et la lumière perçue augmentent de plus en plus vite. Les graphes du Japon (figure \ref{sum_Japan}) semblent indiquer que la luminosité suit le PIB également lorsque ce dernier diminue. Enfin, le cas de l'Arménie (figure \ref{sum_Armenia}) nous pousse à croire que le PIB a une corrélation plus forte que la population avec la luminosité.
 
-Jusqu'ici, rien n'est confirmé. Nous ne possédons que des observations par pays sur des échelles variables qui sont regroupées par pays, ce qui représente une résolution plutôt basse. Sans parler de fait que 320 pays sur 21 années n'est pas une quantité de données acceptable pour entraîner un réseau de neurones.
+Jusqu'ici, rien n'est confirmé. Nous ne possédons que d'observations par pays sur des échelles variables, ce qui représente un niveau de détail très bas. Sans parler du fait que 320 pays sur 21 années ne sont pas une quantité de données acceptable pour entraîner un réseau de neurones (6720 observations).
 
 \begin{figure}
 	\centering
@@ -328,9 +329,9 @@ Jusqu'ici, rien n'est confirmé. Nous ne possédons que des observations par pay
 	\label{sum_Armenia}
 \end{figure}
 
-Il est également possible de générer des nuages de points comparant la lumière émise et, au choix, l'énergie consommée, la population du pays ou le PIB, et de colorer ces points par indice de développement économique (tiré des données vectorielles Natural Earth \cite{naturalearthdata}). Ces graphes sont générés grâce au notebook country\_stats.
+Il est également possible de générer des nuages de points comparant la lumière émise et, au choix, l'énergie consommée, la population du pays ou le PIB, et de colorer ces points par indice de développement économique (tiré des données vectorielles Natural Earth \cite{naturalearthdata}). Tous ces graphes sont générés grâce au notebook \texttt{country\_stats}.
 
-Le premier de ces nuages de points compare la luminosité et la population de 2013 pour chaque pays (figure \ref{country_lightpop_scatter}). On observe immédiatement qu'il existe une corrélation. Son coefficient de Pearson est 0.56. Il est très important de constater que cette corrélation n'apparaît que lorsque l'échelle est logarithmique, il faudra donc retenir que cette relation n'est pas linéaire. On ne peut pas encore déterminer s'il y a une relation directe, ou si ces deux variables sont simplement corrélées à la taille du territoire. En effet, on ne fait que sommer la population et la quantité de lumière émise, on ne calcule pas de moyenne par pays.
+Le premier de ces nuages de points compare la luminosité et la population de 2013 pour chaque pays (figure \ref{country_lightpop_scatter}). On observe immédiatement qu'il existe une corrélation. Son coefficient de Pearson est 0.56. Il est très important de constater que cette corrélation n'apparait que lorsque l'échelle est logarithmique, il faudra donc retenir que cette relation n'est pas directement linéaire. On ne peut pas encore déterminer s'il y a une relation directe, ou si ces deux variables sont simplement corrélées à la taille du territoire. En effet, on ne fait que sommer la population et la quantité de lumière émise, on ne calcule pas de moyennes par pays.
 Sans surprise, on voit également que les pays ayant un index économique élevé émettent plus de lumière que d'autres pays à population équivalente.
 
 \begin{figure}
@@ -340,7 +341,7 @@ Sans surprise, on voit également que les pays ayant un index économique élev�
 	\label{country_lightpop_scatter}
 \end{figure}
 
-Le deuxième graphe généré est beaucoup plus intéressant car il compare le produit intérieur brut de chaque pays avec leur émission de lumière (figure \ref{country_gdppop_scatter}). On observe une forte corrélation, dont le coefficient de Pearson est 0.819.
+Le deuxième graphe généré est beaucoup plus intéressant, car il compare le produit intérieur brut de chaque pays avec leur émission de lumière (figure \ref{country_gdppop_scatter}). On observe une forte corrélation, dont le coefficient de Pearson est 0.819.
 Naturellement, l'indice de développement économique est très corrélé avec le PIB (\textit{GDP} en Anglais).
 
 \begin{figure}
@@ -364,12 +365,12 @@ Une autre comparaison est possible avec la consommation en électricité, illust
 Après avoir tenté d'écrire un script Python pour superposer deux grilles de dimensions différentes, il s'est avéré que l'application QGIS est capable d'effectuer cette opération. Il suffit de :
 
 \begin{itemize}
-	\item Ouvrir les grilles avec QGIS : population et image satellite. Elles doivent apparaitre dans la liste des couches.
+	\item Ouvrir les grilles avec QGIS : population et image satellite. Elles doivent apparaitre dans la liste des couches du projet.
 	\item Dans la barre d'outils, choisir "Raster" $\rightarrow$ Divers $\rightarrow$ Fusionner.
 	\item Cocher l'option "Placer chaque fichier en entrée dans une bande séparée." puis lancer la fusion "Run in Background".
 \end{itemize}
 
-La grille résultante contient donc environ 800 millions de pixels (possédant chacun une valeur de population et de luminosité) qui sont potentiellement autant de données d'entraînement pour chaque année disponible (2000, 2005, 2010, qui correspondent aux dates des grilles de population DMSP-OLS \cite{noaa}). Après avoir ajusté ses propriétés d'affichage et inversé les couleurs, on obtient la figure \ref{lightpop_2000}. Le bleu ciel correspond à la lumière visible depuis l'espace, le rose la population (sur une échelle de 1 à 1000 habitants par km$^2$). Le bleu foncé correspond au chevauchement des deux couleurs. On peut déjà observer que, si la luminosité ne suit pas l'évolution de la population dans le temps à l'échelle d'un pays, elle est tout de même concentrée géographiquement sur les points les plus peuplés.
+La grille résultante contient donc environ 800 millions de pixels (possédant chacun une valeur de population et de luminosité) qui sont potentiellement autant de données d'entraînement pour chaque année disponible (2000, 2005, 2010, qui correspondent aux dates des grilles de population et de images DMSP-OLS \cite{noaa}). Après avoir ajusté ses propriétés d'affichage et inversé les couleurs, on obtient la figure \ref{lightpop_2000}. Le bleu ciel correspond à la lumière visible depuis l'espace, le rose la population (sur une échelle de 1 à 1000 habitants par km$^2$). Le bleu foncé correspond au chevauchement des deux couleurs. On peut déjà observer que, si la luminosité ne suit pas l'évolution de la population dans le temps à l'échelle d'un pays, elle est tout de même concentrée géographiquement sur les points les plus peuplés.
 
 
 \begin{figure}
@@ -379,7 +380,7 @@ La grille résultante contient donc environ 800 millions de pixels (possédant c
 	\label{lightpop_2000}
 \end{figure}
 
-La superposition des grilles de population (1 pixel par km) avec un image satellite issue de VIIRS \cite{noaa-viirs} dont la résolution est 4 fois plus élevée. Les outils de traitement de cartes on tendance à augmenter la résolution de la grille de population en utilisant la méthode du plus proche voisin. Chaque pixel donne donc correctement la densité de population par kilomètre carré, mais la population totale est multipliée par 4. La figure \ref{upsampling} illustre ce problème. Pour corriger cela, il est nécessaire d'ajuster la population par pixel en la divisant par 4. C'est le rôle du script \texttt{gleam/rescale\_pop.py} (attention à ajuster les constantes avant de le lancer).
+La superposition des grilles de population (1 pixel par km) avec une image satellite issue de VIIRS \cite{noaa-viirs} dont la résolution est 4 fois plus élevée pose problème. Les outils de traitement de cartes ont tendance à augmenter la résolution de la grille de population en utilisant la méthode du plus proche voisin. Chaque pixel donne donc correctement la densité de population par kilomètre carré, mais la population totale est multipliée par 4. La figure \ref{upsampling} illustre ce problème. Pour corriger cela, il est nécessaire d'ajuster la population par pixel en la divisant par 4. C'est le rôle du script \texttt{gleam/rescale\_pop.py} (attention à ajuster les valeurs des constantes avant de l'exécuter).
 
 \begin{figure}
 	\centering
@@ -388,7 +389,7 @@ La superposition des grilles de population (1 pixel par km) avec un image satell
 	\label{upsampling}
 \end{figure}
 
-Si on pose chaque pixel sur un nuage de point dont les axes sont la luminosité et la population, on obtient la figure \ref{lightpop_scatter}. La figure \ref{2015_brazil_light_vs_pop} représente uniquement le Brésil en 2015. On constate qu'il sera très difficile de deviner la valeur de population à partir de l'intensité lumineuse d'un seul pixel. Cela nous oriente donc plutôt dans la direction d'un réseau de neurones à convolutions, qui considère les pixels par groupes.
+Si l'on pose chaque pixel sur un nuage de points dont les axes sont la luminosité et la population, on obtient la figure \ref{lightpop_scatter}. La figure \ref{2015_brazil_light_vs_pop} représente uniquement le Brésil en 2015. On constate qu'il sera très difficile de deviner la valeur de population à partir de l'intensité lumineuse d'un seul pixel. Cela nous oriente donc plutôt dans la direction d'un réseau de neurones à convolutions, qui considère les pixels par groupes. Le coefficient de corrélation entre luminosité et population au Brésil est 0.72625. On considérera donc qu'une prédiction est plutôt bonne si son coefficient de corrélation atteint cette valeur lorsqu'elle est comparée à la grille de population.
 
 \begin{figure}
 	\centering
@@ -407,7 +408,7 @@ Si on pose chaque pixel sur un nuage de point dont les axes sont la luminosité 
 Enfin, les données vectorielles de Natural Earth \cite{naturalearthdata} peuvent nous permettre d'isoler précisément un pays du reste de la grille :
 \begin{itemize}
 	\item Ouvrir la grille et le fichier vectoriel des pays avec QGIS dans le même projet.
-	\item Cliquer sur la couche vectorielle, puis sélectionner sur la carte le pays à isoler (avec l'outil de sélection d'entité).
+	\item Cliquer sur la couche vectorielle, puis sélectionner sur la carte le pays à isoler (avec l'outil de sélection d'entités).
 	\item Dans la barre d'outils, sous "Raster", choisir "Extraction" puis "Découper un raster selon une couche masque".
 	\item Définir la grille comme couche source, et la couche vectorielle comme masque.
 	\item Cocher "Entité(s) sélectionnée(s) uniquement.
@@ -420,16 +421,16 @@ Python est un langage largement utilisé pour manipuler des données et faire de
 
 Keras est une librairie Python open source permettant le prototypage rapide de réseaux de neurones et peut fonctionner au-dessus de TensorFlow (open source et développé par Google), CNTK ou Theano. Une fonctionnalité très attractive de TensorFlow est l'exploitation automatique du processeur graphique s'il est disponible. En effet, ces processeurs sont très performants pour l'apprentissage automatique, car c'est un travail hautement parallélisable.
 
-Afin d'activer l'utilisation d'un GPU Nvidia par Tensorflow sur Windows 10, il faut installer la librairie tensorflow-gpu, le CUDA Toolkit de Nvidia en version 9.0 et le SDK cuDNN (\textit{CUDA Deep Neural Network library}) de Nvidia en version 7.0 (instructions détaillées sur \url{https://www.tensorflow.org/install/install_linux}).
+Afin d'activer l'utilisation d'un GPU Nvidia par Tensorflow sur Windows 10, il faut installer la librairie tensorflow-gpu, le CUDA Toolkit de Nvidia en version 9.0 et le SDK cuDNN (\textit{CUDA Deep Neural Network library}) de Nvidia en version 7.0 (instructions détaillées sur \url{https://www.tensorflow.org/install/}).
 
 \section{Réseau de neurones}
-Pour commencer à développer le réseau de neurones, on commencera par tenter de prédire la population d'une petite région à partir de l'image satellite de l'année 2005, en entraînant la machine sur celle de 2000 et la grille de population correspondante \cite{sedac}.
+Pour commencer à développer le réseau de neurones, on commencera par tenter de prédire la population d'une petite région à partir de l'image satellite de l'année 2005, en entraînant la machine sur celle de 2000 \cite{noaa} et la grille de population correspondante \cite{sedac}.
 
 Comme on a pu observer que la prédiction à partir d'un pixel isolé n'est pas réaliste, on aimerait prendre en compte les valeurs des pixels voisins. En effet, s'il y a beaucoup de pixels proches illuminés, il y a de meilleures chances pour que la région soit densément peuplée que si un seul pixel est illuminé. De plus, si le réseau de neurones peut reconnaître les formes, il sera en mesure de différencier le centre et la périphérie d'une ville, ainsi que des routes ou villages isolés.
 
 Le système qui répond à ces exigences est le réseau de neurones à convolutions. Cependant, alors que l'usage habituel d'un tel réseau sert à la classification de données, on a besoin ici d'obtenir un nombre réel. Il s'agit d'adapter le système pour faire de la régression, ce que l'on fait lorsqu'on compte le nombre de voitures sur un parking par exemple. Les excellents articles \textit{Regression Tutorial with the Keras Deep Learning Library in Python} \cite{blog-reg}, \textit{Crash Course in Convolutional Neural Networks for Machine Learning} \cite{blog-cra}, \textit{Handwritten Digit Recognition using Convolutional Neural Networks in Python with Keras} \cite{blog-han}, \textit{Object Recognition with Convolutional Neural Networks in the Keras Deep Learning Library} \cite{blog-obj} et \textit{Evaluate the Performance Of Deep Learning Models in Keras} \cite{blog-eva} de Jason Brownlee ont été d'une grande aide pour la compréhension des bonnes pratiques et l'utilisation de Keras.
 
-Avant de commencer l'entraînement, on découpe l'image satellite nocturne en tuiles de 32 sur 32 pixels (1024 km$^2$). Chacune de ces tuiles sera considéré comme une observation à donner en entrée du modèle. La sortie sera une valeur réelle correspondant au nombre d'habitants dans la zone donnée en entrée.
+Avant de commencer l'entraînement, on découpe l'image satellite nocturne en tuiles de 32 sur 32 pixels (1024 km$^2$). Chacune de ces tuiles sera considérée comme une observation à donner en entrée du modèle. La sortie sera une valeur réelle correspondant au nombre d'habitants dans la zone donnée en entrée.
 
 \section{Première topologie}
 
@@ -443,6 +444,7 @@ Avant de commencer l'entraînement, on découpe l'image satellite nocturne en tu
 La topologie du réseau (figure \ref{net1}) s'inspire grossièrement du travail effectué par l'Arnhold Institute for Global Health \cite{netpop-article}, qui consiste à estimer les populations de petites régions à partir d'images satellite de jour \textit{et} de nuit. La première version de notre réseau de neurones en utilise une variante très allégée. 
 
 Les couches sont définies comme suit :
+
 \begin{itemize}
 	\item Convolution de 32 filtres, chaque kernel fait 3x3 pixels, fonction d'activation ReLU,
 	\item Max pooling pour diviser par 2 la largeur et la hauteur de la tuile,
@@ -453,7 +455,7 @@ Les couches sont définies comme suit :
 	\item Couche dense d'un seul neurone, qui correspond à la sortie du modèle.
 \end{itemize}
 
-L'optimiseur utilisé est Adam. C'est généralement un bon choix par défaut grâce à sa performance en terme de vitesse de calcul, et à sa capacité à répondre aux besoins d'un grand nombre de problèmes. Le \textit{learning rate} choisi (après quelques essais) est 0.001. Enfin, la fonction objectif à optimiser est la moyenne des erreurs au carré.
+L'optimiseur utilisé est Adam. C'est généralement un bon choix par défaut grâce à sa performance en terme de vitesse de calcul, et sa capacité à répondre aux besoins d'un grand nombre de problèmes. Le \textit{learning rate} choisi (après quelques essais) est 0.001. Enfin, la fonction objectif à optimiser est la moyenne des erreurs au carré.
 
 \section{Premiers résultats}
 
@@ -475,15 +477,15 @@ Les résultats suivants ont été obtenus en entraînant le modèle sur une rég
 
 Les figures \ref{mae1} et \ref{mse1} présentent respectivement l'évolution des moyennes des erreurs absolues et des erreurs au carré pendant l'entraînement du modèle sur 100 itérations.
 
-Les résultats du test sur l'Amérique en 2005 sont plutôt médiocres. La fonction objectif (moyenne des erreurs au carré) vaut $5381938110.04$, et la moyenne des erreurs absolues vaut $26599.64$. Ce qui veut dire que sur une région de 1024 km$^2$, la prédiction du modèle se trompe en moyenne de $26599.64$ habitants. C'est significativement plus mauvais que les résultats obtenus sur le jeu d'entraînement. Cela signifie que le modèle apprend car l'erreur diminue lors de l'entraînement, mais il n'apprend rien de généralisable. C'est ce qui s'appelle du surapprentissage. De plus, une erreur moyenne de $26599.64$ par tuiles représente une erreur moyenne d'environ 26 habitants par kilomètre carré. À titre de comparaison, la densité de population du monde est d'environ $7000000000/500000000 = 14$ habitants par kilomètre carré, océans compris.
+Les résultats du test sur l'Amérique en 2005 sont plutôt médiocres. La fonction objectif (moyenne des erreurs au carré) vaut $5381938110.04$, et la moyenne des erreurs absolues vaut $26599.64$. Ce qui veut dire que sur une région de 1024 km$^2$, la prédiction du modèle se trompe en moyenne de $26599.64$ habitants. C'est significativement plus mauvais que les résultats obtenus sur le jeu d'entraînement. Cela signifie que le modèle apprend, car l'erreur diminue lors de l'entraînement, mais il n'apprend rien de généralisable. C'est ce que l'on appelle le surapprentissage. De plus, une erreur moyenne de $26599.64$ par tuiles représente une erreur moyenne d'environ 26 habitants par kilomètre carré. À titre de comparaison, la densité de population du monde est d'environs $7000000000/500000000 = 14$ habitants par kilomètre carré, océans compris.
 
 \section{Améliorations}
-\subsection{Pré-traitement}
-La plus importante amélioration en performance que l'on peut obtenir sur un réseau de neurones vient d'un pré-traitement adapté. La façon dont les informations sont présentées au modèle influence grandement sa capacité à apprendre. Cet aspect n'a pas été travaillé pour le premier modèle. Voici donc les améliorations apportées.
+\subsection{Prétraitement}
+La plus importante amélioration en performance que l'on peut obtenir sur un réseau de neurones vient d'un prétraitement adapté. La façon dont les informations sont présentées au modèle influence grandement sa capacité à apprendre. Cet aspect n'a pas été travaillé pour le premier modèle. Voici donc les améliorations apportées.
 
-Premièrement, la Terre est recouverte à plus de 70\% d'eau. Cette surface n'est pas occupée par des habitations. Le jeu de données comporte donc une grande majorité d'observations superflues qui peuvent interférer avec l'apprentissage de caractéristiques plus importantes. Le processus de création des observations de 32 sur 32 pixels doit donc exclure les éléments vides. En filtrant les tuiles sans population de l'entraînement et la validation, on obtient une erreur moyenne plus grande car il y a une plus importante proportion d'éléments difficiles à prédire.
+Premièrement, la Terre est recouverte à plus de 70\% d'eau. Cette surface n'est pas occupée par des habitations. Le jeu de données comporte donc une grande majorité d'observations superflues qui peuvent interférer avec l'apprentissage de caractéristiques plus importantes. Le processus de création des observations de 32 sur 32 pixels doit donc exclure les éléments vides. On filtre donc les tuiles sans population de l'entraînement et la validation.
 
-Ensuite, sans même parler de l'influence de l'économie d'un pays sur ses émissions de lumière, la qualité des données de population est très inégale entre les pays. La figure \ref{spain-portugal} en est un exemple. Sur la grand majorité des pays du monde, et même de l'Europe, la grille de population ne propose qu'une seule estimation de la densité pour de grandes régions. Cela devient particulièrement problématique lorsqu'une observation contient une ville isolée émettant de la lumière, mais qu'elle se trouve au milieu d'une grande région dont la densité de population est basse. Ces cas sont nombreux et réduisent la corrélation entre population et luminosité que le modèle doit exploiter pour apprendre. Afin de gagner en performance, on peut découper la carte en isolant un pays dont les données de population sont de bonne qualité. C'est faisable avec QGIS par exemple, et un fichier vectoriel pour les frontières tel que celui de Natural Earth \cite{naturalearthdata}. Tous les tests dans le but d'améliorer la topologie du réseau de neurones seront faits sur le Brésil uniquement (bonne qualité, grande surface).
+De plus, sans même parler de l'influence de l'économie d'un pays sur ses émissions de lumière, la qualité des données de population est très inégale entre les pays. La figure \ref{spain-portugal} en est un exemple. Sur la grande majorité des pays du monde, et même de l'Europe, la grille de population ne propose qu'une seule estimation de densité pour de grandes régions. Cela devient particulièrement problématique lorsqu'une observation contient une ville isolée émettant de la lumière, mais qu'elle se trouve au milieu d'une grande région dont la densité de population est basse. Ces cas sont nombreux et réduisent la corrélation entre population et luminosité que le modèle doit exploiter pour apprendre. Afin de gagner en performance, on peut découper la carte en isolant un pays dont les données de population sont de bonne qualité. C'est faisable avec QGIS par exemple, et un fichier vectoriel pour les frontières tel que celui de Natural Earth \cite{naturalearthdata}. Tous les tests dans le but d'améliorer la topologie du réseau de neurones seront faits sur le Brésil uniquement (bonne qualité, grande surface).
 
 \begin{figure}
 	\centering
@@ -492,33 +494,33 @@ Ensuite, sans même parler de l'influence de l'économie d'un pays sur ses émis
 	\label{spain-portugal}
 \end{figure}
 
-Cependant, restreindre l'entrainement à un pays réduit la taille du jeu de données et augmente le risque de surapprentissage. Pour augmenter la quantité d'observations, chaque tuile de 32 sur 32 pixels est décalée de seulement 8 pixels au leu de 32. Ainsi, aucune observation n'est identique mais elles se superposent partiellement. Il est donc judicieux de ne pas utiliser cette méthode lors de la validation croisée.
+Cependant, restreindre l'entraînement à un pays réduit la taille du jeu de données et augmente le risque de surapprentissage. Pour augmenter la quantité d'observations, chaque tuile de 32 sur 32 pixels est décalée de seulement 8 pixels au leu de 32. Ainsi, aucune observation n'est identique, mais elles se superposent partiellement. Il est donc judicieux de ne pas utiliser cette méthode lors de la validation croisée.
 
 Enfin, réduire la taille des tuiles a donné de moins bons résultats lors de la validation, leur taille restera donc de 32 sur 32 pixels. L'image satellite et la grille de populations utilisée \cite{sedac} seront celles de 2015 afin d'exploiter les images de plus haute résolution (500m par pixel) de la NOAA \cite{noaa-viirs}.
 
 \subsection{Topologie et paramètres}
-Plus de 50 modèles ont été générés dans le but de tester différents ajustements sur le réseau de neurones et se paramètres. Ces tests ont été fait en utilisant la validation croisée 4-fold sur au moins 150 itérations. Le jeu de données d'entraînement est la Colombie en 2015 dont les tuiles ne se superposent pas (décalage de 32 pixels entre chaque observation de 32 sur 32). Voici un résumé non exhaustif de ces tests.
+Plus de 50 modèles ont été générés dans le but de tester différents ajustements sur le réseau de neurones et ses paramètres. Ces tests ont été effectués en utilisant la validation croisée 4-fold sur au moins 150 itérations. Le jeu de données d'entraînement est le Brésil en 2015, les tuiles ne se superposent pas (décalage de 32 pixels entre chaque observation de 32 sur 32). Voici un résumé non exhaustif de ces tests.
 
 \begin{itemize}
 	\item Ajustements de la taille des filtres des convolutions,
 	\item Ajouts/suppressions de couches de convolution et de max pooling,
-	\item Ajouts/suppressions de couches denses accompagné et de dropout,
+	\item Ajouts/suppressions de couches denses et de dropout,
 	\item Ajustements de la force du max pooling,
 	\item Ajustements du learning rate,
-	\item Implémentation de learning rate dégressif,
+	\item Implémentation du learning rate dégressif,
 	\item Pondération des observations selon la population présente (non concluant),
 	\item Ajustements du nombre de neurones dans la couche dense,
 	\item Ajustements des valeurs de dropout,
-	\item Passage du max pooling à l'average pooling, car lorsque l'on réduit la résolution des grilles on veut sommer les valeurs plutôt que de garder la valeur maximale des pixels. L'average pooling remplit ce rôle car la moyenne des pixels est la somme divisée par une constante dans le cas du pooling.
+	\item Passage du max pooling à l'average pooling, car lorsque l'on réduit la résolution des grilles on veut sommer les valeurs plutôt que de garder la valeur maximale des pixels. L'average pooling remplit ce rôle, car la moyenne des pixels est la somme divisée par une constante dans le cas du pooling.
 \end{itemize}
 
 La section \ref{Réseaufinal} détaille la topologie et les paramètres retenus après ces tests.
 
-\subsection{Prédiction}
+\subsection{Post-traitement}
 
-Les prédictions ne peuvent être faites que sur des images satellite de même échelle (mètres par pixel) que celle qui a servi à entraîner le réseau. Le résultat de la prédiction est une estimation de la population présente sur l'observation en entrée du modèle, ce réduit fortement la résolution de l'image en sortie. Cependant, grâce à l'article Equitable development through deep learning \cite{netpop-article} et l'exploration préalable des données, on sait que la répartition de population est en relation exponentielle avec la répartition de la luminosité.
+Les prédictions ne peuvent être faites que sur des images satellites de même échelle (en mètres par pixel) que celle qui a servi à entraîner le réseau. Le résultat de la prédiction est une estimation de la population présente sur l'observation en entrée du modèle, ce qui réduit fortement la résolution de l'image en sortie. Cependant, grâce à l'article \textit{Equitable development through deep learning} \cite{netpop-article} et l'exploration préalable des données, on sait que la répartition de population est en relation exponentielle avec la répartition de la luminosité.
 
-Cette constatation nous permet de répartir approximativement la population prédite par le modèle pour recréer une tuile de dimension identique à l'observation en entrée du modèle, c'est-à-dire 1024 pixels. On peut valider cette répartition en calculant le coefficient de corrélation de la prédiction et de la donnée d'entraînement. Avec le modèle entraîné sur le Brésil pour 2015, en comparant la grille de population à la prédiction de la population du Brésil en 2015, on obtient les coefficients de corrélation :
+Cette constatation nous permet de répartir approximativement la population prédite par le modèle pour recréer une tuile de dimension identique à l'observation en entrée du modèle, c'est-à-dire 1024 pixels. On peut valider cette répartition en calculant le coefficient de corrélation entre la prédiction et la donnée d'entraînement. Avec le modèle entraîné sur le Brésil pour 2015, en comparant la grille de population à la prédiction de la population du Brésil en 2015, on obtient les coefficients de corrélation :
 
 \begin{itemize}
 	\item 0.60771883 avec une distribution pondérée linéairement à la luminosité des pixels de la tuile,
@@ -527,12 +529,14 @@ Cette constatation nous permet de répartir approximativement la population pré
 	\item 0.65867300 avec une distribution quadratique.
 \end{itemize}
 
-\section{Réseau final}
+Ces résultats s'alignent avec l'hypothèse que la distribution exponentielle est la plus adaptée.
+
+\section{Réseau définitif}
 \label{Réseaufinal}
 
 \begin{table}[h]
 \centering
-\caption{Topologie du réseau en version finale}
+\caption{Topologie du réseau en version définitive}
 \begin{tabular}{ l r r }
 	\hline
 	\textbf{Couche (nb de neurones)} & \textbf{Dimensions de la sortie} & \textbf{Nb de paramètres} \\
@@ -567,7 +571,7 @@ La topologie du réseau retenu est détaillée sur la table \ref{topologie}.
 Les paramètres supplémentaires sont les suivants :
 \begin{itemize}
 	\item La taille des filtres est 3 sur 3 pixels pour toutes les couches de convolution.
-	\item Chaque average pooling divise la largeur et la hauteur de l'image en entrée de la couchee par 2.
+	\item Chaque average pooling divise la largeur et la hauteur de l'image en entrée de la couche par 2.
 	\item Le dropout abandonne 50\% des neurones lors des étapes d'entraînement pour éviter le surapprentissage.
 	\item L'ajustement des paramètres (rétropropagation) utilise l'algorithme Adam, et ne s'effectue que toutes les 1024 mesures. Cela permet de paralléliser les calculs efficacement pour un processeur graphique et réduit le nombre de rétropropagations à effectuer.
 	\item La fonction objectif est l'erreur quadratique moyenne. Cela permet de réduire la variance des erreurs ainsi que l'erreur absolue.
@@ -579,7 +583,7 @@ Les paramètres supplémentaires sont les suivants :
 
 \section{Résultats}
 \subsection{Validation croisée}
-Le résultat de la validation croisée 4-fold lors de l'entraînement sur le Brésil en 2015 est présenté dans la table \ref{k-fold}. Le pré-traitement utilisé pour la validation croisée ne génère pas d'observations qui se superposent (chaque tuile est décalée de 32 pixels de la précédente).
+Le résultat de la validation croisée 4-fold lors de l'entraînement sur le Brésil en 2015 est présenté dans la table \ref{k-fold}. Le prétraitement utilisé pour la validation croisée ne génère pas d'observations qui se superposent (chaque tuile est décalée de 32 pixels de la précédente).
 
 \begin{table}[h]
 \centering
@@ -600,12 +604,12 @@ Le résultat de la validation croisée 4-fold lors de l'entraînement sur le Br�
 \label{k-fold}
 \end{table}
 
-La validation étant 4-fold, elle consiste en 4 entraînements indépendants dont les données de validation sont toujours différentes. L'écart-type indiqué dans les résultats est l'écart-type entre les 4 mesure obtenues.
+La validation étant 4-fold, elle consiste en 4 entraînements indépendants dont les données de validation sont toujours différentes. L'écart-type indiqué dans les résultats est l'écart-type entre les 4 mesures obtenues.
 
 \subsection{Évaluation des prédictions}
-Afin d'évaluer la qualité des prédictions, on compare la prédiction avec la grille de population \cite{sedac} utilisée lors de l'entraînement, pixel par pixel, grâce au notebook rastercomparator. Cette comparaison ignore les pixels qui ont une valeur égale à 0. Cela permet d'éliminer les océans et les territoires hors frontières du calcul du coefficient de corrélation et de l'erreur moyenne. Sans cela, l'erreur serait anormalement basse.
+Afin d'évaluer la qualité des prédictions, on compare chaque prédiction avec la grille de population \cite{sedac} utilisée lors de l'entraînement, pixel par pixel, grâce au notebook \texttt{rastercomparator}. Cette comparaison ignore les pixels qui ont une valeur égale à 0. Cela permet d'éliminer les océans et les territoires hors frontières du calcul du coefficient de corrélation et de l'erreur moyenne. Sans cela, l'erreur serait anormalement basse et non représentative.
 
-Les pays choisis pour les mesures sont des pays pour lesquelles la grille de population \cite{sedac} est la plus précise : Brésil, USA, Portugal, Italie, Iles de Bretagne. Les modèles testés sont ceux qui ont été entraînés sur le Brésil ou les USA en 2015 à cause de leur grande superficie. On tente de mettre en relation des pays dont le développement économique est vaguement proche. Les résultats sont présentés dans les tables \ref{stats-brazil-brazil} à \ref{stats-usa-britishislands}.
+Les pays choisis pour les mesures sont des pays pour lesquels la grille de population \cite{sedac} est la plus précise : Brésil, USA, Portugal, Italie, Iles de Bretagne. Les modèles testés sont ceux qui ont été entraînés sur le Brésil ou les USA en 2015 à cause de leur grande superficie. On tente de mettre en relation des pays dont le développement économique est vaguement proche. Les résultats sont présentés dans les tables \ref{stats-brazil-brazil} à \ref{stats-usa-britishislands}.
 
 Afin de donner des pistes pour comprendre la source des erreurs, on peut soustraire les données prédites à la grille de population. Un extrait du résultat est présenté en figure \ref{act_vs_pred}.
 
@@ -755,28 +759,30 @@ Afin de donner des pistes pour comprendre la source des erreurs, on peut soustra
 \end{table}
 
 \section{Discussion}
-La validation croisée nous donne une idée de la performance du modèle sans l'algorithme de prédiction qui reconstruit la grille complète. Le résultat est donc un seul nombre pour la population sur une tuile de 32 sur 32 pixels, ce qui représente dans ce cas une zone de 256 km$^2$. Il est important de rappeler que, lors de la validation croisée, afin que toutes les observations ne se superposent pas, le pré-traitement ne génère que le quart des tuiles qui sont à disposition lors de l'entraînement complet.
+La validation croisée nous donne une idée de la performance du modèle sans l'algorithme de prédiction qui reconstruit la grille complète. Le résultat est donc un seul nombre pour la population sur une tuile de 32 sur 32 pixels, ce qui représente dans ce cas une zone de 256 km$^2$. Il est important de rappeler que, lors de la validation croisée, afin que toutes les observations ne se superposent pas, le prétraitement ne génère que le quart des tuiles qui sont à disposition lors de l'entraînement complet.
 
-Selon The World Bank \cite{theworldbank}, en 2015 le Brésil possédait 24.642 habitants par km$^2$. Notre modèle se trompe en moyenne de 7.9 habitants par km$^2$. Bien que cette erreur ne soit pas négligeable, ce résultat paraît très satisfaisant si l'on considère le jeu de données réduit, et le fait que la grille servant à l'entraînement utilise une répartition de la population datant de 2005 à 2014 \cite{sedac}. Nous n'avons malheureusement pas de moyen de savoir dans quelle proportion cette erreur est due au jeu de données vieillissant ou à la performance du réseau de neurones.
+Selon The World Bank \cite{theworldbank}, en 2015 le Brésil possédait 24.642 habitants par km$^2$. Notre modèle se trompe en moyenne de 7.9 habitants par km$^2$. Bien que cette erreur ne soit pas négligeable, ce résultat paraît très satisfaisant si l'on considère le jeu de données réduit, et le fait que la grille servant à l'entraînement utilise une répartition de la population datant de 2005 à 2014 \cite{sedac}. Nous n'avons malheureusement pas de moyens de savoir dans quelle proportion cette erreur est due au jeu de données vieillissant ou à la performance du réseau de neurones.
 
-Passons aux cartes générées en pleine résolution après la prédiction par un modèle bien entraîné (mais sans validation croisée). Le résultat de ces mesures (tables \ref{stats-brazil-brazil} à \ref{stats-usa-britishislands}) sont fortement dépendants de la façon dont on répartit la population prédite à l'intérieur des tuiles. Cela explique l'erreur par $km^2$ de la table \ref{stats-brazil-brazil} plus élevée que lors de la validation croisée.
+Passons aux cartes générées en pleine résolution après la prédiction par un modèle bien entraîné (mais sans validation croisée). Le résultat de ces mesures (tables \ref{stats-brazil-brazil} à \ref{stats-usa-britishislands}) est fortement dépendant de la façon dont on répartit la population prédite à l'intérieur des tuiles. Cela explique l'erreur par km$^2$ de la table \ref{stats-brazil-brazil} plus élevée que lors de la validation croisée.
 
 Comparer la population totale prédite avec la réalité peut indiquer si deux pays sont comparables, c'est-à-dire si un pays peut décemment servir de données d'entraînement pour une prédiction sur l'autre pays. Cependant, la mesure n'est pas bonne pour évaluer la qualité d'une prédiction. Le modèle cherche à estimer correctement la population d'une région de 256 km$^2$ indépendamment des autres observations. Il ne fait aucun rapprochement avec la population totale du pays, ce qui fait que de petites erreurs peuvent s'accumuler.
 
 Le modèle entraîné sur le Brésil se trompe en moyenne de 34.19 habitants par pixel, soit 139.74 par km$^2$, lorsqu'il est appliqué à l'image satellite du Portugal. C'est moins bon que le modèle entraîné sur les USA, qui se trompe de 59.62 par $km^2$. La densité de population du Portugal était de 113.072 en 2015 selon The World Bank \cite{theworldbank}. Le coefficient de corrélation plus élevé pour la prédiction du modèle entraîné sur le Brésil semble indiquer qu'il produit cependant moins de grosses erreurs. Cet exemple illustre l'importance de bien choisir les pays à comparer.
 
-De manière générale, les coefficients de corrélation sont plutôt bons. Cela laisse penser qu'il est possible d'améliorer l'algorithme de distribution de la population à l'intérieur des tuiles pour réduire l'erreur moyenne absolue.
+De manière générale, les coefficients de corrélation sont plutôt bons. Nous avions trouvé qu'il valait 0.72625 lors de la comparaison entre l'image satellite du Brésil et la grille de population de validation. Le fait que les coefficients trouvés tournent autour de 0.7 est donc très encourageant.
 
-Enfin, la figure \ref{act_vs_pred} nous montre où sont les grosses erreurs. On aperçoit les routes en blanc. En effet, celles-ci émettent beaucoup de lumière sans confirmer pour autant la présence d'habitants au bord de ces routes, ce qui a pour conséquence une surestimation de la population à ces endroits.
+Un coefficient proche de 1 ou -1 indique que les valeurs prédites sont proportionnelles aux valeurs de validation. Il est donc peu affecté par les différences d'intensité lumineuse par habitant entre le pays d'entraînement et de validation. C'est la raison pour laquelle le modèle entraîné sur le Brésil possède un si bon coefficient de corrélation avec la grille de validation lorsqu'il est appliqué au Portugal. Cette prédiction n'est pas entièrement mauvaise, mais elle nécessiterait d'être remise à l'échelle pour donner des valeurs exploitables. Si l'on divise la population prédite par 2.5 pour adapter la somme des pixels prédits à la population du pays, le coefficient de corrélation reste identique, mais l'erreur absolue par km$^2$ descend à 58.7317. Un score rivalisant avec celui obtenu par le modèle entraîné sur les USA.
 
-L'autre anomalie qui saut aux yeux est le bruit observé en centre ville. On trouve des pixels très noirs à côté d'autres très clairs. Ce n'est pas dû au hasard. Si l'on compare ces taches à la carte de Brasilia, on remarque que les quartiers où l'on surestime la population sont commerciaux ou riches, alors que ceux où l'on sous-estime la population sont pauvres et densément peuplés. On touche donc à la limite des informations que les images satellites nocturnes peuvent nous offrir.
+La figure \ref{act_vs_pred} nous montre où sont les grosses erreurs. On aperçoit les routes en blanc. En effet, celles-ci émettent beaucoup de lumière sans confirmer pour autant la présence d'habitants au bord de ces routes, ce qui a pour conséquence une surestimation de la population à ces endroits.
+
+L'autre anomalie qui saute aux yeux est le bruit observé en centre-ville. On trouve des pixels très noirs à côté d'autres très clairs. Ce n'est pas dû au hasard. Si l'on compare ces taches à la carte de Brasilia, on remarque que les quartiers où l'on surestime la population sont commerciaux ou riches, alors que ceux où l'on sous-estime la population sont pauvres et densément peuplés. On touche donc à la limite des informations que les images satellites nocturnes peuvent nous offrir.
 
 \section{Prédictions non validées}
-Pour exploiter ce modèle, on aimerait générer des cartes de population pour des pays qui n'en disposent pas. La Colombie est notamment intéressante, car l'apaisement du conflit contre les Forces armées révolutionnaires de Colombie pourrait provoquer un déplacement de la population hors des villes et près de la forêt Amazonienne. Bien que l'on n'en perçoive pas encore l'impact sur la luminosité émise par les habitations dans ces régions, il serait très intéressant d'observer des changements sur les années qui viennent. Notre modèle serait en mesure d'approximativement quantifier les migrations.
+Pour exploiter ce modèle, on aimerait générer des cartes de population pour des pays qui n'en disposent pas. La Colombie est notamment intéressante, car l'apaisement du conflit contre les Forces armées révolutionnaires de Colombie pourrait provoquer un déplacement de la population hors des villes et vers la forêt Amazonienne. Bien que l'on n'en perçoive pas encore l'impact sur la luminosité émise par les habitations dans ces régions, il serait très intéressant d'observer des changements sur les années qui viennent. Notre modèle serait en mesure d'approximativement quantifier les migrations.
 
-Toutes les prédictions effectuées sont sauvegardées dans le répertoire \texttt{gleam/predictions}. Le nom des fichiers suit la convention \texttt{année et pays d'entraînement \_to\_ année et pays de la prédiction.tif}. À titre d'exemple, la figure \ref{pred_colombia_2017} représente la répartition de la population colombienne en 2017 telle que le modèle entraîné sur le Brésil en 2015 l'a prédite d'après l'image satellite de 2017. La figure \ref{pred_brazil_2017} prédit la répartition de la population brésilienne en 2017. Le blanc correspond à 0 habitants et le noir correspond à 500 habitants ou plus.
+Toutes les prédictions effectuées sont sauvegardées dans le répertoire \texttt{gleam/predictions}. Le nom des fichiers suit la convention \texttt{année et pays d'entraînement \_to\_ année et pays de la prédiction.tif}. À titre d'exemple, la figure \ref{pred_colombia_2017} représente la répartition de la population colombienne en 2017 telle que le modèle entraîné sur le Brésil en 2015 l'a prédite d'après l'image satellite de 2017. La figure \ref{pred_brazil_2017} prédit la répartition de la population brésilienne en 2017. Le blanc correspond à 0 habitant et le noir à 500 ou plus.
 
-À titre indicatif, la population totale prédite pour le Brésil en 2017 est 272478315 (environ 30\% de plus que la réalité), et 31904347 (environ 35\% de moins que la réalité) pour la Colombie.
+La population totale prédite pour le Brésil en 2017 est 272478315 (environ 30\% de plus que la réalité \cite{theworldbank}), et 31904347 (environ 35\% de moins que la réalité \cite{theworldbank}) pour la Colombie. En multipliant les valeurs obtenues pour la Colombie par 1.5, on devrait obtenir une estimation de meilleure qualité, comme on a pu le constater en faisant une mise à l'échelle de la prédiction générée pour le Portugal. Ce n'est cependant pas une astuce sur laquelle on devrait dépendre, car on aimerait pouvoir appliquer ce modèle à des pays pour lesquels on ne possède pas d'estimation fiable de la population totale.
 
 \begin{figure}
 	\centering
@@ -794,30 +800,27 @@ Toutes les prédictions effectuées sont sauvegardées dans le répertoire \text
 
 \chapter{Conclusion}
 \section{Discussion finale}
-Nous avons exploré une partie des données à disposition. Nous savons désormais où chercher, quel format utiliser et comment exploiter les données géographiques. Il devrait être relativement facile de substituer la grille de population à une autre, plus utile, quand on aura démontré l'efficacité du réseau de neurones.
 
-Le travail effectué, bien que ne fournissant pas de résultat exploitable, a permis de très clairement définir les priorités à court et moyen terme :
-\begin{itemize}
-	\item Faire en sorte que le modèle neural produise une estimation par pixel plutôt que par région (autant de pixels en entrée qu'en sortie).
-	\item Adapter les méta-paramètres du modèle neural afin d'obtenir de meilleurs résultats.
-	\item Réduire la consommation en mémoire des scripts d'entraînement et de test.
-	\item Tenter de faire des parallèles avec d'autres données que la population, notamment écologiques.
-	\item Entraîner un réseau à prédire l'évolution d'une image satellite au fil des années, afin de créer des images satellites futures sur lesquelles faire d'autres prédictions (génération d'une grille de population dans 20 ans par exemple).
-	\item Rendre l'utilisation des scripts d'entraînement et de test plus résistante aux changements de formats des données. Il faut qu'un nouvel utilisateur n'ait pas besoin de plonger dans le code source pour adapter la résolution de l'image satellite, par exemple.
-	\item Optimiser la performance du modèle, que ce soit par la transformation ou l'enrichissement des données d'entraînement, ou par la modification des méta-paramètres.
-\end{itemize}
+Nous avons choisi de mettre en relation les images satellites nocturnes et la répartition géographique de la population. Cette décision a été justifiée par la disponibilité de grilles de population de haute résolution, une corrélation suffisante et l'utilité potentielle d'un modèle capable de générer rapidement une grille de population à jour.
+
+Le modèle obtenu n'est pas parfait. Les sources erreurs sont cependant identifiées : données d'entraînement partiellement à jour, différences économiques entre pays et entre les quartiers d'une ville. Nous ne sommes pas parvenu à quantifier dans quelles proportions l'erreur est due au surapprentissage, aux données vieillissantes, au post-traitement de la prédiction ou aux différences entre pays.
+
+La plus grosse difficulté rencontrée au cours de ce projet a été de travailler avec si peu de données de validation. Seuls une poignée de pays possèdent une grille de population exploitable, et les différences économiques ne permettent pas de valider le modèle sur un pays différent que celui qui a servi à l'entraîner. La seule réelle validation effectuée est la validation croisée sur l'image satellite du Brésil en 2015.
+
+Malgré cela, les résultats obtenus sont prometteurs. Si l'on garde à l'esprit les limitations du modèle, telles que la répartition erronée à l'intérieur des villes ou les différences de l'utilisation de l'éclairage entre pays, on peut réaliser des estimations d'une précision géographique étonnante. Les prédictions manquent en fiabilité, mais peuvent se révéler très utiles lorsqu'elles sont faites sur les pays pour lesquels on ne dispose que de très peu de données démographiques. De plus, elles sont peu coûteuses à générer. Enfin, la résolution des cartes obtenues excède très largement celle des grilles de population issues d'études poussées pour la très grande majorité des pays, même en Europe.
 
 \section{Pour aller plus loin}
 
-Plus de pays, identifier les paramètres (PIB, démographie, politique, ...) qui permettraient de déterminer que 2 pays se ressemblent suffisamment
+Les possibilités ne s'arrêtent pas là. Avec plus de temps et de connaissances, en sortant du cadre fixé par le cahier des charges ou en attendant d'avoir plus de données à disposition, il serait possible de partir dans différentes directions :
 
-ajouter les images de jour
-
-prédire la carte des luminosités des années prochaines
-
-évolution par mois sur une année "typique"
-
-utiliser des données de densité de population plus spécialisées et récentes (étude sur un seul pays p. ex)
+\begin{itemize}
+	\item Améliorer l'algorithme de post-traitement qui distribue la population à l'intérieur d'une tuile prédite de 256 km$^2$.
+	\item Identifier les variables qui permettraient de garantir que deux pays sont compatibles, et que l'un puisse servir de base pour faire une prédiction sur l'autre.
+	\item Attendre la mise à jour de la grille de population globale ou utiliser des grilles spécialisées pour un pays en particulier, en supposant qu'elles soient plus fiables.
+	\item Combiner les images satellites nocturnes avec celles de jour. La forme, le nombre et la taille des habitations donnent des informations supplémentaires précieuses, mais plus longues à traiter.
+	\item Générer une image satellite nocturne ou une grille de population sur la base de celles des années précédentes afin d'obtenir les cartes des années à venir.
+	\item Observer l'évolution des cartes mensuelles au cours d'une année "typique" afin d'obtenir des données saisonnières telles que l'impact des fêtes de fin d'année sur la lumière émise en Amérique du Nord.
+\end{itemize}
 
 \printbibliography
 
@@ -844,7 +847,7 @@ Par la présente, je soussigné, Antoine Friant, déclare avoir réalisé seul c
 	Nom complet
 \end{multicols}
 
-\chapter{Symboles et abréviations}
+%\chapter{Symboles et abréviations}
 
 \listoffigures
 
